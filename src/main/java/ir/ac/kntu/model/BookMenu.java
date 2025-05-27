@@ -27,12 +27,12 @@ public class BookMenu {
         scanner.nextLine();
         System.out.println("Enter book's genre: ");
         String bgenre = scanner.nextLine();
-        System.out.println("Enter book's ageQroup: ");
-        String bageQroup = scanner.nextLine();
+        System.out.println("Enter book's ageGroup: ");
+        String bageGroup = scanner.nextLine();
         System.out.println("Enter book's ISBNid: ");
         String bISBNid = scanner.nextLine();
 
-        BookProducts book = new BookProducts(bname, bprice, binsInventory, bauthorName, bpageCount, bgenre, bageQroup, bISBNid);
+        BookProducts book = new BookProducts(bname, bprice, binsInventory, bauthorName, bpageCount, bgenre, bageGroup, bISBNid);
         book.setSeller(seller);
         ProductsManager.getInstance().addProduct(seller,book);
         System.out.println("add book successfully");

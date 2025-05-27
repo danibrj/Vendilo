@@ -49,7 +49,7 @@ public class SellerOrderMenu {
         for (OrderUser order : orders) {
             for (Products p : order.getOrderedProducts()) {
                 if (p.getSeller().equals(seller)) {
-                    System.out.println(index + " " + p.getName() + " | Date: " + order.getOrderDate());
+                    System.out.println((index+1) + " " + p.getName() + " | Date: " + order.getOrderDate());
                     break;
                 }
             }

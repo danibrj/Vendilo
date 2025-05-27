@@ -7,9 +7,9 @@ public class ShoppingCart {
     private static final ShoppingCart SpInstance = new ShoppingCart();
     private List<Products> proOfCart = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
-    private final double SHIPPING_COST = 1;
-    private double totalCost = 0;
-    private double totalPrice = 0;
+    private final float SHIPPING_COST = 1;
+    private float totalCost = 0;
+    private float totalPrice = 0;
     private Set<Seller> uniqueSeller = new HashSet<>();
     private boolean isSellerSameP = true;
 
@@ -71,7 +71,7 @@ public class ShoppingCart {
                 break;
             }
         }
-        double shippingCost = isSellerSameP ? (SHIPPING_COST * uniqueSeller.size()) / 3 : SHIPPING_COST * uniqueSeller.size();
+        float shippingCost = isSellerSameP ? (SHIPPING_COST * uniqueSeller.size()) / 3 : SHIPPING_COST * uniqueSeller.size();
         totalPrice = totalCost + shippingCost;
         shows(pdt, shippingCost, user, address);
     }
@@ -81,7 +81,7 @@ public class ShoppingCart {
         for (Products p : pdt) {
             System.out.println(p);
         }
-        System.out.println("the cost of product : " + totalCost + " $\n" + "the cost of send : " + shippingCost + " $\n" + "the generally cost : " + totalPrice + " $\n");
+        System.out.print("the cost of product : " +totalCost + " $\n the cost of send : "+shippingCost + " $\nthe generally cost :  " +totalPrice + " $\n");
         System.out.println("do you want to payment?");
         String yesOrNo = scanner.nextLine();
         if ("yes".equalsIgnoreCase(yesOrNo)) {

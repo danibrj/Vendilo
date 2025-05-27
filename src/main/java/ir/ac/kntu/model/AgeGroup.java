@@ -1,5 +1,5 @@
 package ir.ac.kntu.model;
 
-public enum AgeQroup {
+public enum AgeGroup {
     CHILD,TEENAGER,ADULT
 }

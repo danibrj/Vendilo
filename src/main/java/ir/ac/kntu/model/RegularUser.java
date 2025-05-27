@@ -15,7 +15,7 @@ public class RegularUser {
     private ShoppingCart cart = ShoppingCart.getSpInstance();
     private UsersAddress usersAddress = new UsersAddress();
     private List<OrderUser> orderUsers = new ArrayList<>();
-    private UserSuportWorking userSuportWorking = new UserSuportWorking();
+    private UserSuportWorking userSuportWorking = UserSuportWorking.getWInstance();
 
     public RegularUser(String firstName, String lastName, String email, String phoneNumber, String password) {
         this.firstName = firstName;

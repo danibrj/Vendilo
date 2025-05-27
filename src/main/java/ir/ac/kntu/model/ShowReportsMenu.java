@@ -15,7 +15,7 @@ public class ShowReportsMenu {
         while (iscont) {
             System.out.println("----------REPORTS----------");
             System.out.println("1.add report");
-            System.out.println("1.show report");
+            System.out.println("2.show report");
             System.out.println("3.quit");
             System.out.println("select: ");
             int choice = scanner.nextInt();

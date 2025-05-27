@@ -7,6 +7,10 @@ public class UsersAddress {
 
     private List<Address> addresses = new ArrayList<>();
 
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
     public void addAddresses(Address address) {
         addresses.add(address);
         System.out.println("add address successfully");
@@ -40,7 +44,5 @@ public class UsersAddress {
         }
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
-    }
+
 }

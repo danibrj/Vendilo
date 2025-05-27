@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 public class Supporter {
+
     private String firstName;
     private String userName;
     private String password;

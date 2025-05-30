@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class SellerMenuLogin {
 
@@ -19,9 +20,9 @@ public class SellerMenuLogin {
         SellerMenuLogin2 sellerMenuLogin2 = new SellerMenuLogin2(regisSellBugs);
         sellerMenuLogin2.show(seller);
         if (seller == null) {
-            System.out.println("these information are wrong");
+            System.out.println(red+"these information are wrong"+reset);
         } else if (seller.isApproved()) {
-            System.out.println("LOGIN SUCCESSFULLY.");
+            System.out.println(green+"LOGIN SUCCESSFULLY."+reset);
             MainSellerMenu.getMsm().show(seller);
         } else if (seller.isRejected()) {
             System.out.println("your registration was rejected.");
@@ -31,7 +32,7 @@ public class SellerMenuLogin {
             if ("yes".equalsIgnoreCase(answer)) {
                 show2();
             } else {
-                System.out.println("ok you don't want to update your information");
+                System.out.println(green+"ok you don't want to update your information"+reset);
             }
         } else {
             System.out.println("your registering is under review");

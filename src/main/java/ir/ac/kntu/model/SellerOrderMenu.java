@@ -2,6 +2,7 @@ package ir.ac.kntu.model;
 
 import java.util.List;
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class SellerOrderMenu {
 
@@ -14,10 +15,7 @@ public class SellerOrderMenu {
     public void show(Seller seller) {
         boolean isGo = true;
         while (isGo) {
-            System.out.println("---Seller Orders Menu---");
-            System.out.println("1.show list of your shopping");
-            System.out.println("2.see each shopping details");
-            System.out.println("3.quit");
+            System.out.println(cyan + "---Seller Orders Menu---\n" + red + "1" + green + ".show list of your shopping\n" + red + "2" + green + ".see each shopping details\n" + red + "3" + green + ".quit" + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -31,7 +29,7 @@ public class SellerOrderMenu {
                     isGo = false;
                     break;
                 default:
-                    System.out.println("invalid choices!!!");
+                    System.out.println(red+"invalid choices!!!"+reset);
             }
 
         }
@@ -41,7 +39,7 @@ public class SellerOrderMenu {
         List<OrderUser> orders = OrderManager.getOMInstance().getOrderForSeller(seller);
 
         if (orders.isEmpty()) {
-            System.out.println("not doing any shopping from you!!!");
+            System.out.println(red+"not doing any shopping from you!!!"+reset);
             return;
         }
 
@@ -61,7 +59,7 @@ public class SellerOrderMenu {
         List<OrderUser> orders = OrderManager.getOMInstance().getOrderForSeller(seller);
 
         if (orders.isEmpty()) {
-            System.out.println("not doing any shopping from you!!!");
+            System.out.println(red+"not doing any shopping from you!!!"+reset);
             return;
         }
 
@@ -82,11 +80,11 @@ public class SellerOrderMenu {
         scanner.nextLine();
 
         if (selection < 1 || selection > orders.size()) {
-            System.out.println("invalid selection");
+            System.out.println(red+"invalid selection"+reset);
             return;
         }
         OrderUser selectedOrder = orders.get(selection - 1);
-        System.out.println("----Shopping details----");
+        System.out.println(cyan+"----Shopping details----"+reset);
         System.out.println("Date: " + selectedOrder.getOrderDate());
         for (Products p : selectedOrder.getOrderedProducts()) {
             if (p.getSeller().equals(seller)) {
@@ -97,7 +95,7 @@ public class SellerOrderMenu {
         if (buyer != null) {
             System.out.println("buyer email: " + buyer.getEmail());
         } else {
-            System.out.println("not found!!!");
+            System.out.println(red+"not found!!!"+reset);
         }
         System.out.println("Address: " + selectedOrder.getDeliveryAddress());
     }

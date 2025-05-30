@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.*;
+import static ir.ac.kntu.model.Color.*;
 
 public class ShoppingCart {
 
@@ -37,15 +38,15 @@ public class ShoppingCart {
     public void removePro(Products prod) {
         boolean removed = proOfCart.removeIf(a -> a.equals(prod));
         if (removed) {
-            System.out.println("product removed successfully");
+            System.out.println(green+"product removed successfully"+reset);
         } else {
-            System.out.println("product not found!!!");
+            System.out.println(red+"product not found!!!"+reset);
         }
     }
 
     public void showPDetails(Products prod) {
         if (prod == null) {
-            System.out.println("not found!!!");
+            System.out.println(red+"not found!!!"+reset);
             return;
         }
         System.out.println(prod);
@@ -77,12 +78,12 @@ public class ShoppingCart {
     }
 
     public void shows(List<Products> pdt, double shippingCost, RegularUser user, Address address) {
-        System.out.println("-----product list-----");
+        System.out.println(cyan+"-----product list-----"+reset);
         for (Products p : pdt) {
             System.out.println(p);
         }
         System.out.print("the cost of product : " +totalCost + " $\n the cost of send : "+shippingCost + " $\nthe generally cost :  " +totalPrice + " $\n");
-        System.out.println("do you want to payment?");
+        System.out.println(cyan+"do you want to payment?"+reset);
         String yesOrNo = scanner.nextLine();
         if ("yes".equalsIgnoreCase(yesOrNo)) {
             showPayment(user, pdt, totalPrice, address);
@@ -94,8 +95,8 @@ public class ShoppingCart {
 
     public void showPayment(RegularUser user, List<Products> pdt, double totalPrice, Address address) {
         if (user.getUsersWallet().getInventory() < totalPrice) {
-            System.out.println("ERROR: your inventory not enough");
-            System.out.println("going to wallet for charge ...");
+            System.out.println(red+"ERROR: your inventory not enough"+reset);
+            System.out.println(blue+"going to wallet for charge ..."+reset);
             ShowWallet.getShowWal().show(user);
             if (user.getUsersWallet().getInventory() >= totalPrice) {
                 completePayment(user, pdt, totalPrice, address);
@@ -124,7 +125,7 @@ public class ShoppingCart {
         }
 
         pdt.clear();
-        System.out.println("Payment successful! Your order has been placed.");
+        System.out.println(green+"Payment successful! Your order has been placed."+reset);
         System.out.println("Remaining Wallet Balance: " + user.getUsersWallet().getInventory() + " $");
     }
 }

@@ -1,5 +1,7 @@
 package ir.ac.kntu.model;
 
+import static ir.ac.kntu.model.Color.*;
+
 public class SellerWallet {
     private double inventory;
 
@@ -16,7 +18,7 @@ public class SellerWallet {
             inventory -= targetMoneyAmount;
             setInventory(inventory);
         } else {
-            System.out.println("your inventory not enough!!!");
+            System.out.println(red+"your inventory not enough!!!"+reset);
         }
     }
 

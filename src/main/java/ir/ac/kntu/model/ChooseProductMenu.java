@@ -2,6 +2,7 @@ package ir.ac.kntu.model;
 
 import java.util.List;
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class ChooseProductMenu {
 
@@ -13,11 +14,11 @@ public class ChooseProductMenu {
     }
 
     public void show() {
-        System.out.println("Enter the name of your target product: ");
+        System.out.println(cyan+"Enter the name of your target product: "+reset);
         String pName = scanner.nextLine();
         List<Products> ofSameName = ProductsManager.getInstance().findByName(pName);
         if (ofSameName.isEmpty()) {
-            System.out.println("not found!!!");
+            System.out.println(red+"not found!!!"+reset);
             return;
         }
         if (ofSameName.size() == 1) {
@@ -29,7 +30,7 @@ public class ChooseProductMenu {
             for (int i = 0; i < ofSameName.size(); i++) {
                 System.out.println((i + 1) + " " + ofSameName.get(i));
             }
-            System.out.println("choose one: ");
+            System.out.println(cyan+"choose one: "+ reset);
             int num = scanner.nextInt();
 
             if (num >= 1 && num <= ofSameName.size()) {
@@ -37,7 +38,7 @@ public class ChooseProductMenu {
                 ProductsManager.getInstance().showProductsDetails(prds2);
                 ChooseProductMenu2.getCpm2().show(prds2);
             } else {
-                System.out.println("invalid selected!!!");
+                System.out.println(red+"invalid selected!!!"+ reset);
             }
         }
     }

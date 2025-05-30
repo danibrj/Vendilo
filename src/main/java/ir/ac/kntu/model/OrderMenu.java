@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class OrderMenu {
 
@@ -14,8 +15,8 @@ public class OrderMenu {
     public void show(RegularUser user) {
         boolean isRunning = true;
         while (isRunning) {
-            System.out.println("\n----order management----");
-            System.out.println("\n1.show all orders\n2.view order details\n3.rate a product in an order\n4.quit\nchoose an option: ");
+            System.out.println(cyan+"\n----------order management----------\n"+reset);
+            System.out.println(red + "1." + green + "show all orders\n" + red + "2." + green + "view order details\n" + red + "3." + green + "rate a product in an order\n" + red + "4." + green + "quit\n" + cyan+"choose an option: " + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {

@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class ShowSellerWallet {
 
@@ -15,7 +16,7 @@ public class ShowSellerWallet {
         SellerWallet sellerWallet = seller.getSellerWallet();
         boolean isOk = true;
         while (isOk) {
-            System.out.println("choose one: \n1.show inventory\n2.withdraw money\n3.quit");
+            System.out.println(cyan + "choose one:\n" + red + "1" + green + ".show inventory\n" + red + "2" + green + ".withdraw money\n" + red + "3" + green + ".quit" + reset);
             int select = scanner.nextInt();
             scanner.nextLine();
             switch (select) {
@@ -31,7 +32,7 @@ public class ShowSellerWallet {
                     isOk = false;
                     break;
                 default:
-                    System.out.println("invalid select!!!");
+                    System.out.println(red+"invalid select!!!"+reset);
             }
         }
 

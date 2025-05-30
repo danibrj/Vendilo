@@ -1,5 +1,7 @@
 package ir.ac.kntu.model;
 
+import static ir.ac.kntu.model.Color.*;
+
 public class RegularUserBugs {
     private RegularUserRepository userRepo;
 
@@ -30,19 +32,19 @@ public class RegularUserBugs {
 
     public boolean registerRegularUser(RegularUser regularUser) {
         if (userRepo.isEmailOrPhoneExists(regularUser.getEmail(), regularUser.getPhoneNumber())) {
-            System.out.println("the email or phoneNumber is repetitive");
+            System.out.println(red+"the email or phoneNumber is repetitive"+reset);
             return false;
         }
         if (!isPasswordOk(regularUser.getPassword())) {
-            System.out.println("the password format is wrong!!!");
+            System.out.println(red+"the password format is wrong!!!"+reset);
             return false;
         }
         if (!isEmailFormatOk(regularUser.getEmail())) {
-            System.out.println("the email format is wrong!!!");
+            System.out.println(red+"the email format is wrong!!!"+reset);
             return false;
         }
         if (!isPnFormatOk(regularUser.getPhoneNumber())) {
-            System.out.println("the phoneNumber format is wrong!!!");
+            System.out.println(red+"the phoneNumber format is wrong!!!"+reset);
             return false;
         }
 
@@ -53,7 +55,7 @@ public class RegularUserBugs {
     public RegularUser login(String input, String password) {
         RegularUser user = userRepo.findUserByLogin(input, password);
         if (user == null) {
-            System.out.println("Login failed");
+            System.out.println(red+"Login failed"+reset);
         }
         return user;
     }

@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.*;
+import static ir.ac.kntu.model.Color.*;
 
 public class Setting {
 
@@ -24,11 +25,11 @@ public class Setting {
     public void updateInformation(String input, Scanner scanner) {
         RegularUser regularUser = finedRegularUserInfo(input);
         if (regularUser == null) {
-            System.out.println("user not found!!!");
+            System.out.println(red+"user not found!!!"+reset);
             return;
         }
         while (true) {
-            System.out.println("what title you want to update? \n1.firstName\n\"2.lastName\n3.email\n4.phoneNumber\n5.password\n6.quit");
+            System.out.println(cyan + "what title you want to update?\n" + red + "1" + green + ".firstName\n" + red + "2" + green + ".lastName\n" + red + "3" + green + ".email\n" + red + "4" + green + ".phoneNumber\n" + red + "5" + green + ".password\n" + red + "6" + green + ".quit" + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -40,7 +41,7 @@ public class Setting {
                 case 6 -> {
                     return;
                 }
-                default -> System.out.println("invalid choice");
+                default -> System.out.println(red+"invalid choice"+reset);
             }
         }
     }
@@ -59,7 +60,7 @@ public class Setting {
         System.out.println("new email: ");
         String email = scanner.nextLine();
         if (!regularUserBugs.isEmailFormatOk(email)) {
-            System.out.println("email format Error!!!");
+            System.out.println(red+"email format Error!!!"+reset);
         } else if (userRepo.isEmailOrPhoneExists(email, regularUser.getPhoneNumber())) {
             System.out.println("Email already in use.");
         } else {
@@ -71,7 +72,7 @@ public class Setting {
         System.out.println("new phoneNumber: ");
         String phoneNumber = scanner.nextLine();
         if (!regularUserBugs.isPnFormatOk(phoneNumber)) {
-            System.out.println("phoneNumber format Error!!!");
+            System.out.println(red+"phoneNumber format Error!!!"+reset);
         } else if (userRepo.isEmailOrPhoneExists(regularUser.getEmail(), phoneNumber)) {
             System.out.println("phone number already in use.");
         } else {
@@ -83,7 +84,7 @@ public class Setting {
         System.out.println("new password: ");
         String password = scanner.nextLine();
         if (!regularUserBugs.isPasswordOk(password)) {
-            System.out.println("password format Error!!!");
+            System.out.println(red+"password format Error!!!"+reset);
         } else {
             regularUser.setPassword(password);
         }

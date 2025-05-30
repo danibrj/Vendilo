@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class SellerMenuLogin2 {
     private RegisterSellerBugs registSellBugs;
@@ -11,9 +12,9 @@ public class SellerMenuLogin2 {
     }
 
     public void show(Seller seller) {
-        System.out.println("Enter your agencyCode: ");
+        System.out.println(blue+"Enter your agencyCode: "+reset);
         String agCode = scanner.nextLine();
-        System.out.println("Enter your password: ");
+        System.out.println(blue+"Enter your password: "+reset);
         String pass = scanner.nextLine();
         for (Seller sl : registSellBugs.getSellers()) {
             if (sl.getAgencyCode() != null && sl.getAgencyCode().equals(agCode) && sl.getPassword().equals(pass)) {

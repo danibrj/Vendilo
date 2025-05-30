@@ -2,6 +2,7 @@ package ir.ac.kntu.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import static ir.ac.kntu.model.Color.*;
 
 public class UsersAddress {
 
@@ -13,36 +14,34 @@ public class UsersAddress {
 
     public void addAddresses(Address address) {
         addresses.add(address);
-        System.out.println("add address successfully");
+        System.out.println(green+"add address successfully"+reset);
     }
 
     public void editAddress(int index,Address newAddress) {
         if(index>=0 & index < addresses.size()) {
             addresses.set(index, newAddress);
-            System.out.println("Address updated");
+            System.out.println(green+"Address updated"+reset);
         }else{
-            System.out.println("invalid index");
+            System.out.println(red+"invalid index"+reset);
         }
     }
 
     public void removeAddress(int index) {
         if(index>=0 & index < addresses.size()) {
             addresses.remove(index);
-            System.out.println("address removed");
+            System.out.println(green+"address removed"+reset);
         }else{
-            System.out.println("invalid index");
+            System.out.println(red+"invalid index"+reset);
         }
     }
 
     public void showAddresses() {
         if(addresses.isEmpty()){
-            System.out.println("no addresses added!!!");
+            System.out.println(red+"no addresses added!!!"+reset);
         }else{
             for(int i=0;i<addresses.size();i++){
                 System.out.println((i+1) + " " + addresses.get(i));
             }
         }
     }
-
-
 }

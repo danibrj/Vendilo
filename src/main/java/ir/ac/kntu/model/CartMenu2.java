@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class CartMenu2 {
 
@@ -16,7 +17,7 @@ public class CartMenu2 {
             for (int i = 0; i < shoppingCart.getProOfCart().size(); i++) {
                 System.out.println((i + 1) + " " + shoppingCart.getProOfCart().get(i).getType()+shoppingCart.getProOfCart().get(i).getName());
             }
-            System.out.println("choose one: ---(!indexNum : quit)---");
+            System.out.println(cyan+"choose one: ---(!indexNum : quit)---"+reset);
             int num = scanner.nextInt();
             scanner.nextLine();
             if (num >= 1 && num <= shoppingCart.getProOfCart().size()) {
@@ -30,9 +31,9 @@ public class CartMenu2 {
     public void show2(ShoppingCart shoppingCart,int num){
         boolean bool = true;
         while (bool) {
-            System.out.println("1.see all details");
-            System.out.println("2.delete product");
-            System.out.println("3.quit");
+            System.out.println(red+"1."+green+"see all details"+reset);
+            System.out.println(red+"2."+green+"delete product"+reset);
+            System.out.println(red+"3."+green+"quit"+reset);
             int goal = scanner.nextInt();
             scanner.nextLine();
             switch (goal) {
@@ -46,7 +47,7 @@ public class CartMenu2 {
                     bool = false;
                     break;
                 default:
-                    System.out.println("invalid goal!!!");
+                    System.out.println(red+"invalid goal!!!"+reset);
             }
         }
     }

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class SupporterOrders3 {
 
@@ -30,7 +31,7 @@ public class SupporterOrders3 {
             }
         }
         if (!isFound) {
-            System.out.println("No orders found in the selected date range.");
+            System.out.println(red+"No orders found in the selected date range."+reset);
         }
     }
 }

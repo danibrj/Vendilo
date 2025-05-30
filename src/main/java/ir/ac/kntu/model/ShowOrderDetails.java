@@ -2,6 +2,7 @@ package ir.ac.kntu.model;
 
 import java.util.List;
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class ShowOrderDetails {
 
@@ -15,7 +16,7 @@ public class ShowOrderDetails {
     public void show(RegularUser user) {
         List<OrderUser> orders = user.getOrderUsers();
         if (orders.isEmpty()) {
-            System.out.println("not found order for view details.");
+            System.out.println(red+"not found order for view details."+reset);
             return;
         }
 
@@ -25,12 +26,12 @@ public class ShowOrderDetails {
         scanner.nextLine();
 
         if (index < 1 || index > orders.size()) {
-            System.out.println("invalid selected");
+            System.out.println(red+"invalid selected"+reset);
             return;
         }
 
         OrderUser selectedOrder = orders.get(index - 1);
-        System.out.println("----Order Details----");
+        System.out.println(cyan+"----Order Details----"+reset);
         System.out.println("Date: " + selectedOrder.getOrderDate());
         System.out.println("Address: " + selectedOrder.getDeliveryAddress());
         System.out.println("Total price: " + selectedOrder.getTotalPrice() + " $");

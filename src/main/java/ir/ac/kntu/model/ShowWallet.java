@@ -3,9 +3,9 @@ package ir.ac.kntu.model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class ShowWallet {
-
     private static final ShowWallet showWal = new ShowWallet();
     private Scanner scanner = new Scanner(System.in);
     private boolean isOkk1 = true;
@@ -17,12 +17,12 @@ public class ShowWallet {
     public void show(RegularUser user) {
         UsersWallet usersWallet = user.getUsersWallet();
         while (isOkk1) {
-            System.out.println("----------WALLET----------\n1 show inventory\n2 charge inventory\n3 show transactions\n4 filter transactions by date\n5 quit\nselect your goal: ");
+            System.out.println(cyan + "----------WALLET----------\n" + red + "1" + green + " show inventory\n" + red + "2" + green + " charge inventory\n" + red + "3" + green + " show transactions\n" + red + "4" + green + " filter transactions by date\n" + red + "5" + green + " quit\n" + "select your goal: " + reset);
             int goal = scanner.nextInt();
             scanner.nextLine();
             switch (goal) {
                 case 1:
-                    System.out.println("your inventory is: "+usersWallet.getInventory());
+                    System.out.println(blue +"your inventory is: "+ reset + usersWallet.getInventory());
                     break;
                 case 2:
                     aboutCharge(usersWallet);
@@ -37,7 +37,7 @@ public class ShowWallet {
                     isOkk1 = false;
                     break;
                 default:
-                    System.out.println("invalid goal");
+                    System.out.println(red +"invalid goal" + reset);
             }
         }
     }
@@ -47,12 +47,12 @@ public class ShowWallet {
         long amountForCharge = scanner.nextLong();
         scanner.nextLine();
         if (amountForCharge <= 0) {
-            System.out.println("invalid amount!!!");
+            System.out.println(red +"invalid amount!!!"+ reset);
             return;
         }
         usersWallet.charge(amountForCharge);
-        System.out.println("charge successfully.");
-        System.out.println("your new inventory is : " + usersWallet.getInventory() + " $");
+        System.out.println(green+"charge successfully."+ reset);
+        System.out.println(blue + "your new inventory is : "+ reset + usersWallet.getInventory()+ " $");
 
     }
 
@@ -67,7 +67,7 @@ public class ShowWallet {
             LocalDateTime end = LocalDateTime.parse(endDate, formatter);
             usersWallet.showTransactionsBetween(start, end);
         } catch (Exception e) {
-            System.out.println("invalid date format.");
+            System.out.println(red+"invalid date format."+reset);
         }
     }
 }

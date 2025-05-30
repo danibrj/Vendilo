@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class CartMenu {
 
@@ -15,9 +16,9 @@ public class CartMenu {
         shoppingCart.showAllProOfCart();
         boolean isCon = true;
         while (isCon) {
-            System.out.println("1.selecting each one");
-            System.out.println("2.shopping");
-            System.out.println("3.quit");
+            System.out.println(red+"1."+ green+"selecting each one"+reset);
+            System.out.println(red+"2."+ green+"shopping"+reset);
+            System.out.println(red+"3."+ green+"quit"+reset);
             int select = scanner.nextInt();
             scanner.nextLine();
             switch (select) {
@@ -31,7 +32,7 @@ public class CartMenu {
                     isCon = false;
                     break;
                 default:
-                    System.out.println("invalid select");
+                    System.out.println(red + "invalid select"+ reset);
             }
         }
     }

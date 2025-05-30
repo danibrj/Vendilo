@@ -2,6 +2,7 @@ package ir.ac.kntu.model;
 
 import java.util.List;
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class SupporterOrders {
     private static final SupporterOrders SupOInstance = new SupporterOrders();
@@ -16,7 +17,7 @@ public class SupporterOrders {
         boolean isContinue = true;
         while (isContinue) {
             List<OrderUser> orders = OrderManager.getOMInstance().getAllOrders();
-            System.out.println("1.show all orders\n2.show order's product's details\n3.show orders by filter\n4.quit\nselect one: ");
+            System.out.println(red + "1" + green + ".show all orders\n" + red + "2" + green + ".show order's product's details\n" + red + "3" + green + ".show orders by filter\n" + red + "4" + green + ".quit\n" + cyan+ "select one: " + reset);
             int select = scanner.nextInt();
             scanner.nextLine();
             switch (select) {
@@ -35,7 +36,7 @@ public class SupporterOrders {
                     isContinue = false;
                     break;
                 default:
-                    System.out.println("invalid select!!!");
+                    System.out.println(red+"invalid select!!!"+reset);
             }
         }
     }

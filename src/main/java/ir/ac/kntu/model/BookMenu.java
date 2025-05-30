@@ -1,7 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
-
+import static ir.ac.kntu.model.Color.*;
 public class BookMenu {
 
     private static final BookMenu bookMenu = new BookMenu();
@@ -12,29 +12,29 @@ public class BookMenu {
     }
 
     public void show(Seller seller) {
-        System.out.println("Enter book's name: ");
+        System.out.println(blue+"Enter book's name: "+reset);
         String bname = scanner.nextLine();
-        System.out.println("Enter book's price: ");
+        System.out.println(blue+"Enter book's price: "+reset);
         long bprice = scanner.nextLong();
         scanner.nextLine();
-        System.out.println("Enter book's instanceInventory: ");
+        System.out.println(blue+"Enter book's instanceInventory: "+reset);
         int binsInventory = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Enter book's authorName: ");
+        System.out.println(blue+"Enter book's authorName: "+reset);
         String bauthorName = scanner.nextLine();
-        System.out.println("Enter book's pageCount: ");
+        System.out.println(blue+"Enter book's pageCount: "+reset);
         int bpageCount = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("Enter book's genre: ");
+        System.out.println(blue+"Enter book's genre: "+reset);
         String bgenre = scanner.nextLine();
-        System.out.println("Enter book's ageGroup: ");
+        System.out.println(blue+"Enter book's ageGroup: "+reset);
         String bageGroup = scanner.nextLine();
-        System.out.println("Enter book's ISBNid: ");
+        System.out.println(blue+"Enter book's ISBNid: "+reset);
         String bISBNid = scanner.nextLine();
 
         BookProducts book = new BookProducts(bname, bprice, binsInventory, bauthorName, bpageCount, bgenre, bageGroup, bISBNid);
         book.setSeller(seller);
         ProductsManager.getInstance().addProduct(seller,book);
-        System.out.println("add book successfully");
+        System.out.println(green +"add book successfully"+ reset);
     }
 }

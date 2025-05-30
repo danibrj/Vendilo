@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class SellerLoginSetuation {
 
@@ -18,12 +19,12 @@ public class SellerLoginSetuation {
     }
 
     public void show() {
-        System.out.println("Enter your phone number or nationality code: ");
+        System.out.println(cyan+"Enter your phone number or nationality code: "+reset);
         String input = scanner.nextLine();
         Seller foundSeller = sellerRepository.findByPhoneOrNationalCode(input);
 
         if (foundSeller == null) {
-            System.out.println("Seller not found! Please register first.");
+            System.out.println(red+"Seller not found! Please register first."+reset);
             return;
         }
         IsOkFromSupporter isOkFromSupporter = new IsOkFromSupporter(manageRequests, foundSeller);

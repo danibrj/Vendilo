@@ -3,6 +3,7 @@ package ir.ac.kntu.model;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import static ir.ac.kntu.model.Color.*;
 
 public class UsersWallet {
     private double inventory;
@@ -34,7 +35,7 @@ public class UsersWallet {
 
     public void showAllTransaction() {
         if (userstransactions.isEmpty()) {
-            System.out.println("not found any transaction");
+            System.out.println(red+"not found any transaction"+reset);
         } else {
             for (Userstransaction t : userstransactions) {
                 System.out.println(t);
@@ -52,7 +53,7 @@ public class UsersWallet {
             }
         }
         if (!isFound) {
-            System.out.println("No transactions found in the selected date range.");
+            System.out.println(red+"No transactions found in the selected date range."+reset);
         }
     }
 }

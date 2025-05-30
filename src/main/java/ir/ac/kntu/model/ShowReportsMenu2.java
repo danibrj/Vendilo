@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class ShowReportsMenu2 {
 
@@ -16,14 +17,14 @@ public class ShowReportsMenu2 {
         for (int i = 0; i < values.length; i++) {
             System.out.println((i + 1) + " " + values[i]);
         }
-        System.out.println("choose your report title: ");
+        System.out.println(cyan+"choose your report title: "+reset);
         int choose = scanner.nextInt();
         scanner.nextLine();
         if (choose >= 1 && choose <= values.length) {
             KindOfReport selected = values[choose - 1];
             user.getUserSuportWorking().addReport(selected);
         } else {
-            System.out.println("invalid choose!!!");
+            System.out.println(red+"invalid choose!!!"+reset);
         }
 
     }

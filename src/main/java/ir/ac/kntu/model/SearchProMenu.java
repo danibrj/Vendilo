@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class SearchProMenu {
 
@@ -17,7 +18,7 @@ public class SearchProMenu {
     public void show(ShoppingCart shoppingCart) {
         boolean bool1 = true;
         while (bool1) {
-            System.out.println("Enter the name of your target product: ---- (quit)");
+            System.out.println(cyan+"Enter the name of your target product: ---- (quit)"+reset);
             String proName = scanner.nextLine();
             if ("quit".equalsIgnoreCase(proName)) {
                 return;
@@ -25,18 +26,18 @@ public class SearchProMenu {
             List<Products> targetList = ProductsManager.getInstance().findByName(proName);
 
             if (targetList.isEmpty()) {
-                System.out.println("No products found with the given name.");
+                System.out.println(red+"No products found with the given name."+reset);
                 continue;
             }
             List<Products> copyOfTList = new ArrayList<>(targetList);
-            System.out.println("do you want to use filter? (1.Ascending or 2.descending or 3.nothing)");
+            System.out.println(green+"do you want to use filter? (1.Ascending or 2.descending or 3.nothing)"+reset);
             int num = scanner.nextInt();
             scanner.nextLine();
             switch (num) {
                 case 1 -> copyOfTList.sort(Comparator.comparing(Products::getPrice));
                 case 2 -> copyOfTList.sort(Comparator.comparing(Products::getPrice).reversed());
                 case 3 -> System.out.println();
-                default -> System.out.println("invalid num!!!");
+                default -> System.out.println(red+"invalid num!!!"+reset);
             }
             show2(copyOfTList,shoppingCart);
         }
@@ -46,14 +47,14 @@ public class SearchProMenu {
         for (int i = 0; i < copyOfTList.size(); i++) {
             System.out.println((i + 1) + " " + copyOfTList.get(i));
         }
-        System.out.println("which product do you want to add to cart? ");
+        System.out.println(cyan+"which product do you want to add to cart? "+reset);
         int num2 = scanner.nextInt();
         scanner.nextLine();
         if (num2 >= 1 && num2 <= copyOfTList.size()) {
             shoppingCart.addProToCart(copyOfTList.get(num2 - 1));
-            System.out.println("Product added to cart.");
+            System.out.println(green+"Product added to cart."+reset);
         } else {
-            System.out.println("Invalid product number.");
+            System.out.println(red+"Invalid product number."+reset);
         }
     }
 }

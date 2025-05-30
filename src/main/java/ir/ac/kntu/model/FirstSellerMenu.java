@@ -1,9 +1,9 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class FirstSellerMenu {
-
     private SellerRepository sellerRepository;
     private ManageRequests manageRequests;
     private Scanner scanner = new Scanner(System.in);
@@ -17,7 +17,7 @@ public class FirstSellerMenu {
         RegisterSellerBugs regisSellBugs = new RegisterSellerBugs();
         CompleteRegister completeRegister = new CompleteRegister(regisSellBugs, manageRequests);
         while (true) {
-            System.out.println("----------Main Seller Menu----------\n1.register  \n2.login  \n3.quit  \nselect your choice: ");
+            System.out.println(cyan +"----------First Seller Menu----------\n"+ red +"1."+ green +"register  \n"+ red +"2."+ green +"login  \n" + red +"3."+ green +"quit  \nselect your choice: " + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -31,7 +31,7 @@ public class FirstSellerMenu {
                 case 3:
                     return;
                 default:
-                    System.out.println("invalid choice");
+                    System.out.println(red +"invalid choice"+ reset);
             }
         }
     }
@@ -54,7 +54,7 @@ public class FirstSellerMenu {
         Seller seller = new Seller(firstName, lastName, storeTitle, nationalCode, phoneNumber, password, provinceOfSale);
         sellerRepository.addSeller(seller);
         completeRegister.show(seller);
-        System.out.println("your request sent. please wait...");
+        System.out.println(blue + "your request sent. please wait..."+ reset);
     }
 
     public String forProvince(){
@@ -71,7 +71,7 @@ public class FirstSellerMenu {
             if(bool){
                 break;
             }else{
-                System.out.println("Invalid province. Please try again.\ncorrect province: ");
+                System.out.println(red +"Invalid province. Please try again.\n"+ blue +"correct province: " + reset);
             }
         }
         return provinceOfSale;

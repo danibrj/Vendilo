@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class SupporterMenu2 {
 
@@ -14,10 +15,7 @@ public class SupporterMenu2 {
     public void show() {
         boolean isCon = true;
         while (isCon) {
-            System.out.println("1.show requests");
-            System.out.println("2.handle requests");
-            System.out.println("3.quit");
-            System.out.println("choose one: ");
+            System.out.println(red + "1" + green + ".show requests\n" + red + "2" + green + ".handle requests\n" + red + "3" + green + ".quit\n" + cyan+ "choose one: " + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -31,7 +29,7 @@ public class SupporterMenu2 {
                     isCon = false;
                     break;
                 default:
-                    System.out.println("invalid select!!!");
+                    System.out.println(red+"invalid select!!!"+reset);
             }
         }
     }
@@ -43,7 +41,7 @@ public class SupporterMenu2 {
         scanner.nextLine();
         for (int i = 0; i < manageRequests.getRequests().size(); i++) {
             if (i + 1 == item && manageRequests.getRequests().get(i).getStatus() == RegisterStstus.PENDING) {
-                System.out.println("Do you want to approved this? (yes/No)");
+                System.out.println(blue+"Do you want to approved this? (yes/No)"+reset);
                 String yesOrNo = scanner.nextLine();
                 if ("yes".equals(yesOrNo)) {
                     manageRequests.getRequests().get(i).setStatus(RegisterStstus.APPROVED);

@@ -2,8 +2,9 @@ package ir.ac.kntu.model;
 
 import java.util.Scanner;
 
-public class MainMenu {
+import static ir.ac.kntu.model.Color.*;
 
+public class MainMenu {
     public static void main(String[] args) {
         try {
             @SuppressWarnings("PMD.CloseResource")
@@ -12,7 +13,7 @@ public class MainMenu {
             SellerRepository sellerRepository = SellerRepository.getSinstance();
             SupportersLogin supportersLogin = new SupportersLogin();
             while (true) {
-                System.out.println("----------Main Menu----------\nselect your Role: \n1.regular user\n2.seller\n3.supporter\n4.quit");
+                System.out.println(cyan + "|-------------Main Menu-------------|\n" + "select your Role: \n" + red + "1." + green + "regular user\n" + red + "2." + green + "seller\n" + red + "3." + green + "supporter\n" + red + "4." + green + "quit\n"+ purple +":::::::::>>>>"+ reset);
                 int selected = scanner.nextInt();
                 scanner.nextLine();
                 switch (selected) {
@@ -23,7 +24,7 @@ public class MainMenu {
                         scanner.close();
                         return;
                     }
-                    default -> System.out.println("invalid selected");
+                    default -> System.out.println(red + "invalid selected" + reset);
                 }
             }
         } catch (Exception e) {

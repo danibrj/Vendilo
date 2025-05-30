@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class ShowAddresses {
     private static final ShowAddresses showAdd = new ShowAddresses();
@@ -14,7 +15,7 @@ public class ShowAddresses {
         UsersAddress usersAddress = user.getUsersAddress();
         boolean isOkk2 = true;
         while (isOkk2) {
-            System.out.println("----------ADDRESSES----------\n1-->|---------SHOW ADDRESS---------|<--\n2-->|---------EDIT ADDRESS---------|<--\n3-->|---------DELETE ADDRESS-------|<--\n4-->|---------ADD ADDRESS----------|<--\n5.quit\nselect your move: ");
+            System.out.println(cyan + "----------ADDRESSES----------\n" + red + "1" + green + "-->|---------SHOW ADDRESS---------|<--\n" + red + "2" + green + "-->|---------EDIT ADDRESS---------|<--\n" + red + "3" + green + "-->|---------DELETE ADDRESS-------|<--\n" + red + "4" + green + "-->|---------ADD ADDRESS----------|<--\n" + red + "5" + green + ".quit\n" +cyan+ "select your move: " + reset);
             int move = scanner.nextInt();
             scanner.nextLine();
             switch (move) {
@@ -25,7 +26,7 @@ public class ShowAddresses {
                 case 5 -> {
                     isOkk2 = false;
                 }
-                default -> System.out.println("invalid move!!!");
+                default -> System.out.println(red+"invalid move!!!"+reset);
             }
         }
     }
@@ -47,7 +48,7 @@ public class ShowAddresses {
             if(bool){
                 break;
             }else{
-                System.out.println("Invalid province. Please try again.\ncorrect province: ");
+                System.out.println(red+"Invalid province. Please try again.\n"+green+"correct province: "+reset);
             }
         }
         System.out.println("Enter  city:");

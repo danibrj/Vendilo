@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class EditAddressInfo {
 
@@ -13,16 +14,16 @@ public class EditAddressInfo {
 
     public void show() {
         usersAddress.showAddresses();
-        System.out.println("which address do you want to edit: ");
+        System.out.println(cyan+"which address do you want to edit: "+reset);
         int num1 = scanner.nextInt();
         scanner.nextLine();
 
         if (num1 < 1 || num1 > usersAddress.getAddresses().size()) {
-            System.out.println("invalid address number!!!");
+            System.out.println(red+"invalid address number!!!"+reset);
             return;
         }
         Address selAddress = usersAddress.getAddresses().get(num1 - 1);
-        System.out.println("this is your previous address: \n" + selAddress);
+        System.out.println(blue+"this is your previous address: \n" + reset+selAddress);
 
         ShowSecondEditAddressInfo showSecondEdit = new ShowSecondEditAddressInfo(usersAddress);
         showSecondEdit.show(num1 - 1, selAddress);

@@ -2,6 +2,7 @@ package ir.ac.kntu.model;
 
 import java.util.List;
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class ShowSupporterReqMenu2 {
 
@@ -19,7 +20,7 @@ public class ShowSupporterReqMenu2 {
         int num = scanner.nextInt();
         scanner.nextLine();
         if (num < 1 || num > mgU1.size()) {
-            System.out.println("invalid num!!!");
+            System.out.println(red+"invalid num!!!"+reset);
             return;
         }
         show2(mgU1,scanner,num);
@@ -45,7 +46,7 @@ public class ShowSupporterReqMenu2 {
                 }
             }
         } else {
-            System.out.println("not found!!!");
+            System.out.println(red+"not found!!!"+reset);
         }
     }
 }

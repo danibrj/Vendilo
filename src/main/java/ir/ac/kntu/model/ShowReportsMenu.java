@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class ShowReportsMenu {
     private static final ShowReportsMenu SRMInstance = new ShowReportsMenu();
@@ -13,11 +14,7 @@ public class ShowReportsMenu {
     public void show(RegularUser user) {
         boolean iscont = true;
         while (iscont) {
-            System.out.println("----------REPORTS----------");
-            System.out.println("1.add report");
-            System.out.println("2.show report");
-            System.out.println("3.quit");
-            System.out.println("select: ");
+            System.out.println(cyan + "----------REPORTS----------\n" + red + "1" + green + ".add report\n" + red + "2" + green + ".show report\n" + red + "3" + green + ".quit\n" + cyan+ "select: " + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -31,7 +28,7 @@ public class ShowReportsMenu {
                     iscont = false;
                     break;
                 default:
-                    System.out.println("invalid choices");
+                    System.out.println(red+"invalid choices"+reset);
             }
         }
     }

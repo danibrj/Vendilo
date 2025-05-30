@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class ShoppingMenu {
 
@@ -30,7 +31,7 @@ public class ShoppingMenu {
             Address selAddres = user.getUsersAddress().getAddresses().get(num - 1);
             shoppingCart.costOfSend(selAddres, user);
         } else {
-            System.out.println("invalid num!!!");
+            System.out.println(red+"invalid num!!!"+reset);
         }
     }
 

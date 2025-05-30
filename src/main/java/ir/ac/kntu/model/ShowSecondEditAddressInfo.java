@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class ShowSecondEditAddressInfo {
 
@@ -18,7 +19,7 @@ public class ShowSecondEditAddressInfo {
         String newInfo = selAddress.getAdditionalInfo();
         boolean isCountinue = true;
         while (isCountinue) {
-            System.out.println("which item do you want to edit: \n1.address title\n2.address province\n3.address city\n4.address additional information\n5.finish editing\nselect: ");
+            System.out.println(cyan + "which item do you want to edit:\n" + red + "1" + green + ".address title\n" + red + "2" + green + ".address province\n" + red + "3" + green + ".address city\n" + red + "4" + green + ".address additional information\n" + red + "5" + green + ".finish editing\n" + cyan+ "select: " + reset);
             int select = scanner.nextInt();
             scanner.nextLine();
             switch (select) {
@@ -29,12 +30,12 @@ public class ShowSecondEditAddressInfo {
                 case 5 -> {
                     isCountinue = false;
                 }
-                default -> System.out.println("invalid select!!!");
+                default -> System.out.println(red+"invalid select!!!"+reset);
             }
         }
         Address updatedAddress = new Address(newTitle, newProvince, newCity, newInfo);
         usersAddress.editAddress(index, updatedAddress);
-        System.out.println("Address updated successfully.");
+        System.out.println(green+"Address updated successfully."+reset);
     }
 
     private String getProvince() {

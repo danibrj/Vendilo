@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class SupporterMenu {
     private ManageRequests manageRequests;
@@ -13,8 +14,7 @@ public class SupporterMenu {
     public void show() {
         boolean isGo = true;
         while (isGo) {
-            System.out.println("----------MENU----------");
-            System.out.println("select your goal: \n1.Authentication\n2.Requests\n3.Orders\n4.quit\nchoose your goal: ");
+            System.out.println(cyan + "----------MENU----------\nselect your goal:\n" + red + "1" + green + ".Authentication\n" + red + "2" + green + ".Requests\n" + red + "3" + green + ".Orders\n" + red + "4" + green + ".quit\n" + cyan+ "choose your goal: " + reset);
             int goal = scanner.nextInt();
             scanner.nextLine();
             switch (goal) {
@@ -31,7 +31,7 @@ public class SupporterMenu {
                     isGo = false;
                     break;
                 default:
-                    System.out.println("invalid choices");
+                    System.out.println(red+"invalid choices"+reset);
             }
         }
     }

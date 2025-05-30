@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.List;
+import static ir.ac.kntu.model.Color.*;
 
 public class ShowOrders {
 
@@ -13,7 +14,7 @@ public class ShowOrders {
     public void show(RegularUser user) {
         List<OrderUser> orders = user.getOrderUsers();
         if (orders.isEmpty()) {
-            System.out.println("not found order");
+            System.out.println(red+"not found order"+reset);
             return;
         }
         System.out.println("Orders: ");

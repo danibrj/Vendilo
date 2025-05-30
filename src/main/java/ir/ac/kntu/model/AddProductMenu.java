@@ -2,6 +2,8 @@ package ir.ac.kntu.model;
 
 import java.util.Scanner;
 
+import static ir.ac.kntu.model.Color.*;
+
 public class AddProductMenu {
 
     private static final AddProductMenu Addinstance = new AddProductMenu();
@@ -14,8 +16,8 @@ public class AddProductMenu {
     public void show(Seller seller) {
         boolean bool = true;
         while (bool) {
-            System.out.println("choose your type of products: ");
-            System.out.println("1.book\n2.laptop\n3.mobile\n4.quit");
+            System.out.println(cyan + "choose your type of products: " + reset);
+            System.out.println(red + "1" + green + ".book\n" + red + "2" + green + ".laptop\n" + red + "3" + green + ".mobile\n" + red + "4" + green + ".quit" + reset);
             int select = scanner.nextInt();
             scanner.nextLine();
             switch (select) {
@@ -32,7 +34,7 @@ public class AddProductMenu {
                     bool = false;
                     break;
                 default:
-                    System.out.println("invalid select!!!");
+                    System.out.println(red+"invalid select!!!"+reset);
             }
         }
     }

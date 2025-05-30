@@ -52,8 +52,3 @@ public class Requests {
                 "\nMessage: " + (responseMessage != null ? responseMessage : "no message yet");
     }
 }
-
-//@Override
-//public String toString(){
-//
-//}

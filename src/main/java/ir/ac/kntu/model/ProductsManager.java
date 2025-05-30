@@ -1,6 +1,8 @@
 package ir.ac.kntu.model;
 
 import java.util.*;
+import static ir.ac.kntu.model.Color.*;
+
 
 public class ProductsManager {
 
@@ -38,16 +40,16 @@ public class ProductsManager {
 
     public void increaseInventory(Products prod, int amount) {
         if (prod == null) {
-            System.out.println("not selected!!!");
+            System.out.println(red+"not selected!!!"+reset);
             return;
         }
         int newInventory = prod.getInstanceInventory() + amount;
         if (newInventory < 0) {
-            System.out.println("the inventory can not be negative");
+            System.out.println(red+"the inventory can not be negative"+reset);
             return;
         }
         prod.setInstanceInventory(newInventory);
-        System.out.println("the inventory updated.\nthe new inventory: " + newInventory);
+        System.out.println(green+"the inventory updated.\nthe new inventory: "+reset + newInventory);
     }
 
     public void showAllProducts(Seller seller) {
@@ -60,7 +62,7 @@ public class ProductsManager {
 
     public void decreaseInventory(Products prod, int amount) {
         if (prod == null) {
-            System.out.println("not selected!!!");
+            System.out.println(red+"not selected!!!"+reset);
             return;
         }
         int newInventory = prod.getInstanceInventory();
@@ -68,16 +70,16 @@ public class ProductsManager {
             newInventory = prod.getInstanceInventory() - amount;
         }
         if (newInventory < 0) {
-            System.out.println("the inventory can not be negative");
+            System.out.println(red+"the inventory can not be negative"+reset);
             return;
         }
         prod.setInstanceInventory(newInventory);
-        System.out.println("the inventory updated.\nthe new inventory: " + newInventory);
+        System.out.println(green+"the inventory updated.\nthe new inventory: "+reset + newInventory);
     }
 
     public void showProductsDetails(Products products) {
         if (products == null) {
-            System.out.println("not found");
+            System.out.println(red+"not found"+reset);
             return;
         }
         System.out.println(products);

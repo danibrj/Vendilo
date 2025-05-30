@@ -1,9 +1,9 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+import static ir.ac.kntu.model.Color.*;
 
 public class MainMenuShows {
-
     private static final MainMenuShows mMsInstanse = new MainMenuShows();
     private Scanner scanner = new Scanner(System.in);
 
@@ -19,10 +19,10 @@ public class MainMenuShows {
         String pass = scanner.nextLine();
         Supporter supporter = supportersLogin.login(usName, pass);
         if (supporter != null) {
-            System.out.println("Welcome " + supporter.getFirstName() + "! you are logged as a supporter.");
+            System.out.println(blue +"Welcome " + reset + supporter.getFirstName() + green +"! you are logged as a supporter." + reset);
             new SupporterMenu(manageRequests).show();
         } else {
-            System.out.println("invalid UserName or Password");
+            System.out.println(red +"invalid UserName or Password"+ reset);
         }
     }
 }

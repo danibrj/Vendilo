@@ -2,6 +2,8 @@ package ir.ac.kntu.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import static ir.ac.kntu.model.Color.*;
+
 
 public class RegisterSellerBugs {
     private List<Seller> sellers = new ArrayList<>();
@@ -49,24 +51,24 @@ public class RegisterSellerBugs {
 
     public boolean registerSeller(Seller seller) {
         if (isTitleExists(seller.getStoreTitle())) {
-            System.out.println("the store title is repetitive");
+            System.out.println(red+"the store title is repetitive"+reset);
             return false;
         }
         if (isPhoneNumberExists(seller.getPhoneNumber())) {
-            System.out.println("the phone number is repetitive");
+            System.out.println(red+"the phone number is repetitive"+reset);
             return false;
         }
         if (isNationalCodeExists(seller.getNationalCode())) {
-            System.out.println("the national code is repetitive");
+            System.out.println(red+"the national code is repetitive"+reset);
             return false;
         }
         if (!isPasswordOk(seller.getPassword())) {
-            System.out.println("the password format is wrong!!!");
+            System.out.println(red+"the password format is wrong!!!"+reset);
             return false;
         }
 
         if (!isPnFormatOk(seller.getPhoneNumber())) {
-            System.out.println("the phoneNumber format is wrong!!!");
+            System.out.println(red+"the phoneNumber format is wrong!!!"+reset);
             return false;
         }
 

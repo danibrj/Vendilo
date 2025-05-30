@@ -1,10 +1,11 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+
 import static ir.ac.kntu.model.Color.*;
 
 public class MainSellerMenu {
- private static final MainSellerMenu msmInstance = new MainSellerMenu();
+    private static final MainSellerMenu msmInstance = new MainSellerMenu();
     private Scanner scanner = new Scanner(System.in);
 
     public static MainSellerMenu getMsm() {
@@ -31,7 +32,7 @@ public class MainSellerMenu {
                     bool = false;
                     break;
                 default:
-                    System.out.println(red +"invalid choice" + reset);
+                    System.out.println(red + "invalid choice" + reset);
             }
         }
     }

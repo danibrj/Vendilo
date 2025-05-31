@@ -14,9 +14,9 @@ public class ShowSetting {
     public void show(){
         RegularUserRepository userRepo = new RegularUserRepository();
         RegularUserBugs regularUserBugs = new RegularUserBugs(userRepo);
-        System.out.println(cyan+"----------SETTING----------"+reset);
+        System.out.println(cyan+"|----------SETTING----------|"+reset);
         Setting setting = new Setting(userRepo,regularUserBugs);
-        System.out.println(cyan+"----------updating----------"+reset);
+        System.out.println(cyan+"|----------updating----------|"+reset);
         System.out.println(cyan+"Do you want to update information?"+reset);
         System.out.println(red+"1."+green+"Yes"+reset);
         System.out.println(red+"2."+green+"No"+reset);

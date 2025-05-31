@@ -26,7 +26,7 @@ public class Userstransaction {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss");
-        return String.format("[%s] %s: %.2f dollars", transactionDate.format(formatter), "CHARGE".equals(type) ? "Charge" : "Shopping", amount);
+        return String.format("[%s] %s: %.2f dollars", transactionDate.format(formatter), "Charge".equals(type) ? "Charge" : "Shopping", amount);
     }
 }
 //    public void setChargeTransaction(LocalDate chargeDate,Long invention){

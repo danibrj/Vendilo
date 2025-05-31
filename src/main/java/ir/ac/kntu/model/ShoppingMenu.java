@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+
 import static ir.ac.kntu.model.Color.*;
 
 public class ShoppingMenu {
@@ -13,29 +14,29 @@ public class ShoppingMenu {
     }
 
     public void show(ShoppingCart shoppingCart, RegularUser user) {
-        if (user.getUsersAddress().getAddresses() != null) {
+        if (user.getUsersAddress().getAddresses() == null) {
+            show3(shoppingCart, user);
+        } else if(user.getUsersAddress().getAddresses() != null && !user.getUsersAddress().getAddresses().isEmpty()) {
             for (int i = 0; i < user.getUsersAddress().getAddresses().size(); i++) {
                 System.out.println((i + 1) + " " + user.getUsersAddress().getAddresses().get(i));
             }
             System.out.println("choose one : ");
             int num = scanner.nextInt();
             scanner.nextLine();
-            show2(shoppingCart,user,num);
-        } else {
-            show3(shoppingCart,user);
+            show2(shoppingCart, user, num);
         }
     }
 
-    public void show2(ShoppingCart shoppingCart, RegularUser user,int num){
+    public void show2(ShoppingCart shoppingCart, RegularUser user, int num) {
         if (num >= 1 && num <= user.getUsersAddress().getAddresses().size()) {
             Address selAddres = user.getUsersAddress().getAddresses().get(num - 1);
             shoppingCart.costOfSend(selAddres, user);
         } else {
-            System.out.println(red+"invalid num!!!"+reset);
+            System.out.println(red + "invalid num!!!" + reset);
         }
     }
 
-    public void show3(ShoppingCart shoppingCart,RegularUser user){
+    public void show3(ShoppingCart shoppingCart, RegularUser user) {
         System.out.println("+Address:");
         System.out.println("Enter  title:");
         String aTitle = scanner.nextLine();

@@ -16,6 +16,7 @@ public class CartMenu {
         shoppingCart.showAllProOfCart();
         boolean isCon = true;
         while (isCon) {
+            System.out.println();
             System.out.println(red+"1."+ green+"selecting each one"+reset);
             System.out.println(red+"2."+ green+"shopping"+reset);
             System.out.println(red+"3."+ green+"quit"+reset);

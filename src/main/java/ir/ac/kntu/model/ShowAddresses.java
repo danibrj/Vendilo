@@ -15,7 +15,7 @@ public class ShowAddresses {
         UsersAddress usersAddress = user.getUsersAddress();
         boolean isOkk2 = true;
         while (isOkk2) {
-            System.out.println(cyan + "----------ADDRESSES----------\n" + red + "1" + green + "-->|---------SHOW ADDRESS---------|<--\n" + red + "2" + green + "-->|---------EDIT ADDRESS---------|<--\n" + red + "3" + green + "-->|---------DELETE ADDRESS-------|<--\n" + red + "4" + green + "-->|---------ADD ADDRESS----------|<--\n" + red + "5" + green + ".quit\n" +cyan+ "select your move: " + reset);
+            System.out.println(cyan + "|----------ADDRESSES----------|\n" + red + "1" + green + "-->|---------SHOW ADDRESS---------|<--\n" + red + "2" + green + "-->|---------EDIT ADDRESS---------|<--\n" + red + "3" + green + "-->|---------DELETE ADDRESS-------|<--\n" + red + "4" + green + "-->|---------ADD ADDRESS----------|<--\n" + red + "5" + green + ".quit\n" +cyan+ "select your move: " + reset);
             int move = scanner.nextInt();
             scanner.nextLine();
             switch (move) {

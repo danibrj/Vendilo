@@ -14,7 +14,7 @@ public class ShowReportsMenu {
     public void show(RegularUser user) {
         boolean iscont = true;
         while (iscont) {
-            System.out.println(cyan + "----------REPORTS----------\n" + red + "1" + green + ".add report\n" + red + "2" + green + ".show report\n" + red + "3" + green + ".quit\n" + cyan+ "select: " + reset);
+            System.out.println(cyan + "|----------REPORTS----------|\n" + red + "1" + green + ".add report\n" + red + "2" + green + ".show report\n" + red + "3" + green + ".quit\n" + cyan+ "select: " + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {

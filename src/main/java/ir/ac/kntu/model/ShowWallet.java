@@ -17,7 +17,7 @@ public class ShowWallet {
     public void show(RegularUser user) {
         UsersWallet usersWallet = user.getUsersWallet();
         while (isOkk1) {
-            System.out.println(cyan + "----------WALLET----------\n" + red + "1" + green + " show inventory\n" + red + "2" + green + " charge inventory\n" + red + "3" + green + " show transactions\n" + red + "4" + green + " filter transactions by date\n" + red + "5" + green + " quit\n" + "select your goal: " + reset);
+            System.out.println(cyan + "|----------WALLET----------|\n" + red + "1" + green + " show inventory\n" + red + "2" + green + " charge inventory\n" + red + "3" + green + " show transactions\n" + red + "4" + green + " filter transactions by date\n" + red + "5" + green + " quit\n" + "select your goal: " + reset);
             int goal = scanner.nextInt();
             scanner.nextLine();
             switch (goal) {

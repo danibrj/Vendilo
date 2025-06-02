@@ -16,7 +16,7 @@ public class ShowSellerWallet {
         SellerWallet sellerWallet = seller.getSellerWallet();
         boolean isOk = true;
         while (isOk) {
-            System.out.println(cyan + "choose one:\n" + red + "1" + green + ".show inventory\n" + red + "2" + green + ".withdraw money\n" + red + "3" + green + ".quit" + reset);
+            System.out.println(cyan + "|----------Wallet Menu----------|\nchoose one:\n" + red + "1" + green + ".show inventory\n" + red + "2" + green + ".withdraw money\n" + red + "3" + green + ".quit" + reset);
             int select = scanner.nextInt();
             scanner.nextLine();
             switch (select) {
@@ -27,6 +27,7 @@ public class ShowSellerWallet {
                     System.out.println("how much money do you want to withdraw?");
                     double money = scanner.nextDouble();
                     sellerWallet.getMoney(money);
+                    System.out.println("you withdraw ( "+ money + " dollars) from your Wallet");
                     break;
                 case 3:
                     isOk = false;

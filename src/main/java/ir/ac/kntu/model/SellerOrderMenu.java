@@ -15,7 +15,7 @@ public class SellerOrderMenu {
     public void show(Seller seller) {
         boolean isGo = true;
         while (isGo) {
-            System.out.println(cyan + "---Seller Orders Menu---\n" + red + "1" + green + ".show list of your shopping\n" + red + "2" + green + ".see each shopping details\n" + red + "3" + green + ".quit" + reset);
+            System.out.println(cyan + "|----------Seller Orders Menu----------|\n" + red + "1" + green + ".show list of your shopping\n" + red + "2" + green + ".see each shopping details\n" + red + "3" + green + ".quit" + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -84,7 +84,7 @@ public class SellerOrderMenu {
             return;
         }
         OrderUser selectedOrder = orders.get(selection - 1);
-        System.out.println(cyan+"----Shopping details----"+reset);
+        System.out.println(cyan+"|----------Shopping details----------|"+reset);
         System.out.println("Date: " + selectedOrder.getOrderDate());
         for (Products p : selectedOrder.getOrderedProducts()) {
             if (p.getSeller().equals(seller)) {

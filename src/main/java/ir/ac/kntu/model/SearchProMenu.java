@@ -30,7 +30,7 @@ public class SearchProMenu {
                 continue;
             }
             List<Products> copyOfTList = new ArrayList<>(targetList);
-            System.out.println(green+"do you want to use filter? (1.Ascending or 2.descending or 3.nothing)"+reset);
+            System.out.println(green+"do you want to use filter? "+ blue+"(1.Ascending or 2.descending or 3.nothing)"+reset);
             int num = scanner.nextInt();
             scanner.nextLine();
             switch (num) {

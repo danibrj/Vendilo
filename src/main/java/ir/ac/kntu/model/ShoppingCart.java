@@ -12,7 +12,6 @@ public class ShoppingCart {
     private float totalCost = 0;
     private float totalPrice = 0;
     private Set<Seller> uniqueSeller = new HashSet<>();
-    private boolean isSellerSameP = true;
 
     public static ShoppingCart getSpInstance() {
         return SpInstance;
@@ -53,6 +52,10 @@ public class ShoppingCart {
     }
 
     public void costOfSend(Address address, RegularUser user) {
+        totalCost = 0;
+        totalPrice = 0;
+        uniqueSeller.clear();
+        boolean isSellerSameP = true;
         List<Products> pdt = user.getCart().getProOfCart();
         if (pdt.isEmpty()) {
             System.out.println("your cart is empty.");
@@ -82,7 +85,7 @@ public class ShoppingCart {
         for (Products p : pdt) {
             System.out.println(p);
         }
-        System.out.print("the cost of product : " +totalCost + " $\n the cost of send : "+shippingCost + " $\nthe generally cost :  " +totalPrice + " $\n");
+        System.out.print("the cost of product : " +totalCost + " $\nthe cost of send : "+shippingCost + " $\nthe generally cost :  " +totalPrice + " $\n");
         System.out.println(cyan+"do you want to payment?"+reset);
         String yesOrNo = scanner.nextLine();
         if ("yes".equalsIgnoreCase(yesOrNo)) {
@@ -108,9 +111,9 @@ public class ShoppingCart {
             }
         } else {
             completePayment(user, pdt, totalPrice, address);
-            for (Products prod : pdt) {
-                prod.getSeller().getSellerWallet().increaseInventory(prod.getPrice()*0.9);
-            }
+//            for (Products prod : pdt) {
+//                prod.getSeller().getSellerWallet().increaseInventory(prod.getPrice()*0.9);
+//            }
         }
     }
 
@@ -122,8 +125,14 @@ public class ShoppingCart {
         OrderManager.getOMInstance().addOrder(order);
         for (Products prod : pdt) {
             prod.setInstanceInventory(prod.getInstanceInventory() - 1);
-        }
 
+            Seller realSeller = SellerRepository.getSinstance().findByPhoneOrNationalCode(prod.getSeller().getPhoneNumber());
+            if(realSeller != null){
+                realSeller.getSellerWallet().increaseInventory(prod.getPrice()*0.9);
+            }else{
+                System.out.println(red + "Seller not found in repository for product: " + prod.getName() + reset);
+            }
+        }
         pdt.clear();
         System.out.println(green+"Payment successful! Your order has been placed."+reset);
         System.out.println("Remaining Wallet Balance: " + user.getUsersWallet().getInventory() + " $");

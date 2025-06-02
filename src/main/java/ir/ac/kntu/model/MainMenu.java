@@ -13,7 +13,7 @@ public class MainMenu {
             SellerRepository sellerRepository = SellerRepository.getSinstance();
             SupportersLogin supportersLogin = new SupportersLogin();
             while (true) {
-                System.out.println(cyan + "|-------------Main Menu-------------|\n" + "select your Role: \n" + red + "1." + green + "regular user\n" + red + "2." + green + "seller\n" + red + "3." + green + "supporter\n" + red + "4." + green + "quit\n"+ purple +":::::::::>>>>"+ reset);
+                System.out.println(cyan + "|-------------Main Menu-------------|\n" + "select your Role: \n" + red + "1." + green + "regular user\n" + red + "2." + green + "seller\n" + red + "3." + green + "supporter\n" + red + "4." + green + "quit\n" + purple + ":::::::::>>>>" + reset);
                 int selected = scanner.nextInt();
                 scanner.nextLine();
                 switch (selected) {
@@ -24,7 +24,8 @@ public class MainMenu {
                         scanner.close();
                         return;
                     }
-                    default -> System.out.println(red + "invalid selected" + reset);
+                    default ->
+                            System.out.println(red + "invalid selected" + blue + "write the correct form: \n" + reset);
                 }
             }
         } catch (Exception e) {

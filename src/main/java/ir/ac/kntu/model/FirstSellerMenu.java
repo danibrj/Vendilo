@@ -17,7 +17,7 @@ public class FirstSellerMenu {
         RegisterSellerBugs regisSellBugs = new RegisterSellerBugs();
         CompleteRegister completeRegister = new CompleteRegister(regisSellBugs, manageRequests);
         while (true) {
-            System.out.println(cyan +"----------First Seller Menu----------\n"+ red +"1."+ green +"register  \n"+ red +"2."+ green +"login  \n" + red +"3."+ green +"quit  \nselect your choice: " + reset);
+            System.out.println(cyan +"|----------First Seller Menu----------|\n"+ red +"1."+ green +"register  \n"+ red +"2."+ green +"login  \n" + red +"3."+ green +"quit  \nselect your choice: " + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {

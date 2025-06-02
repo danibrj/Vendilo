@@ -19,6 +19,7 @@ public class SellerLoginSetuation {
     }
 
     public void show() {
+        System.out.println(cyan + "|----------Login----------|\n" + reset);
         System.out.println(cyan+"Enter your phone number or nationality code: "+reset);
         String input = scanner.nextLine();
         Seller foundSeller = sellerRepository.findByPhoneOrNationalCode(input);

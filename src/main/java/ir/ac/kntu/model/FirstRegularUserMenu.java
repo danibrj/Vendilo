@@ -11,7 +11,7 @@ public class FirstRegularUserMenu {
         RegularUserRepository userRepo = RegularUserRepository.getRinstance();
         RegularUserBugs regularUserBugs = new RegularUserBugs(userRepo);
         while (true) {
-            System.out.println(cyan + "----------First User Menu----------\n"+ red + "1."+ green+ "register\n" + red + "2." +green +"login\n" + red +"3." + green +"quit\nselect your choice: " + reset);
+            System.out.println(cyan + "|----------First User Menu----------|\n"+ red + "1."+ green+ "register\n" + red + "2." +green +"login\n" + red +"3." + green +"quit\nselect your choice: " + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -52,6 +52,7 @@ public class FirstRegularUserMenu {
     }
 
     public void show3(RegularUserBugs regularUserBugs){
+        System.out.println(cyan + "|----------Login----------|\n"+reset);
         System.out.print("Enter your email or phoneNmaber: ");
         String input = scanner.nextLine();
         System.out.println("Enter your password: ");

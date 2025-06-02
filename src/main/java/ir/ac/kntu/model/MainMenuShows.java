@@ -12,6 +12,7 @@ public class MainMenuShows {
     }
 
     public void show(SupportersLogin supportersLogin, ManageRequests manageRequests) {
+        System.out.println(cyan + "|----------Login----------|\n" + reset);
         System.out.print("Enter your username: ");
         String usName = scanner.nextLine();
         System.out.println();

@@ -14,7 +14,7 @@ public class SupporterMenu {
     public void show() {
         boolean isGo = true;
         while (isGo) {
-            System.out.println(cyan + "----------MENU----------\nselect your goal:\n" + red + "1" + green + ".Authentication\n" + red + "2" + green + ".Requests\n" + red + "3" + green + ".Orders\n" + red + "4" + green + ".quit\n" + cyan+ "choose your goal: " + reset);
+            System.out.println(cyan + "|----------MENU----------|\nselect your goal:\n" + red + "1" + green + ".Authentication\n" + red + "2" + green + ".Requests\n" + red + "3" + green + ".Orders\n" + red + "4" + green + ".quit\n" + cyan+ "choose your goal: " + reset);
             int goal = scanner.nextInt();
             scanner.nextLine();
             switch (goal) {

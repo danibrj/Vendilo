@@ -16,7 +16,7 @@ public class ShowSupporterReqMenu {
     public void show(UserSuportWorking userSuportWorking) {
         boolean isOk = true;
         while (isOk) {
-            System.out.println(red + "1" + green + ".show reports\n" + red + "2" + green + ".handling reports\n" + red + "3" + green + ".quit\n" + cyan+ "choose your goal: " + reset);
+            System.out.println(cyan+ "|----------Requests menu----------|\n" + red + "1" + green + ".show reports\n" + red + "2" + green + ".handling reports\n" + red + "3" + green + ".quit\n" + cyan+ "choose your goal: " + reset);
             int goal = scanner.nextInt();
             scanner.nextLine();
             switch (goal) {

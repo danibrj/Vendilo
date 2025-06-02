@@ -17,7 +17,7 @@ public class SupporterOrders {
         boolean isContinue = true;
         while (isContinue) {
             List<OrderUser> orders = OrderManager.getOMInstance().getAllOrders();
-            System.out.println(red + "1" + green + ".show all orders\n" + red + "2" + green + ".show order's product's details\n" + red + "3" + green + ".show orders by filter\n" + red + "4" + green + ".quit\n" + cyan+ "select one: " + reset);
+            System.out.println(cyan + "|----------Order Menu----------|\n" +red + "1" + green + ".show all orders\n" + red + "2" + green + ".show order's product's details\n" + red + "3" + green + ".show orders by filter\n" + red + "4" + green + ".quit\n" + cyan+ "select one: " + reset);
             int select = scanner.nextInt();
             scanner.nextLine();
             switch (select) {

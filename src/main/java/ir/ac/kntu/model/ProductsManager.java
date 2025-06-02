@@ -13,8 +13,13 @@ public class ProductsManager {
 
     }
 
-    public Map<Seller,List<Products>> getProductss() {
-        return productss;
+    public List<Products> getProductss(Seller seller) {
+        for(Map.Entry<Seller,List<Products>> sell : productss.entrySet()){
+            if(sell.getKey().equals(seller)){
+                return sell.getValue();
+            }
+        }
+        return null;
     }
 
     public void addProduct(Seller seller,Products product) {

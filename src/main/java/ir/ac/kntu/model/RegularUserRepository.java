@@ -12,6 +12,9 @@ public class RegularUserRepository {
         return Rinstance;
     }
 
+    private RegularUserRepository(){
+
+    }
     public boolean addUser(RegularUser user) {
         if (!isEmailOrPhoneExists(user.getEmail(), user.getPhoneNumber())) {
             users.add(user);

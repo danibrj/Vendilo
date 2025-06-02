@@ -12,9 +12,9 @@ public class ShowSetting {
     }
 
     public void show(){
-        RegularUserRepository userRepo = new RegularUserRepository();
+        RegularUserRepository userRepo = RegularUserRepository.getRinstance();
         RegularUserBugs regularUserBugs = new RegularUserBugs(userRepo);
-        System.out.println(cyan+"|----------SETTING----------|"+reset);
+        System.out.println(cyan+"|----------SETTING-----------|"+reset);
         Setting setting = new Setting(userRepo,regularUserBugs);
         System.out.println(cyan+"|----------updating----------|"+reset);
         System.out.println(cyan+"Do you want to update information?"+reset);
@@ -22,8 +22,6 @@ public class ShowSetting {
         System.out.println(red+"2."+green+"No"+reset);
         System.out.println(cyan+"select your answer: "+reset);
         String answer = scanner.nextLine();
-        scanner.nextLine();
-
         switch (answer) {
             case "Yes":
                 System.out.println("Enter your email or phoneNumber: ");

@@ -13,9 +13,10 @@ public class Setting {
         this.regularUserBugs = regularUserBugs;
     }
 
+
     public RegularUser finedRegularUserInfo(String input) {
         for (RegularUser info : userRepo.getAllUsers()) {
-            if (info.getEmail().equals(input) || info.getPhoneNumber().equals(input)) {
+            if (input.equals(info.getEmail()) || input.equals(info.getPhoneNumber())) {
                 return info;
             }
         }

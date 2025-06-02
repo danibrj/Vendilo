@@ -17,7 +17,7 @@ public class ProductRater {
     public void show(RegularUser user) {
         List<OrderUser> orders = user.getOrderUsers();
         if (orders.isEmpty()) {
-            System.out.println(red+"not found order for view details."+reset);
+            System.out.println(red+"not found order for ratting."+reset);
             return;
         }
         System.out.println(cyan+"select an order: "+reset);

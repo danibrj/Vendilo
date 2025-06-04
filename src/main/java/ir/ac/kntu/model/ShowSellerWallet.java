@@ -27,7 +27,6 @@ public class ShowSellerWallet {
                     System.out.println("how much money do you want to withdraw?");
                     double money = scanner.nextDouble();
                     sellerWallet.getMoney(money);
-                    System.out.println("you withdraw ( "+ money + " dollars) from your Wallet");
                     break;
                 case 3:
                     isOk = false;

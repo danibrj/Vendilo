@@ -2,7 +2,6 @@ package ir.ac.kntu.report;
 
 import ir.ac.kntu.model.Seller;
 import ir.ac.kntu.model.SellerRepository;
-import ir.ac.kntu.model.ProductsManager;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
@@ -113,7 +112,7 @@ public class SellerReportGenerator {
             writer.write("table { background-color: white; border: 1px solid #dee2e6; }\nth { background-color: #0d6efd; color: white; }\nth, td { text-align: center; vertical-align: middle; }\n");
             writer.write("img { display: block; margin: 30px auto; border-radius: 10px; max-width: 100%; }\n</style>\n</head>\n<body>\n<div class='container'>\n");
             writer.write("<div class='card'>\n<h1 class='mb-4'>گزارش مالی فروشندگان</h1>\n<table class='table table-bordered table-striped'>\n<thead>\n<tr>\n");
-            writer.write("<th>نام</th><th>نام خانوادگی</th><th>نام فروشگاه</th><th>استان</th><th>موجودی(دلار)</th><th>تعداد محصولات فروش</th><th>مجموع فروش</th>\n</tr>\n</thead>\n<tbody>\n");
+            writer.write("<th>نام</th><th>نام خانوادگی</th><th>نام فروشگاه</th><th>استان</th><th>موجودی(دلار)</th><th>مجموع فروش</th>\n</tr>\n</thead>\n<tbody>\n");
             for (Seller seller : sellers) {
                 writer.write("<tr>\n");
                 writer.write("<td>" + seller.getFirstName() + "</td>\n");
@@ -121,7 +120,6 @@ public class SellerReportGenerator {
                 writer.write("<td>" + seller.getStoreTitle() + "</td>\n");
                 writer.write("<td>" + seller.getProvinceOfSale() + "</td>\n");
                 writer.write("<td>" + String.format("%.2f", seller.getSellerWallet().getInventory()) + "</td>\n");
-                writer.write("<td>" + ProductsManager.getInstance().getProductss(seller).size() + "</td>\n");
                 writer.write("<td>" + String.format("%.2f", seller.getSellerWallet().getInventory()) + "</td>\n</tr>\n");
             }
             writer.write("</tbody>\n</table>\n</div>\n<div class='card'>\n<h3>نمودار سهم فروشندگان از موجودی</h3>\n");

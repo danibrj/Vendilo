@@ -14,6 +14,6 @@ public class DigitalProducts extends Products {
 
     @Override
     public String toString() {
-        return super.toString() + "brand: " + brand + ", internalMemorySize: " + itlMemorySize + ", RAMSize: " + ramSize;
+        return super.toString() + " brand: " + brand + ", internalMemorySize: " + itlMemorySize + ", RAMSize: " + ramSize;
     }
 }

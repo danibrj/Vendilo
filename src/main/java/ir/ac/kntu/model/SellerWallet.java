@@ -17,6 +17,7 @@ public class SellerWallet {
         if (inventory >= targetMoneyAmount) {
             inventory -= targetMoneyAmount;
             setInventory(inventory);
+            System.out.println("you withdraw ( "+ targetMoneyAmount + " dollars) from your Wallet");
         } else {
             System.out.println(red+"your inventory not enough!!!"+reset);
         }

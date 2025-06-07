@@ -123,6 +123,7 @@ public class ShoppingCart {
                         System.out.println("the total cost after put discount code: " + newTotalCost + " $");
                         float newTotalPrice = shippingCost + newTotalCost;
                         showPayment(user, pdt, newTotalPrice, address);
+                        isEnd = false;
                     }
                 }
             }else{

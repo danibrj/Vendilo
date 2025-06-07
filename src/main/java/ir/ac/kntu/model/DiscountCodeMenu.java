@@ -23,30 +23,12 @@ public class DiscountCodeMenu {
             scanner.nextLine();
             switch (select) {
                 case 1 -> codeManager.showCodesGenerally(user);
-                case 2 -> showDetails(user, codeManager);
+                case 2 -> ShowCodeDetails.getScdInstance().showDetails(user,codeManager);
                 case 3 -> isOk = false;
                 default -> System.out.println(red + "invalid select!!!" + reset);
             }
         }
     }
 
-    public void showDetails(RegularUser user, DiscountCodeManager codeManager) {
-        Map<RegularUser, List<DiscountCode>> copyUserDisCode = codeManager.getUserDisCode();
-        for (RegularUser reUser : copyUserDisCode.keySet()) {
-            if (reUser.equals(user)) {
-                for (int i = 0; i < copyUserDisCode.get(user).size(); i++) {
-                    System.out.println((i + 1) + " " + copyUserDisCode.get(user).get(i).getName());
-                }
-            }
-        }
-        System.out.println(blue + "choose one: " + reset);
-        int num = scanner.nextInt();
-        scanner.nextLine();
-        if (num < 1 || num > copyUserDisCode.get(user).size()) {
-            System.out.println(red + "invalid num" + reset);
-            return;
-        }
-        DiscountCode disCode = copyUserDisCode.get(user).get(num - 1);
-        codeManager.showCodesDetails(disCode);
-    }
+
 }

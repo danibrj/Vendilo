@@ -50,7 +50,7 @@ public class SearchProMenu {
         System.out.println(cyan+"which product do you want to add to cart? "+reset);
         int num2 = scanner.nextInt();
         scanner.nextLine();
-        if (num2 >= 1 && num2 <= copyOfTList.size()) {
+        if (num2 >= 1 && num2 <= copyOfTList.size() && copyOfTList.get(num2-1).getInstanceInventory() >=1) {
             shoppingCart.addProToCart(copyOfTList.get(num2 - 1));
             System.out.println(green+"Product added to cart."+reset);
         } else {

@@ -3,7 +3,7 @@ package ir.ac.kntu.model;
 public class DiscountCode {
     private String name;
     private String code;
-    private double discountValue;
+    private float discountValue;
     private int numbsOfTimesOfUse;
     private KindsOfCode kindsOfCode;
 
@@ -11,7 +11,7 @@ public class DiscountCode {
 
     }
 
-    public DiscountCode(String name, String code, double discountValue, int numbsOfTimesOfUse, KindsOfCode kindsOfCode) {
+    public DiscountCode(String name, String code, float discountValue, int numbsOfTimesOfUse, KindsOfCode kindsOfCode) {
         this.name = name;
         this.code = code;
         this.discountValue = discountValue;
@@ -36,11 +36,11 @@ public class DiscountCode {
         this.code = code;
     }
 
-    public double getDiscountValue() {
+    public float getDiscountValue() {
         return discountValue;
     }
 
-    public void setDiscountValue(double discountValue) {
+    public void setDiscountValue(float discountValue) {
         this.discountValue = discountValue;
     }
 

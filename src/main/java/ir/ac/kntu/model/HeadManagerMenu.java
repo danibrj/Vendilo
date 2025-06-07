@@ -73,7 +73,7 @@ public class HeadManagerMenu {
         System.out.println("code: ");
         String code = scanner.nextLine();
         System.out.println("discountValue: ");
-        double discountValue = scanner.nextDouble();
+        float discountValue = scanner.nextFloat();
         scanner.nextLine();
         System.out.println("numbsOfTimesOfUse: ");
         int numbsOfTimesOfUse = scanner.nextInt();

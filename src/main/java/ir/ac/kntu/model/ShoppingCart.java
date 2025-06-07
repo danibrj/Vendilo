@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.*;
+
 import static ir.ac.kntu.model.Color.*;
 
 public class ShoppingCart {
@@ -12,6 +13,7 @@ public class ShoppingCart {
     private float totalCost = 0;
     private float totalPrice = 0;
     private Set<Seller> uniqueSeller = new HashSet<>();
+    private DiscountCode disC;
 
     public static ShoppingCart getSpInstance() {
         return SpInstance;
@@ -37,15 +39,15 @@ public class ShoppingCart {
     public void removePro(Products prod) {
         boolean removed = proOfCart.removeIf(a -> a.equals(prod));
         if (removed) {
-            System.out.println(green+"product removed successfully"+reset);
+            System.out.println(green + "product removed successfully" + reset);
         } else {
-            System.out.println(red+"product not found!!!"+reset);
+            System.out.println(red + "product not found!!!" + reset);
         }
     }
 
     public void showPDetails(Products prod) {
         if (prod == null) {
-            System.out.println(red+"not found!!!"+reset);
+            System.out.println(red + "not found!!!" + reset);
             return;
         }
         System.out.println(prod);
@@ -81,23 +83,23 @@ public class ShoppingCart {
     }
 
     public void shows(List<Products> pdt, float shippingCost, RegularUser user, Address address) {
-        System.out.println(cyan+"-----product list-----"+reset);
+        System.out.println(cyan + "-----product list-----" + reset);
         for (Products p : pdt) {
             System.out.println(p);
         }
-        System.out.print("the cost of product : " +totalCost + " $\nthe cost of send : "+shippingCost + " $\nthe generally cost :  " +totalPrice + " $\n");
-        System.out.println(cyan+"do you want to payment?"+reset);
+        System.out.print("the cost of product : " + totalCost + " $\nthe cost of send : " + shippingCost + " $\nthe generally cost :  " + totalPrice + " $\n");
+        System.out.println(cyan + "do you want to payment?" + reset);
         String yesOrNo = scanner.nextLine();
         if ("yes".equalsIgnoreCase(yesOrNo)) {
-            System.out.println(blue+"do you want to use discount code?"+reset);
+            System.out.println(blue + "do you want to use discount code?" + reset);
             String yesOrNo2 = scanner.nextLine();
-            if("yes".equalsIgnoreCase(yesOrNo2)){
+            if ("yes".equalsIgnoreCase(yesOrNo2)) {
                 DiscountCodeManager dcMan = DiscountCodeManager.getDisManInstance();
                 System.out.println("codes: \n");
                 dcMan.showCodesGenerally(user);
                 System.out.println("--------------------\n");
                 boolean isEnd = true;
-                while(isEnd){
+                while (isEnd) {
                     for (RegularUser reUser : dcMan.getUserDisCode().keySet()) {
                         if (reUser.equals(user)) {
                             for (int i = 0; i < dcMan.getUserDisCode().get(user).size(); i++) {
@@ -108,7 +110,7 @@ public class ShoppingCart {
                     System.out.println(blue + "choose one: " + reset);
                     int num = scanner.nextInt();
                     scanner.nextLine();
-                    if (num < 1 || num > dcMan.getUserDisCode().get(user).size()) {
+                    if (num < 1 || num > dcMan.getUserDisCode().get(user).size() && dcMan.getUserDisCode().get(user).get(num - 1).getNumsOfTimesOfUse() >= 1) {
                         System.out.println(red + "invalid num" + reset);
                         return;
                     }
@@ -116,21 +118,22 @@ public class ShoppingCart {
                     dcMan.showCodesDetails(disCode);
                     System.out.println("it's ok to use?");
                     String yesOrNo3 = scanner.nextLine();
-                    if("yes".equalsIgnoreCase(yesOrNo3)){
-                        float newTotalCost = (1 - disCode.getDiscountValue())*totalCost;
-                        System.out.println("the code value: "+ disCode.getDiscountValue()+ " %");
+                    if ("yes".equalsIgnoreCase(yesOrNo3)) {
+                        float newTotalCost = (1 - disCode.getDiscountValue()) * totalCost;
+                        System.out.println("the code value: " + disCode.getDiscountValue() + " %");
                         System.out.println("the total cost before put discount code: " + totalCost + " $");
                         System.out.println("the total cost after put discount code: " + newTotalCost + " $");
                         float newTotalPrice = shippingCost + newTotalCost;
                         System.out.println("finally, shopping?");
                         String yesOrNo4 = scanner.nextLine();
-                        if("yes".equalsIgnoreCase(yesOrNo4)){
+                        if ("yes".equalsIgnoreCase(yesOrNo4)) {
+                            disC = disCode;
                             showPayment(user, pdt, newTotalPrice, address);
                             isEnd = false;
                         }
                     }
                 }
-            }else{
+            } else {
                 showPayment(user, pdt, totalPrice, address);
             }
         } else {
@@ -141,8 +144,8 @@ public class ShoppingCart {
 
     public void showPayment(RegularUser user, List<Products> pdt, double totalPrice, Address address) {
         if (user.getUsersWallet().getInventory() < totalPrice) {
-            System.out.println(red+"ERROR: your inventory not enough"+reset);
-            System.out.println(blue+"going to wallet for charge ..."+reset);
+            System.out.println(red + "ERROR: your inventory not enough" + reset);
+            System.out.println(blue + "going to wallet for charge ..." + reset);
             ShowWallet.getShowWal().show(user);
             if (user.getUsersWallet().getInventory() >= totalPrice) {
                 completePayment(user, pdt, totalPrice, address);
@@ -170,14 +173,15 @@ public class ShoppingCart {
             prod.setInstanceInventory(prod.getInstanceInventory() - 1);
 
             Seller realSeller = SellerRepository.getSinstance().findByPhoneOrNationalCode(prod.getSeller().getPhoneNumber());
-            if(realSeller != null){
-                realSeller.getSellerWallet().increaseInventory(prod.getPrice()*0.9);
-            }else{
+            if (realSeller != null) {
+                realSeller.getSellerWallet().increaseInventory(prod.getPrice() * 0.9);
+                disC.setNumsOfTimesOfUse(disC.getNumsOfTimesOfUse() - 1);
+            } else {
                 System.out.println(red + "Seller not found in repository for product: " + prod.getName() + reset);
             }
         }
         pdt.clear();
-        System.out.println(green+"Payment successful! Your order has been placed."+reset);
+        System.out.println(green + "Payment successful! Your order has been placed." + reset);
         System.out.println("Remaining Wallet Balance: " + user.getUsersWallet().getInventory() + " $");
     }
 }

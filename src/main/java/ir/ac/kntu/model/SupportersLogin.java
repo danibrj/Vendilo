@@ -3,15 +3,13 @@ package ir.ac.kntu.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ir.ac.kntu.model.Color.*;
+import static ir.ac.kntu.model.Color.reset;
+
 public class SupportersLogin {
-    private List<Supporter> supporters;
+    private List<Supporter> supporters = supporters = new ArrayList<>();
 
     public SupportersLogin() {
-        supporters = new ArrayList<>();
-
-        supporters.add(new Supporter("Supporter1", "DanialBrj", "AmDb901"));
-        supporters.add(new Supporter("Supporter2", "DanialAtm", "AmDb913"));
-
     }
 
     public Supporter login(String userName, String password) {
@@ -21,5 +19,13 @@ public class SupportersLogin {
             }
         }
         return null;
+    }
+
+    public void addSupper(Supporter supporter){
+        if(!supporters.contains(supporter)){
+            supporters.add(supporter);
+            System.out.println(green +"add supporter successfully"+reset);
+        }
+        System.out.println(red+"supporter already exist!!!"+reset);
     }
 }

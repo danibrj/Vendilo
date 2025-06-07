@@ -16,7 +16,7 @@ public class RegularUser {
     private UsersAddress usersAddress = new UsersAddress();
     private List<OrderUser> orderUsers = new ArrayList<>();
     private UserSuportWorking userSuportWorking = UserSuportWorking.getWInstance();
-
+    private DiscountCode discountCode = new DiscountCode();
     public RegularUser(String firstName, String lastName, String email, String phoneNumber, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -32,6 +32,10 @@ public class RegularUser {
 
     public void setUserSuportWorking(UserSuportWorking userSuportWorking) {
         this.userSuportWorking = userSuportWorking;
+    }
+
+    public DiscountCode getDiscountCode() {
+        return discountCode;
     }
 
     public List<OrderUser> getOrderUsers() {

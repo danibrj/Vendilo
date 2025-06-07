@@ -12,15 +12,17 @@ public class MainMenu {
             ManageRequests manageRequests = ManageRequests.getMRInstance();
             SellerRepository sellerRepository = SellerRepository.getSinstance();
             SupportersLogin supportersLogin = new SupportersLogin();
+            HeadManagerLogin headManagerLogin = new HeadManagerLogin();
             while (true) {
-                System.out.println(cyan + "|-------------Main Menu-------------|\n" + "select your Role: \n" + red + "1." + green + "regular user\n" + red + "2." + green + "seller\n" + red + "3." + green + "supporter\n" + red + "4." + green + "quit\n" + purple + ":::::::::>>>>" + reset);
+                System.out.println(cyan + "|-------------Main Menu-------------|\n" + "select your Role: \n" + red + "1." + green + "regular user\n" + red + "2." + green + "seller\n" + red + "3." + green + "supporter\n" + red + "4." + green + "managers\n" + red + "5." + green + "quit\n" + purple + ":::::::::>>>>" + reset);
                 int selected = scanner.nextInt();
                 scanner.nextLine();
                 switch (selected) {
                     case 1 -> new FirstRegularUserMenu().show();
                     case 2 -> new FirstSellerMenu(sellerRepository, manageRequests).show();
                     case 3 -> MainMenuShows.getmMsInstanse().show(supportersLogin, manageRequests);
-                    case 4 -> {
+                    case 4-> HeadManagerLoginMenu.gethMlmInstanse().show(headManagerLogin,supportersLogin);
+                    case 5 -> {
                         scanner.close();
                         return;
                     }

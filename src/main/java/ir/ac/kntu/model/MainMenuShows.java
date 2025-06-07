@@ -12,10 +12,9 @@ public class MainMenuShows {
     }
 
     public void show(SupportersLogin supportersLogin, ManageRequests manageRequests) {
-        System.out.println(cyan + "|----------Login----------|\n" + reset);
-        System.out.print("Enter your username: ");
+        System.out.println(cyan + "|----------Supporter Login----------|\n" + reset);
+        System.out.println("Enter your username: ");
         String usName = scanner.nextLine();
-        System.out.println();
         System.out.println("Enter your password: ");
         String pass = scanner.nextLine();
         Supporter supporter = supportersLogin.login(usName, pass);

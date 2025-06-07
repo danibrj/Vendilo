@@ -1,7 +1,5 @@
 package ir.ac.kntu.model;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 import static ir.ac.kntu.model.Color.*;

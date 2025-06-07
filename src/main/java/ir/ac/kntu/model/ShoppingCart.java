@@ -122,8 +122,12 @@ public class ShoppingCart {
                         System.out.println("the total cost before put discount code: " + totalCost + " $");
                         System.out.println("the total cost after put discount code: " + newTotalCost + " $");
                         float newTotalPrice = shippingCost + newTotalCost;
-                        showPayment(user, pdt, newTotalPrice, address);
-                        isEnd = false;
+                        System.out.println("finally, shopping?");
+                        String yesOrNo4 = scanner.nextLine();
+                        if("yes".equalsIgnoreCase(yesOrNo4)){
+                            showPayment(user, pdt, newTotalPrice, address);
+                            isEnd = false;
+                        }
                     }
                 }
             }else{

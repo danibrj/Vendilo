@@ -15,7 +15,7 @@ public class CartMenu2 {
     public void show(ShoppingCart shoppingCart) {
         while (true) {
             for (int i = 0; i < shoppingCart.getProOfCart().size(); i++) {
-                System.out.println((i + 1) + " " + shoppingCart.getProOfCart().get(i).getType()+shoppingCart.getProOfCart().get(i).getName());
+                System.out.println((i + 1) + " " + shoppingCart.getProOfCart().get(i).getType()+ " - " +shoppingCart.getProOfCart().get(i).getName());
             }
             System.out.println(cyan+"choose one: ---(!indexNum : quit)---"+reset);
             int num = scanner.nextInt();

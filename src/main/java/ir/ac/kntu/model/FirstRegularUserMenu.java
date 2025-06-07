@@ -55,8 +55,10 @@ public class FirstRegularUserMenu {
         System.out.println(cyan + "|----------Login----------|\n"+reset);
         System.out.print("Enter your email or phoneNmaber: ");
         String input = scanner.nextLine();
-        System.out.println("Enter your password: ");
+        System.out.println();
+        System.out.print("Enter your password: ");
         String pass = scanner.nextLine();
+        System.out.println();
         RegularUser user = regularUserBugs.login(input, pass);
         if (user != null) {
             System.out.println(green + "login is successfully.welcome "+ reset + user.getFirstName());

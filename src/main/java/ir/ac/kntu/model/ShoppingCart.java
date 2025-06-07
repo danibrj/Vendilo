@@ -14,7 +14,7 @@ public class ShoppingCart {
     private float totalPrice = 0;
     private Set<Seller> uniqueSeller = new HashSet<>();
     private DiscountCode disC;
-
+    private float shippingCost=0;
     public static ShoppingCart getSpInstance() {
         return SpInstance;
     }
@@ -77,7 +77,7 @@ public class ShoppingCart {
                 break;
             }
         }
-        float shippingCost = isSellerSameP ? (SHIPPING_COST * uniqueSeller.size()) / 3 : SHIPPING_COST * uniqueSeller.size();
+        shippingCost = isSellerSameP ? (SHIPPING_COST * uniqueSeller.size()) / 3 : SHIPPING_COST * uniqueSeller.size();
         totalPrice = totalCost + shippingCost;
         shows(pdt, shippingCost, user, address);
     }
@@ -97,42 +97,8 @@ public class ShoppingCart {
                 DiscountCodeManager dcMan = DiscountCodeManager.getDisManInstance();
                 System.out.println("codes: \n");
                 dcMan.showCodesGenerally(user);
-                System.out.println("--------------------\n");
-                boolean isEnd = true;
-                while (isEnd) {
-                    for (RegularUser reUser : dcMan.getUserDisCode().keySet()) {
-                        if (reUser.equals(user)) {
-                            for (int i = 0; i < dcMan.getUserDisCode().get(user).size(); i++) {
-                                System.out.println((i + 1) + " " + dcMan.getUserDisCode().get(user).get(i).getName());
-                            }
-                        }
-                    }
-                    System.out.println(blue + "choose one: " + reset);
-                    int num = scanner.nextInt();
-                    scanner.nextLine();
-                    if (num < 1 || num > dcMan.getUserDisCode().get(user).size() && dcMan.getUserDisCode().get(user).get(num - 1).getNumsOfTimesOfUse() >= 1) {
-                        System.out.println(red + "invalid num" + reset);
-                        return;
-                    }
-                    DiscountCode disCode = dcMan.getUserDisCode().get(user).get(num - 1);
-                    dcMan.showCodesDetails(disCode);
-                    System.out.println("it's ok to use?");
-                    String yesOrNo3 = scanner.nextLine();
-                    if ("yes".equalsIgnoreCase(yesOrNo3)) {
-                        float newTotalCost = (1 - disCode.getDiscountValue()) * totalCost;
-                        System.out.println("the code value: " + disCode.getDiscountValue() + " %");
-                        System.out.println("the total cost before put discount code: " + totalCost + " $");
-                        System.out.println("the total cost after put discount code: " + newTotalCost + " $");
-                        float newTotalPrice = shippingCost + newTotalCost;
-                        System.out.println("finally, shopping?");
-                        String yesOrNo4 = scanner.nextLine();
-                        if ("yes".equalsIgnoreCase(yesOrNo4)) {
-                            disC = disCode;
-                            showPayment(user, pdt, newTotalPrice, address);
-                            isEnd = false;
-                        }
-                    }
-                }
+                System.out.print("--------------------\n");
+                payByDiscount(dcMan,user,pdt,address);
             } else {
                 showPayment(user, pdt, totalPrice, address);
             }
@@ -141,7 +107,62 @@ public class ShoppingCart {
         }
         System.out.println();
     }
+    //-----------------------------------------------------------------------------------
+    public void payByDiscount(DiscountCodeManager dcMan,RegularUser user,List<Products> pdt,Address address){
+        boolean isEnd = true;
+        while (isEnd) {
+            System.out.println("codes that yo can use them: ");
+            for (RegularUser reUser : dcMan.getUserDisCode().keySet()) {
+                if (reUser.equals(user)) {
+                    for (int i = 0; i < dcMan.getUserDisCode().get(user).size(); i++) {
+                        System.out.println((i + 1) + " " + dcMan.getUserDisCode().get(user).get(i).getName());
+                    }
+                }
+            }
+            System.out.println(blue + "choose one: " + reset);
+            int num = scanner.nextInt();
+            scanner.nextLine();
+            if (num < 1 || num > dcMan.getUserDisCode().get(user).size()) {
+                System.out.println(red + "invalid num" + reset);
+                return;
+            }
+            if(dcMan.getUserDisCode().get(user).get(num - 1).getNumsOfTimesOfUse() <= 0){
+                System.out.println(red + "you can not use this code.because finished" + reset);
+                return;
+            }
+            KindsOfCode type = dcMan.getUserDisCode().get(user).get(num - 1).getKindsOfCode();
+            if (type.equals(KindsOfCode.SPECIAL) && !(totalCost > 10 * dcMan.getUserDisCode().get(user).get(num - 1).getDiscountValue())) {
+                System.out.println(red + "you can not use this code.because your totalCost not enough" + reset);
+                return;
+            }
 
+            DiscountCode disCode = dcMan.getUserDisCode().get(user).get(num - 1);
+            dcMan.showCodesDetails(disCode);
+            System.out.println("it's ok to use?");
+            String yesOrNo3 = scanner.nextLine();
+            if ("yes".equalsIgnoreCase(yesOrNo3)) {
+                float newTotalCost = 0.0f;
+                if (disCode.getKindsOfCode().equals(KindsOfCode.USUAL)) {
+                    newTotalCost = (1 - disCode.getDiscountValue()) * totalCost;
+                    System.out.println("the code value: " + disCode.getDiscountValue() + " %");
+                } else if (disCode.getKindsOfCode().equals(KindsOfCode.SPECIAL)) {
+                    newTotalCost = totalCost - disCode.getDiscountValue();
+                    System.out.println("the code value: " + disCode.getDiscountValue() + " $");
+                }
+                System.out.println("the total cost before put discount code: " + totalCost + " $");
+                System.out.println("the total cost after put discount code: " + newTotalCost + " $");
+                float newTotalPrice = shippingCost + newTotalCost;
+                System.out.println("finally, shopping?");
+                String yesOrNo4 = scanner.nextLine();
+                if ("yes".equalsIgnoreCase(yesOrNo4)) {
+                    disC = disCode;
+                    showPayment(user, pdt, newTotalPrice, address);
+                    isEnd = false;
+                }
+            }
+        }
+    }
+    //-----------------------------------------------------------------------------------
     public void showPayment(RegularUser user, List<Products> pdt, double totalPrice, Address address) {
         if (user.getUsersWallet().getInventory() < totalPrice) {
             System.out.println(red + "ERROR: your inventory not enough" + reset);

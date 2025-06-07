@@ -14,41 +14,45 @@ public class HeadManagerMenu {
     }
 
     public void show() {
-        System.out.println(cyan + "|----------Head Manager Menu----------|\n" + red + "3." + green + "user performance review\n" + blue + "choose one: \n" + reset);
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        switch (choice) {
+        boolean isOk1 = true;
+        while (isOk1) {
+            System.out.println(cyan + "|----------Head Manager Menu----------|\n" + red + "3." + green + "user performance review\n" + red + "4." + green + "quit\n" + blue + "choose one: \n" + reset);
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            switch (choice) {
 //            case 1 ->
 //            case 2 ->
-            case 3 -> {
-                List<RegularUser> users = RegularUserRepository.getRinstance().getAllUsers();
-                for (int i = 0; i < users.size(); i++) {
-                    System.out.println((i + 1) + " " + users.get(i));
+                case 3 -> {
+                    List<RegularUser> users = RegularUserRepository.getRinstance().getAllUsers();
+                    for (int i = 0; i < users.size(); i++) {
+                        System.out.println((i + 1) + " " + users.get(i));
+                    }
+                    System.out.println("select one: ");
+                    int num = scanner.nextInt();
+                    scanner.nextLine();
+                    if (num < 1 || num > users.size()) {
+                        System.out.println(red + "invalid num" + reset);
+                        return;
+                    }
+                    RegularUser user = users.get(num - 1);
+                    perfReviewMenu(user);
                 }
-                System.out.println("select one: ");
-                int num = scanner.nextInt();
-                scanner.nextLine();
-                if (num < 1 || num > users.size()) {
-                    System.out.println(red + "invalid num" + reset);
-                    return;
-                }
-                RegularUser user = users.get(num - 1);
-                perfReviewMenu(user);
-            }
-            default -> System.out.println(red + "invalid choice!!!" + reset);
+                case 4 -> isOk1 = false;
+                default -> System.out.println(red + "invalid choice!!!" + reset);
 
+            }
         }
     }
 
     public void perfReviewMenu(RegularUser user) {
-        boolean isOk = true;
-        while (isOk) {
-            System.out.println(cyan + "welcome to " + user.getFirstName() + " " + user.getLastName() + "menu\n" + red + "1." + green + "put discount code\n" + red + "2." + green + "quit\n" + purple +"choose one: \n" + reset);
+        boolean isOk2 = true;
+        while (isOk2) {
+            System.out.println(cyan + "welcome to " + reset + user.getFirstName() + " " + user.getLastName() + cyan + " menu\n" + red + "1." + green + "put discount code\n" + red + "2." + green + "quit\n" + purple + "choose one: \n" + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
                 case 1 -> putCodeShow(user);
-
+                case 2 -> isOk2 = false;
                 default -> System.out.println(red + "invalid choice!!!" + reset);
             }
         }
@@ -69,7 +73,7 @@ public class HeadManagerMenu {
         System.out.println("code: ");
         String code = scanner.nextLine();
         System.out.println("discountValue: ");
-        int discountValue = scanner.nextInt();
+        double discountValue = scanner.nextDouble();
         scanner.nextLine();
         System.out.println("numbsOfTimesOfUse: ");
         int numbsOfTimesOfUse = scanner.nextInt();

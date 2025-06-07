@@ -17,6 +17,7 @@ public class RegularUser {
     private List<OrderUser> orderUsers = new ArrayList<>();
     private UserSuportWorking userSuportWorking = UserSuportWorking.getWInstance();
     private DiscountCode discountCode = new DiscountCode();
+
     public RegularUser(String firstName, String lastName, String email, String phoneNumber, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -104,5 +105,14 @@ public class RegularUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "firstName = " + firstName +
+                ", lastName = " + lastName +
+                ", email = " + email +
+                ", phoneNumber = " + phoneNumber +
+                ", password = " + password;
     }
 }

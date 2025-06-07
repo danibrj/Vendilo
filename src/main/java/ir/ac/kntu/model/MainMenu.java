@@ -21,7 +21,7 @@ public class MainMenu {
                     case 1 -> new FirstRegularUserMenu().show();
                     case 2 -> new FirstSellerMenu(sellerRepository, manageRequests).show();
                     case 3 -> MainMenuShows.getmMsInstanse().show(supportersLogin, manageRequests);
-                    case 4-> HeadManagerLoginMenu.gethMlmInstanse().show(headManagerLogin,supportersLogin);
+                    case 4-> LoginManager.getLmInstanse().show(headManagerLogin,supportersLogin);
                     case 5 -> {
                         scanner.close();
                         return;

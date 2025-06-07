@@ -19,6 +19,7 @@ public class DiscountCodeManager {
     public void addCode(RegularUser user, DiscountCode code) {
         userDisCode.putIfAbsent(user, new ArrayList<>());
         userDisCode.get(user).add(code);
+        System.out.println(green+"discount code added successfully");
     }
 
     public void showCodesGenerally(RegularUser user) {

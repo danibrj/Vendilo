@@ -3,22 +3,21 @@ package ir.ac.kntu.model;
 public class DiscountCode {
     private String name;
     private String code;
-    private int discountValue;
+    private double discountValue;
     private int numbsOfTimesOfUse;
     private KindsOfCode kindsOfCode;
 
-    public DiscountCode(){
+    public DiscountCode() {
 
     }
 
-    public DiscountCode(String name, String code, int discountValue, int numbsOfTimesOfUse, KindsOfCode kindsOfCode) {
+    public DiscountCode(String name, String code, double discountValue, int numbsOfTimesOfUse, KindsOfCode kindsOfCode) {
         this.name = name;
         this.code = code;
         this.discountValue = discountValue;
         this.numbsOfTimesOfUse = numbsOfTimesOfUse;
         this.kindsOfCode = kindsOfCode;
     }
-
 
 
     public String getName() {
@@ -37,11 +36,11 @@ public class DiscountCode {
         this.code = code;
     }
 
-    public int getDiscountValue() {
+    public double getDiscountValue() {
         return discountValue;
     }
 
-    public void setDiscountValue(int discountValue) {
+    public void setDiscountValue(double discountValue) {
         this.discountValue = discountValue;
     }
 
@@ -63,12 +62,10 @@ public class DiscountCode {
 
     @Override
     public String toString() {
-        return "DiscountCode{" +
-                "name='" + name + '\'' +
-                ", code='" + code + '\'' +
-                ", discountValue=" + discountValue +
-                ", numsOfTimesOfUse=" + numbsOfTimesOfUse +
-                ", kindsOfCode=" + kindsOfCode +
-                "}";
+        return "name=" + name +
+                ", code = " + code +
+                ", discountValue = " + discountValue + " %"+
+                ", numbsOfTimesOfUse = " + numbsOfTimesOfUse +
+                ", kindsOfCode = " + kindsOfCode;
     }
 }

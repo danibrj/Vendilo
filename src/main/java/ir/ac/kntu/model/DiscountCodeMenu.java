@@ -18,7 +18,7 @@ public class DiscountCodeMenu {
         DiscountCodeManager codeManager = DiscountCodeManager.getDisManInstance();
         boolean isOk = true;
         while (isOk) {
-            System.out.println(cyan + "|----------Discount Code Menu----------|\n" + red + "1." + green + "show discount codes\n" + red + "2." + green + "show code's details\n" + red + "3." + green + "quit" + purple + "choose one: \n" + reset);
+            System.out.println(cyan + "|----------Discount Code Menu----------|\n" + red + "1." + green + "show discount codes\n" + red + "2." + green + "show code's details\n" + red + "3." + green + "quit\n" + purple + "choose one: \n" + reset);
             int select = scanner.nextInt();
             scanner.nextLine();
             switch (select) {

@@ -15,13 +15,13 @@ public class HeadManagerLoginMenu {
     public void show(HeadManagerLogin headManagerLogin, SupportersLogin supportersLogin) {
         boolean isContinue = true;
         while (isContinue) {
-            System.out.println(cyan + "|----------First Manager Menu----------|\n" + red + "1." + green + "Add Manager\n" + red + "2." + green + "Add Supporter\n" + red + "3." + green + "Login Manager\n" + red + "4." + green + "quit\n" + purple + "choose one: \n" + reset);
+            System.out.println(cyan + "|----------First Manager Menu----------|\n" + red + "1." + green + "Add Manager\n" + red + "2." + green + "Add Supporter\n" + red + "3." + green + "Login Manager to Main Menu\n" + red + "4." + green + "quit\n" + purple + "choose one: \n" + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
                 case 1 -> addManagerShow(headManagerLogin);
                 case 2 -> addSupporterShow(supportersLogin);
-                case 3 -> show2(headManagerLogin);
+                case 3 -> HeadManagerMenu.getHeadInstance().show();
                 case 4 -> isContinue = false;
                 default -> System.out.println(red + "invalid choice!!!" + reset);
             }
@@ -50,18 +50,4 @@ public class HeadManagerLoginMenu {
         headManagerLogin.addManager(headManager);
     }
 
-    public void show2(HeadManagerLogin headManagerLogin) {
-        System.out.println(cyan + "|----------Manager Login----------|\n" + reset);
-        System.out.println("Enter your username: ");
-        String usName = scanner.nextLine();
-        System.out.println("Enter your password: ");
-        String pass = scanner.nextLine();
-        HeadManager headManager = headManagerLogin.login(usName, pass);
-        if (headManager != null) {
-            System.out.println(blue + "Welcome " + reset + headManager.getUsernameHm() + green + "! you are logged as a manager." + reset);
-            HeadManagerMenu.getHeadInstance().show();
-        } else {
-            System.out.println(red + "invalid UserName or Password" + reset);
-        }
-    }
 }

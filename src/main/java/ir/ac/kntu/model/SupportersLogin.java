@@ -19,10 +19,11 @@ public class SupportersLogin {
     }
 
     public void addSupper(Supporter supporter){
-        if(!supporters.contains(supporter)){
-            supporters.add(supporter);
-            System.out.println(green +"add supporter successfully"+reset);
+        if(supporters.contains(supporter)){
+            System.out.println(red+"supporter already exist!!!"+reset);
+            return;
         }
-        System.out.println(red+"supporter already exist!!!"+reset);
+        supporters.add(supporter);
+        System.out.println(green +"add supporter successfully"+reset);
     }
 }

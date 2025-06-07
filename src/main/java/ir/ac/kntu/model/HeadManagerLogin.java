@@ -2,6 +2,7 @@ package ir.ac.kntu.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import static ir.ac.kntu.model.Color.*;
 
 
@@ -23,10 +24,11 @@ public class HeadManagerLogin {
     }
 
     public void addManager(HeadManager manager) {
-        if(!headManagers.contains(manager)){
-            headManagers.add(manager);
-            System.out.println(green +"add manager successfully"+reset);
+        if (headManagers.contains(manager)) {
+            System.out.println(red + "already exist!!!" + reset);
+            return;
         }
-        System.out.println(red+"already exist!!!"+reset);
+        headManagers.add(manager);
+        System.out.println(green + "add manager successfully" + reset);
     }
 }

@@ -9,9 +9,6 @@ import static ir.ac.kntu.model.Color.reset;
 public class SupportersLogin {
     private List<Supporter> supporters = supporters = new ArrayList<>();
 
-    public SupportersLogin() {
-    }
-
     public Supporter login(String userName, String password) {
         for (Supporter sp : supporters) {
             if (sp.getUserName().equals(userName) && sp.getPassword().equals(password)) {

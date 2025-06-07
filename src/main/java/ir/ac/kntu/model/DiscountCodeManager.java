@@ -6,7 +6,6 @@ import static ir.ac.kntu.model.Color.*;
 
 public class DiscountCodeManager {
     private static final DiscountCodeManager disManInstance = new DiscountCodeManager();
-    private Scanner scanner = new Scanner(System.in);
     private Map<RegularUser, List<DiscountCode>> userDisCode = new HashMap<>();
 
     public static DiscountCodeManager getDisManInstance() {

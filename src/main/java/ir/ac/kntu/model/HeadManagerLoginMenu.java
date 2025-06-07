@@ -19,31 +19,35 @@ public class HeadManagerLoginMenu {
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
-                case 1 -> {
-                    System.out.println(cyan + "|----------Manager Adding----------|\n" + reset);
-                    System.out.println("Enter your username: ");
-                    String manUsName = scanner.nextLine();
-                    System.out.println("Enter your password: ");
-                    String manPass = scanner.nextLine();
-                    HeadManager headManager = new HeadManager(manUsName, manPass);
-                    headManagerLogin.addManager(headManager);
-                }
-                case 2 -> {
-                    System.out.println(cyan + "|----------Supporter Adding----------|\n" + reset);
-                    System.out.println("name: ");
-                    String supName = scanner.nextLine();
-                    System.out.println("username: ");
-                    String supUsName = scanner.nextLine();
-                    System.out.println("password: ");
-                    String supPass = scanner.nextLine();
-                    Supporter supporter = new Supporter(supName, supUsName, supPass);
-                    supportersLogin.addSupper(supporter);
-                }
+                case 1 -> addManagerShow(headManagerLogin);
+                case 2 -> addSupporterShow(supportersLogin);
                 case 3 -> show2(headManagerLogin);
                 case 4 -> isContinue = false;
-                default -> System.out.println(red+"invalid choice!!!"+reset);
+                default -> System.out.println(red + "invalid choice!!!" + reset);
             }
         }
+    }
+
+    private void addSupporterShow(SupportersLogin supportersLogin) {
+        System.out.println(cyan + "|----------Supporter Adding----------|\n" + reset);
+        System.out.println("name: ");
+        String supName = scanner.nextLine();
+        System.out.println("username: ");
+        String supUsName = scanner.nextLine();
+        System.out.println("password: ");
+        String supPass = scanner.nextLine();
+        Supporter supporter = new Supporter(supName, supUsName, supPass);
+        supportersLogin.addSupper(supporter);
+    }
+
+    private void addManagerShow(HeadManagerLogin headManagerLogin) {
+        System.out.println(cyan + "|----------Manager Adding----------|\n" + reset);
+        System.out.println("Enter your username: ");
+        String manUsName = scanner.nextLine();
+        System.out.println("Enter your password: ");
+        String manPass = scanner.nextLine();
+        HeadManager headManager = new HeadManager(manUsName, manPass);
+        headManagerLogin.addManager(headManager);
     }
 
     public void show2(HeadManagerLogin headManagerLogin) {

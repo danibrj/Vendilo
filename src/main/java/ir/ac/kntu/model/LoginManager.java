@@ -22,7 +22,7 @@ public class LoginManager {
         HeadManager headManager = headManagerLogin.login(usName, pass);
         if (headManager != null) {
             System.out.println(blue + "Welcome " + reset + headManager.getUsernameHm() + green + "! you are logged to First Menu as a manager." + reset);
-            HeadManagerLoginMenu.gethMlmInstanse().show(headManagerLogin,supportersLogin);
+            HeadManagerMenu.getHeadInstance().show(headManagerLogin,supportersLogin,headManager);
         } else {
             System.out.println(red + "invalid UserName or Password" + reset);
         }

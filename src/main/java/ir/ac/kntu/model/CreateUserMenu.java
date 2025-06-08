@@ -4,25 +4,24 @@ import java.util.Scanner;
 
 import static ir.ac.kntu.model.Color.*;
 
-public class HeadManagerLoginMenu {
-    private static final HeadManagerLoginMenu hMlmInstanse = new HeadManagerLoginMenu();
+public class CreateUserMenu {
+    private static final CreateUserMenu hMlmInstanse = new CreateUserMenu();
     private Scanner scanner = new Scanner(System.in);
 
-    public static HeadManagerLoginMenu gethMlmInstanse() {
+    public static CreateUserMenu gethMlmInstanse() {
         return hMlmInstanse;
     }
 
     public void show(HeadManagerLogin headManagerLogin, SupportersLogin supportersLogin) {
         boolean isContinue = true;
         while (isContinue) {
-            System.out.println(cyan + "|----------First Manager Menu----------|\n" + red + "1." + green + "Add Manager\n" + red + "2." + green + "Add Supporter\n" + red + "3." + green + "Login Manager to Main Menu\n" + red + "4." + green + "quit\n" + purple + "choose one: \n" + reset);
+            System.out.println(cyan + "|----------Create User Menu Menu----------|\n" + red + "1." + green + "Add Manager\n" + red + "2." + green + "Add Supporter\n" + red + "3." + green + "quit\n" + purple + "choose one: \n" + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
                 case 1 -> addManagerShow(headManagerLogin);
                 case 2 -> addSupporterShow(supportersLogin);
-                case 3 -> HeadManagerMenu.getHeadInstance().show();
-                case 4 -> isContinue = false;
+                case 3 -> isContinue = false;
                 default -> System.out.println(red + "invalid choice!!!" + reset);
             }
         }
@@ -42,11 +41,13 @@ public class HeadManagerLoginMenu {
 
     private void addManagerShow(HeadManagerLogin headManagerLogin) {
         System.out.println(cyan + "|----------Manager Adding----------|\n" + reset);
-        System.out.println("Enter your username: ");
+        System.out.println("firstname: ");
+        String manFName = scanner.nextLine();
+        System.out.println("username: ");
         String manUsName = scanner.nextLine();
-        System.out.println("Enter your password: ");
+        System.out.println("password: ");
         String manPass = scanner.nextLine();
-        HeadManager headManager = new HeadManager(manUsName, manPass);
+        HeadManager headManager = new HeadManager(manFName,manUsName, manPass);
         headManagerLogin.addManager(headManager);
     }
 

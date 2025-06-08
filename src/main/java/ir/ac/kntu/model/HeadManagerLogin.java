@@ -11,7 +11,7 @@ public class HeadManagerLogin {
 
     public HeadManagerLogin() {
         this.headManagers = new ArrayList<>();
-        headManagers.add(new HeadManager("headMn", "headMn901$"));
+        headManagers.add(new HeadManager("manager1","headMn", "headMn901$"));
     }
 
     public HeadManager login(String usernameHm, String passwordHm) {
@@ -30,5 +30,9 @@ public class HeadManagerLogin {
         }
         headManagers.add(manager);
         System.out.println(green + "add manager successfully" + reset);
+    }
+
+    public List<HeadManager> getHeadManagers() {
+        return headManagers;
     }
 }

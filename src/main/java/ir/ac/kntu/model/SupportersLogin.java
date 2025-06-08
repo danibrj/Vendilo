@@ -26,4 +26,8 @@ public class SupportersLogin {
         supporters.add(supporter);
         System.out.println(green +"add supporter successfully"+reset);
     }
+
+    public List<Supporter> getSupporters() {
+        return supporters;
+    }
 }

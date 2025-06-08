@@ -13,14 +13,14 @@ public class HeadManagerMenu {
         return headInstance;
     }
 
-    public void show() {
+    public void show(HeadManagerLogin headManagerLogin, SupportersLogin supportersLogin,HeadManager headManager) {
         boolean isOk1 = true;
         while (isOk1) {
-            System.out.println(cyan + "|----------Head Manager Menu----------|\n" + red + "3." + green + "user performance review\n" + red + "4." + green + "quit\n" + blue + "choose one: \n" + reset);
+            System.out.println(cyan + "|----------Head Manager Menu----------|\n" + red + "1." + green + "User Management" + red + "3." + green + "user performance review\n" + red + "4." + green + "quit\n" + blue + "choose one: \n" + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
-//            case 1 ->
+            case 1 -> UserManagement.getUmInstance().show(headManagerLogin,supportersLogin,headManager);
 //            case 2 ->
                 case 3 -> {
                     List<RegularUser> users = RegularUserRepository.getRinstance().getAllUsers();

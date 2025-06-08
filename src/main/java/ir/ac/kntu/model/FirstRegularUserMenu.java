@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+
 import static ir.ac.kntu.model.Color.*;
 
 
@@ -11,7 +12,7 @@ public class FirstRegularUserMenu {
         RegularUserRepository userRepo = RegularUserRepository.getRinstance();
         RegularUserBugs regularUserBugs = new RegularUserBugs(userRepo);
         while (true) {
-            System.out.println(cyan + "|----------First User Menu----------|\n"+ red + "1."+ green+ "register\n" + red + "2." +green +"login\n" + red +"3." + green +"quit\nselect your choice: " + reset);
+            System.out.println(cyan + "|----------First User Menu----------|\n" + red + "1." + green + "register\n" + red + "2." + green + "login\n" + red + "3." + green + "quit\nselect your choice: " + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -24,12 +25,12 @@ public class FirstRegularUserMenu {
                 case 3:
                     return;
                 default:
-                    System.out.println(red +"invalid choice"+ reset);
+                    System.out.println(red + "invalid choice" + reset);
             }
         }
     }
 
-    public void show2(RegularUserBugs regularUserBugs){
+    public void show2(RegularUserBugs regularUserBugs) {
         System.out.print("firstName: ");
         String firstName = scanner.nextLine();
         System.out.println();
@@ -51,8 +52,8 @@ public class FirstRegularUserMenu {
         }
     }
 
-    public void show3(RegularUserBugs regularUserBugs){
-        System.out.println(cyan + "|----------Login----------|\n"+reset);
+    public void show3(RegularUserBugs regularUserBugs) {
+        System.out.println(cyan + "|----------Login----------|\n" + reset);
         System.out.print("Enter your email or phoneNmaber: ");
         String input = scanner.nextLine();
         System.out.println();
@@ -60,11 +61,14 @@ public class FirstRegularUserMenu {
         String pass = scanner.nextLine();
         System.out.println();
         RegularUser user = regularUserBugs.login(input, pass);
-        if (user != null) {
-            System.out.println(green + "login is successfully.welcome "+ reset + user.getFirstName());
-            MainRegularUserMenu.getMrum().show(user);
+        if (user == null) {
+            System.out.println(red + "not found!!!" + reset);
+        }
+        if (user.getUserIsBlock().equals(IsBlock.YES)) {
+            System.out.println(red + "you blocked by manager!!!" + reset);
         } else {
-            System.out.println(red +"invalid failed!!!" + reset);
+            System.out.println(green + "login is successfully.welcome " + reset + user.getFirstName());
+            MainRegularUserMenu.getMrum().show(user);
         }
     }
 }

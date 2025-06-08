@@ -17,6 +17,7 @@ public class RegularUser {
     private List<OrderUser> orderUsers = new ArrayList<>();
     private UserSuportWorking userSuportWorking = UserSuportWorking.getWInstance();
     private DiscountCode discountCode = new DiscountCode();
+    private IsBlock userIsBlock;
 
     public RegularUser(String firstName, String lastName, String email, String phoneNumber, String password) {
         this.firstName = firstName;
@@ -24,7 +25,16 @@ public class RegularUser {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.userIsBlock = IsBlock.NO;
         regularUserss.add(this);
+    }
+
+    public IsBlock getUserIsBlock() {
+        return userIsBlock;
+    }
+
+    public void setUserIsBlock(IsBlock userIsBlock) {
+        this.userIsBlock = userIsBlock;
     }
 
     public UserSuportWorking getUserSuportWorking() {
@@ -113,6 +123,7 @@ public class RegularUser {
                 ", lastName = " + lastName +
                 ", email = " + email +
                 ", phoneNumber = " + phoneNumber +
-                ", password = " + password;
+                ", password = " + password +
+                ", isBlock = " + userIsBlock;
     }
 }

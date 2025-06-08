@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.Scanner;
+
 import static ir.ac.kntu.model.Color.*;
 
 public class MainMenuShows {
@@ -18,11 +19,14 @@ public class MainMenuShows {
         System.out.println("Enter your password: ");
         String pass = scanner.nextLine();
         Supporter supporter = supportersLogin.login(usName, pass);
-        if (supporter != null) {
-            System.out.println(blue +"Welcome " + reset + supporter.getFirstName() + green +"! you are logged as a supporter." + reset);
-            new SupporterMenu(manageRequests).show();
+        if (supporter == null) {
+            System.out.println(red + "not found!!!" + reset);
+        }
+        if (supporter.getSupIsBlock().equals(IsBlock.YES)) {
+            System.out.println(red + "you blocked by manager" + reset);
         } else {
-            System.out.println(red +"invalid UserName or Password"+ reset);
+            System.out.println(blue + "Welcome " + reset + supporter.getFirstName() + green + "! you are logged as a supporter." + reset);
+            new SupporterMenu(manageRequests).show();
         }
     }
 }

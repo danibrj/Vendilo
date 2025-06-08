@@ -137,19 +137,24 @@ public class ShoppingCart {
             }
             DiscountCode disCode = dcMan.getUserDisCode().get(user).get(num - 1);
             dcMan.showCodesDetails(disCode);
-            System.out.println("it's ok to use?");
-            String yesOrNo3 = scanner.nextLine();
-            if ("yes".equalsIgnoreCase(yesOrNo3)) {
-                float newTotalPrice = shows2(disCode);
-                System.out.println("finally, shopping?");
-                String yesOrNo4 = scanner.nextLine();
-                if ("yes".equalsIgnoreCase(yesOrNo4)) {
-                    disC = disCode;
-                    showPayment(user, pdt, newTotalPrice, address);
-                    isEnd = false;
-                }
+            isEnd = showww(disCode,user,pdt,address);
+        }
+    }
+
+    public boolean showww(DiscountCode disCode,RegularUser user,List<Products> pdt,Address address){
+        System.out.println("it's ok to use?");
+        String yesOrNo3 = scanner.nextLine();
+        if ("yes".equalsIgnoreCase(yesOrNo3)) {
+            float newTotalPrice = shows2(disCode);
+            System.out.println("finally, shopping?");
+            String yesOrNo4 = scanner.nextLine();
+            if ("yes".equalsIgnoreCase(yesOrNo4)) {
+                disC = disCode;
+                showPayment(user, pdt, newTotalPrice, address);
+                return false;
             }
         }
+        return true;
     }
 
     public float shows2(DiscountCode disCode){

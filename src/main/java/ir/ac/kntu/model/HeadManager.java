@@ -4,12 +4,15 @@ public class HeadManager {
     private String firstNameHm;
     private String usernameHm;
     private String passwordHm;
+    private IsBlock managerIsBlock;
 
     public HeadManager(String firstNameHm, String username, String password) {
         this.firstNameHm = firstNameHm;
         this.usernameHm = username;
         this.passwordHm = password;
+        this.managerIsBlock = IsBlock.NO;
     }
+
 
     public String getUsernameHm() {
         return usernameHm;
@@ -35,10 +38,19 @@ public class HeadManager {
         this.firstNameHm = firstNameHm;
     }
 
+    public IsBlock getManagerIsBlock() {
+        return managerIsBlock;
+    }
+
+    public void setManagerIsBlock(IsBlock managerIsBlock) {
+        this.managerIsBlock = managerIsBlock;
+    }
+
     @Override
     public String toString() {
         return "firstNameHm = " + firstNameHm +
                 ", usernameHm = " + usernameHm +
-                ", passwordHm = " + passwordHm ;
+                ", passwordHm = " + passwordHm +
+                ", isBlock = " + managerIsBlock;
     }
 }

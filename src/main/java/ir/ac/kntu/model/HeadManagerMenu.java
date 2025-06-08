@@ -13,14 +13,14 @@ public class HeadManagerMenu {
         return headInstance;
     }
 
-    public void show(HeadManagerLogin headManagerLogin, SupportersLogin supportersLogin,HeadManager headManager) {
+    public void show(HeadManagerLogin headManagerLogin, SupportersLogin supportersLogin, HeadManager headManager) {
         boolean isOk1 = true;
         while (isOk1) {
-            System.out.println(cyan + "|----------Head Manager Menu----------|\n" + red + "1." + green + "User Management\n" + red + "3." + green + "user performance review\n" + red + "4." + green + "quit\n" + blue + "choose one: \n" + reset);
+            System.out.println(cyan + "|----------Head Manager Menu----------|\n" + red + "1." + green + "User Management\n" + red + "2." + green + "Seller performance review\n" + red + "3." + green + "user performance review\n" + red + "4." + green + "Create Public Discount Code\n" + red + "5." + green + "Create Public message\n" + red + "6." + green + "quit\n" + blue + "choose one: \n" + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
-            case 1 -> UserManagement.getUmInstance().show(headManagerLogin,supportersLogin,headManager);
+                case 1 -> UserManagement.getUmInstance().show(headManagerLogin, supportersLogin, headManager);
 //            case 2 ->
                 case 3 -> {
                     List<RegularUser> users = RegularUserRepository.getRinstance().getAllUsers();
@@ -37,7 +37,9 @@ public class HeadManagerMenu {
                     RegularUser user = users.get(num - 1);
                     perfReviewMenu(user);
                 }
-                case 4 -> isOk1 = false;
+//                case 4 ->
+//                case 5 ->
+                case 6 -> isOk1 = false;
                 default -> System.out.println(red + "invalid choice!!!" + reset);
 
             }

@@ -13,18 +13,21 @@ public class LoginManager {
         return lmInstanse;
     }
 
-    public void show(HeadManagerLogin headManagerLogin, SupportersLogin supportersLogin){
+    public void show(HeadManagerLogin headManagerLogin, SupportersLogin supportersLogin) {
         System.out.println(cyan + "|----------Manager Login----------|\n" + reset);
         System.out.println("Enter your username: ");
         String usName = scanner.nextLine();
         System.out.println("Enter your password: ");
         String pass = scanner.nextLine();
         HeadManager headManager = headManagerLogin.login(usName, pass);
-        if (headManager != null) {
-            System.out.println(blue + "Welcome " + reset + headManager.getUsernameHm() + green + "! you are logged to First Menu as a manager." + reset);
-            HeadManagerMenu.getHeadInstance().show(headManagerLogin,supportersLogin,headManager);
+        if (headManager.getManagerIsBlock().equals(IsBlock.YES)) {
+            System.out.println(red + "you blocked by manager" + reset);
+        }
+        if (headManager == null) {
+            System.out.println(red + "not found!!!" + reset);
         } else {
-            System.out.println(red + "invalid UserName or Password" + reset);
+            System.out.println(blue + "Welcome " + reset + headManager.getUsernameHm() + green + "! you are logged to First Menu as a manager." + reset);
+            HeadManagerMenu.getHeadInstance().show(headManagerLogin, supportersLogin, headManager);
         }
     }
 }

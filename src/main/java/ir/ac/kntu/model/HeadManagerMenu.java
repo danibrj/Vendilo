@@ -16,7 +16,7 @@ public class HeadManagerMenu {
     public void show(HeadManagerLogin headManagerLogin, SupportersLogin supportersLogin,HeadManager headManager) {
         boolean isOk1 = true;
         while (isOk1) {
-            System.out.println(cyan + "|----------Head Manager Menu----------|\n" + red + "1." + green + "User Management" + red + "3." + green + "user performance review\n" + red + "4." + green + "quit\n" + blue + "choose one: \n" + reset);
+            System.out.println(cyan + "|----------Head Manager Menu----------|\n" + red + "1." + green + "User Management\n" + red + "3." + green + "user performance review\n" + red + "4." + green + "quit\n" + blue + "choose one: \n" + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {

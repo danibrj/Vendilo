@@ -5,7 +5,7 @@ public class HeadManager {
     private String usernameHm;
     private String passwordHm;
 
-    public HeadManager(String firstNameHm,String username, String password) {
+    public HeadManager(String firstNameHm, String username, String password) {
         this.firstNameHm = firstNameHm;
         this.usernameHm = username;
         this.passwordHm = password;
@@ -33,5 +33,12 @@ public class HeadManager {
 
     public void setFirstNameHm(String firstNameHm) {
         this.firstNameHm = firstNameHm;
+    }
+
+    @Override
+    public String toString() {
+        return "firstNameHm = " + firstNameHm +
+                ", usernameHm = " + usernameHm +
+                ", passwordHm = " + passwordHm ;
     }
 }

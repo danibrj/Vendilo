@@ -14,6 +14,7 @@ public class Seller {
     private boolean isRejected;
     private String reason;
     private SellerWallet sellerWallet = new SellerWallet();
+
     public Seller(String firstName, String lastName, String storeTitle, String nationalCode, String phoneNumber, String password, String provinceOfSale) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -97,11 +98,11 @@ public class Seller {
         this.status = status;
     }
 
-    public String getAgencyCode(){
+    public String getAgencyCode() {
         return agencyCode;
     }
 
-    public void setAgencyCode(String agencyCode){
+    public void setAgencyCode(String agencyCode) {
         this.agencyCode = agencyCode;
     }
 
@@ -127,5 +128,21 @@ public class Seller {
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    @Override
+    public String toString() {
+        return "firstName = " + firstName +
+                ", lastName = " + lastName +
+                ", storeTitle = " + storeTitle +
+                ", nationalCode = " + nationalCode +
+                ", phoneNumber = " + phoneNumber +
+                ", password = " + password +
+                ", provinceOfSale = " + provinceOfSale +
+                ", status = " + status +
+                ", agencyCode = " + agencyCode +
+                ", isApproved = " + isApproved +
+                ", isRejected = " + isRejected +
+                ", reason = " + reason;
     }
 }

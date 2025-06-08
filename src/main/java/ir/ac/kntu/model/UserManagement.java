@@ -14,143 +14,144 @@ public class UserManagement {
     }
 
     public void show(HeadManagerLogin headManagerLogin, SupportersLogin supportersLogin, HeadManager headManager) {
-
-        System.out.println(cyan + "|----------User management Menu----------|\n" + red + "1." + green + "List Of All Users" + red + "2." + green + "Create User\n" + red + "3." + green + "Edit User\n" + red + "4." + green + "quit\n" + blue + "choose one: \n" + reset);
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        switch (choice) {
-            case 1 -> {
-                boolean iscontinue1 = true;
-                while (iscontinue1) {
-                    System.out.println(cyan + "|----------List Of All Users----------|\n" + red + "1." + green + "managers\n" + red + "2." + green + "supporters\n" + red + "3." + green + "sellers\n" + red + red + "4." + green + "regular user\n" + "5." + green + "quit\n" + blue + "choose one: \n" + reset);
-                    int choice2 = scanner.nextInt();
-                    scanner.nextLine();
-                    switch (choice2) {
-                        case 1 -> {
-                            System.out.println(cyan + "managers: " + reset);
-                            List<HeadManager> listOfManager = headManagerLogin.getHeadManagers();
-                            int index = 0;
-                            for (int i = 0; i < listOfManager.size(); i++) {
-                                if (listOfManager.get(i).equals(headManager)) {
-                                    continue;
+        boolean isOk = true;
+        while (isOk) {
+            System.out.println(cyan + "|----------User management Menu----------|\n" + red + "1." + green + "List Of All Users\n" + red + "2." + green + "Create User\n" + red + "3." + green + "Edit User\n" + red + "4." + green + "quit\n" + blue + "choose one: \n" + reset);
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            switch (choice) {
+                case 1 -> {
+                    boolean iscontinue1 = true;
+                    while (iscontinue1) {
+                        System.out.println(cyan + "|----------List Of All Users----------|\n" + red + "1." + green + "managers\n" + red + "2." + green + "supporters\n" + red + "3." + green + "sellers\n" + red + "4." + green + "regular user\n" + red + "5." + green + "quit\n" + blue + "choose one: \n" + reset);
+                        int choice2 = scanner.nextInt();
+                        scanner.nextLine();
+                        switch (choice2) {
+                            case 1 -> {
+                                System.out.println(cyan + "managers: " + reset);
+                                List<HeadManager> listOfManager = headManagerLogin.getHeadManagers();
+                                int index = 0;
+                                for (int i = 0; i < listOfManager.size(); i++) {
+                                    if (listOfManager.get(i).equals(headManager)) {
+                                        continue;
+                                    }
+                                    System.out.println((index + 1) + " " + listOfManager.get(i));
+                                    index++;
                                 }
-                                System.out.println((index + 1) + " " + listOfManager.get(i));
-                                index++;
                             }
-                        }
-                        case 2 -> {
-                            System.out.println(cyan + "supporters: " + reset);
-                            List<Supporter> listOfSupporter = supportersLogin.getSupporters();
-                            for (int i = 0; i < listOfSupporter.size(); i++) {
-                                System.out.println((i + 1) + " " + listOfSupporter.get(i));
+                            case 2 -> {
+                                System.out.println(cyan + "supporters: " + reset);
+                                List<Supporter> listOfSupporter = supportersLogin.getSupporters();
+                                for (int i = 0; i < listOfSupporter.size(); i++) {
+                                    System.out.println((i + 1) + " " + listOfSupporter.get(i));
+                                }
                             }
-                        }
-                        case 3 -> {
-                            System.out.println(cyan + "Sellers: " + reset);
-                            List<Seller> listOfSeller = SellerRepository.getSinstance().getAllSellers();
-                            for (int i = 0; i < listOfSeller.size(); i++) {
-                                System.out.println((i + 1) + " " + listOfSeller.get(i));
+                            case 3 -> {
+                                System.out.println(cyan + "Sellers: " + reset);
+                                List<Seller> listOfSeller = SellerRepository.getSinstance().getAllSellers();
+                                for (int i = 0; i < listOfSeller.size(); i++) {
+                                    System.out.println((i + 1) + " " + listOfSeller.get(i));
+                                }
                             }
-                        }
-                        case 4 -> {
-                            System.out.println(cyan + "Regular User: " + reset);
-                            List<RegularUser> listOfRegUser = RegularUserRepository.getRinstance().getAllUsers();
-                            for (int i = 0; i < listOfRegUser.size(); i++) {
-                                System.out.println((i + 1) + " " + listOfRegUser.get(i));
+                            case 4 -> {
+                                System.out.println(cyan + "Regular User: " + reset);
+                                List<RegularUser> listOfRegUser = RegularUserRepository.getRinstance().getAllUsers();
+                                for (int i = 0; i < listOfRegUser.size(); i++) {
+                                    System.out.println((i + 1) + " " + listOfRegUser.get(i));
+                                }
                             }
+                            case 5 -> iscontinue1 = false;
+                            default -> System.out.println(red + "invalid choice2!!!" + reset);
                         }
-                        case 5 -> iscontinue1 = false;
-                        default -> System.out.println(red + "invalid choice2!!!" + reset);
                     }
                 }
-            }
-            case 2 -> CreateUserMenu.gethMlmInstanse().show(headManagerLogin, supportersLogin);
-            case 3 -> {
-                boolean iscontinue2 = true;
-                while (iscontinue2) {
-                    System.out.println(cyan + "which type of user do you want to edit?\n" + red + "1." + green + "managers\n" + red + "2." + green + "supporters\n" + red + "3." + green + "regular user\n" + "4." + green + "quit\n" + blue + "choose one: \n" + reset);
-                    int select = scanner.nextInt();
-                    scanner.nextLine();
-                    switch (select) {
-                        case 1 -> {
-                            System.out.println(cyan + "managers: " + reset);
-                            List<HeadManager> listOfManager2 = headManagerLogin.getHeadManagers();
-                            int index = 0;
-                            for (int i = 0; i < listOfManager2.size(); i++) {
-                                if (listOfManager2.get(i).equals(headManager)) {
-                                    continue;
+                case 2 -> CreateUserMenu.gethMlmInstanse().show(headManagerLogin, supportersLogin);
+                case 3 -> {
+                    boolean iscontinue2 = true;
+                    while (iscontinue2) {
+                        System.out.println(cyan + "which type of user do you want to edit?\n" + red + "1." + green + "managers\n" + red + "2." + green + "supporters\n" + red + "3." + green + "regular user\n" + red + "4." + green + "quit\n" + blue + "choose one: \n" + reset);
+                        int select = scanner.nextInt();
+                        scanner.nextLine();
+                        switch (select) {
+                            case 1 -> {
+                                System.out.println(cyan + "managers: " + reset);
+                                List<HeadManager> listOfManager2 = headManagerLogin.getHeadManagers();
+                                int index = 0;
+                                for (int i = 0; i < listOfManager2.size(); i++) {
+                                    if (listOfManager2.get(i).equals(headManager)) {
+                                        continue;
+                                    }
+                                    System.out.println((index + 1) + " " + listOfManager2.get(i));
+                                    index++;
                                 }
-                                System.out.println((index + 1) + " " + listOfManager2.get(i));
-                                index++;
+                                System.out.println("which  manager do you want to edit?");
+                                int num = scanner.nextInt();
+                                scanner.nextLine();
+                                if (num < 1 || num > listOfManager2.size()) {
+                                    System.out.println(red + "invalid num" + reset);
+                                    return;
+                                }
+                                HeadManager manager = listOfManager2.get(num - 1);
+                                System.out.println("Enter new firstname: ");
+                                String newManagerName = scanner.nextLine();
+                                manager.setFirstNameHm(newManagerName);
+                                System.out.println("Enter new username: ");
+                                String newManagerUName = scanner.nextLine();
+                                manager.setUsernameHm(newManagerUName);
+                                System.out.println(green + "edit successfully." + blue + " new firstname: " + reset + manager.getFirstNameHm() + blue + " | new username: " + reset + manager.getUsernameHm());
                             }
-                            System.out.println("which  manager do you want to edit?");
-                            int num = scanner.nextInt();
-                            scanner.nextLine();
-                            if (num < 1 || num > listOfManager2.size()) {
-                                System.out.println(red + "invalid num" + reset);
-                                return;
+                            case 2 -> {
+                                System.out.println(cyan + "supporters: " + reset);
+                                List<Supporter> listOfSupporter2 = supportersLogin.getSupporters();
+                                for (int i = 0; i < listOfSupporter2.size(); i++) {
+                                    System.out.println((i + 1) + " " + listOfSupporter2.get(i));
+                                }
+                                System.out.println("which  supporter do you want to edit?");
+                                int num = scanner.nextInt();
+                                scanner.nextLine();
+                                if (num < 1 || num > listOfSupporter2.size()) {
+                                    System.out.println(red + "invalid num" + reset);
+                                    return;
+                                }
+                                Supporter supporter = listOfSupporter2.get(num - 1);
+                                System.out.println("Enter new name: ");
+                                String newSupporterName = scanner.nextLine();
+                                supporter.setFirstName(newSupporterName);
+                                System.out.println("Enter new username: ");
+                                String newSupporterUName = scanner.nextLine();
+                                supporter.setUserName(newSupporterUName);
+                                System.out.println(green + "edit successfully." + blue + " new name: " + reset + supporter.getFirstName() + blue + " | new username: " + reset + supporter.getUserName());
                             }
-                            HeadManager manager = listOfManager2.get(num - 1);
-                            System.out.println("Enter new firstname: ");
-                            String newManagerName = scanner.nextLine();
-                            manager.setFirstNameHm(newManagerName);
-                            System.out.println("Enter new username: ");
-                            String newManagerUName = scanner.nextLine();
-                            manager.setUsernameHm(newManagerUName);
-                            System.out.println(green + "edit successfully." + blue + " new firstname: " + reset + manager.getFirstNameHm() + blue + " | new username: " + reset + manager.getUsernameHm());
+                            case 3 -> {
+                                System.out.println(cyan + "Regular Users: " + reset);
+                                List<RegularUser> listOfRegUser2 = RegularUserRepository.getRinstance().getAllUsers();
+                                for (int i = 0; i < listOfRegUser2.size(); i++) {
+                                    System.out.println((i + 1) + " " + listOfRegUser2.get(i));
+                                }
+                                System.out.println("which  user do you want to edit?");
+                                int num = scanner.nextInt();
+                                scanner.nextLine();
+                                if (num < 1 || num > listOfRegUser2.size()) {
+                                    System.out.println(red + "invalid num" + reset);
+                                    return;
+                                }
+                                RegularUser user = listOfRegUser2.get(num - 1);
+                                System.out.println("Enter new firstname: ");
+                                String newUserFName = scanner.nextLine();
+                                user.setFirstName(newUserFName);
+                                System.out.println("Enter new lastname: ");
+                                String newUserLName = scanner.nextLine();
+                                user.setLastName(newUserLName);
+                                System.out.println(green + "edit successfully." + blue + " new firstname: " + reset + user.getFirstName() + blue + " | new lastname: " + reset + user.getLastName());
+                            }
+                            case 4 -> iscontinue2 = false;
+                            default -> System.out.println(red + "invalid select!!!" + reset);
                         }
-                        case 2 -> {
-                            System.out.println(cyan + "supporters: " + reset);
-                            List<Supporter> listOfSupporter2 = supportersLogin.getSupporters();
-                            for (int i = 0; i < listOfSupporter2.size(); i++) {
-                                System.out.println((i + 1) + " " + listOfSupporter2.get(i));
-                            }
-                            System.out.println("which  supporter do you want to edit?");
-                            int num = scanner.nextInt();
-                            scanner.nextLine();
-                            if (num < 1 || num > listOfSupporter2.size()) {
-                                System.out.println(red + "invalid num" + reset);
-                                return;
-                            }
-                            Supporter supporter = listOfSupporter2.get(num - 1);
-                            System.out.println("Enter new name: ");
-                            String newSupporterName = scanner.nextLine();
-                            supporter.setFirstName(newSupporterName);
-                            System.out.println("Enter new username: ");
-                            String newSupporterUName = scanner.nextLine();
-                            supporter.setUserName(newSupporterUName);
-                            System.out.println(green + "edit successfully." + blue + " new name: " + reset + supporter.getFirstName() + blue + " | new username: " + reset + supporter.getUserName());
-                        }
-                        case 3 -> {
-                            System.out.println(cyan + "Regular Users: " + reset);
-                            List<RegularUser> listOfRegUser2 = RegularUserRepository.getRinstance().getAllUsers();
-                            for (int i = 0; i < listOfRegUser2.size(); i++) {
-                                System.out.println((i + 1) + " " + listOfRegUser2.get(i));
-                            }
-                            System.out.println("which  user do you want to edit?");
-                            int num = scanner.nextInt();
-                            scanner.nextLine();
-                            if (num < 1 || num > listOfRegUser2.size()) {
-                                System.out.println(red + "invalid num" + reset);
-                                return;
-                            }
-                            RegularUser user = listOfRegUser2.get(num - 1);
-                            System.out.println("Enter new firstname: ");
-                            String newUserFName = scanner.nextLine();
-                            user.setFirstName(newUserFName);
-                            System.out.println("Enter new lastname: ");
-                            String newUserLName = scanner.nextLine();
-                            user.setLastName(newUserLName);
-                            System.out.println(green + "edit successfully." + blue + " new firstname: " + reset + user.getFirstName() + blue + " | new lastname: " + reset + user.getLastName());
-
-                        }
-                        case 4 -> iscontinue2 = false;
-                        default -> System.out.println(red+ "invalid select!!!"+reset);
                     }
                 }
+                case 4 -> isOk = false;
+                default -> System.out.println(red + "invalid choice!!!" + reset);
             }
-//            case 4 ->
         }
-
     }
 }

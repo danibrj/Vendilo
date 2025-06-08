@@ -6,7 +6,7 @@ public class Supporter {
     private String userName;
     private String password;
 
-    public Supporter(String firstName,String userName,String password){
+    public Supporter(String firstName, String userName, String password) {
         this.firstName = firstName;
         this.userName = userName;
         this.password = password;
@@ -34,5 +34,12 @@ public class Supporter {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "firstName = " + firstName +
+                ", userName = " + userName +
+                ", password = " + password;
     }
 }

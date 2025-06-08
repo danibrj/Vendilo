@@ -50,5 +50,4 @@ public class CreateUserMenu {
         HeadManager headManager = new HeadManager(manFName,manUsName, manPass);
         headManagerLogin.addManager(headManager);
     }
-
 }

@@ -1,9 +1,11 @@
 package ir.ac.kntu.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
 import static ir.ac.kntu.model.Color.*;
+
 
 public class HeadManagerMenu {
     private static final HeadManagerMenu headInstance = new HeadManagerMenu();
@@ -21,23 +23,102 @@ public class HeadManagerMenu {
             scanner.nextLine();
             switch (choice) {
                 case 1 -> UserManagement.getUmInstance().show(headManagerLogin, supportersLogin, headManager);
-//            case 2 ->
+                case 2 -> {
+                    List<Seller> sellers = SellerRepository.getSinstance().getAllSellers();
+                    boolean iscon = true;
+                    while (iscon) {
+                        System.out.println(red + "1." + green + "see seller performance usually\n" + red + "2." + green + "see seller performance by personality code\n" + red + "3." + green + "quit\n" + "choose one: \n" + reset);
+                        int select = scanner.nextInt();
+                        scanner.nextLine();
+                        switch (select) {
+                            case 1 -> {
+                                for (int i = 0; i < sellers.size(); i++) {
+                                    System.out.println((i + 1) + " " + sellers.get(i));
+                                }
+                                System.out.println("select one: ");
+                                int num1 = scanner.nextInt();
+                                scanner.nextLine();
+                                if (num1 < 1 || num1 > sellers.size()) {
+                                    System.out.println(red + "invalid num" + reset);
+                                    return;
+                                }
+                                LocalDateTime today = LocalDateTime.now();
+                                LocalDateTime minetsAgo = today.minusMinutes(5);
+                                Seller seller = sellers.get(num1 - 1);
+                                List<OrderUser> orders = OrderManager.getOMInstance().getOrderForSeller(seller);
+                                double sum = 0;
+                                for (OrderUser order : orders) {
+                                    LocalDateTime date = order.getOrderDate();
+                                    if (date.isAfter(minetsAgo) && date.isBefore(today) || date.isEqual(today)) {
+                                        System.out.println(order);
+                                        sum += (order.getTotalPrice() * 0.9);
+                                    }
+                                }
+                                System.out.println(green + "sum of seller's sales are : " + reset + sum);
+                            }
+                            case 2 -> {
+                                System.out.println(cyan + "Enter the agency code to found seller: " + reset);
+                                String agenCode = scanner.nextLine();
+                                for (Seller seller : sellers) {
+                                    if (seller.getAgencyCode().equalsIgnoreCase(agenCode)) {
+                                        System.out.println(seller.getFirstName() + " | " + seller.getLastName() + " | " + seller.getPhoneNumber() + " | total sales : " + seller.getSellerWallet().getTotal());
+                                        System.out.println(cyan + "do you want to give reward to seller?" + reset);
+                                        String yesOrNo = scanner.nextLine();
+                                        if ("yes".equalsIgnoreCase(yesOrNo)) {
+                                            System.out.println(cyan + "how much money do you want to give it?" + reset);
+                                            double reward = scanner.nextDouble();
+                                            scanner.nextLine();
+                                            seller.getSellerWallet().increaseInventory(reward);
+                                        }
+                                    }
+                                }
+                            }
+                            case 3 -> iscon = false;
+                            default -> System.out.println(red + "invalid select!!!" + reset);
+                        }
+                    }
+                }
                 case 3 -> {
                     List<RegularUser> users = RegularUserRepository.getRinstance().getAllUsers();
                     for (int i = 0; i < users.size(); i++) {
                         System.out.println((i + 1) + " " + users.get(i));
                     }
                     System.out.println("select one: ");
-                    int num = scanner.nextInt();
+                    int num2 = scanner.nextInt();
                     scanner.nextLine();
-                    if (num < 1 || num > users.size()) {
+                    if (num2 < 1 || num2 > users.size()) {
                         System.out.println(red + "invalid num" + reset);
                         return;
                     }
-                    RegularUser user = users.get(num - 1);
+                    RegularUser user = users.get(num2 - 1);
                     perfReviewMenu(user);
                 }
-//                case 4 ->
+                case 4 -> {
+                    List<RegularUser> users = RegularUserRepository.getRinstance().getAllUsers();
+                    System.out.println(cyan + "----------Public Code----------\n" + green + "create: \n" + reset);
+                    System.out.println(cyan + "type of code: \n" + reset);
+                    KindsOfCode[] items = KindsOfCode.values();
+                    for (int i = 0; i < items.length; i++) {
+                        System.out.println((i + 1) + " " + items[i]);
+                    }
+                    System.out.println("choose one: ");
+                    int choice2 = scanner.nextInt();
+                    scanner.nextLine();
+                    KindsOfCode kindsOfCode = items[choice2 - 1];
+                    System.out.println("name: ");
+                    String name = scanner.nextLine();
+                    System.out.println("code: ");
+                    String code = scanner.nextLine();
+                    System.out.println("discountValue: ");
+                    float discountValue = scanner.nextFloat();
+                    scanner.nextLine();
+                    int numbsOfTimesOfUse = 1;
+                    System.out.println("numbsOfTimesOfUse: " + numbsOfTimesOfUse);
+                    for (RegularUser user : users) {
+                        DiscountCode discountCode = new DiscountCode(name, code, discountValue, numbsOfTimesOfUse, kindsOfCode);
+                        DiscountCodeManager.getDisManInstance().addCode(user, discountCode);
+                    }
+                }
 //                case 5 ->
                 case 6 -> isOk1 = false;
                 default -> System.out.println(red + "invalid choice!!!" + reset);
@@ -49,12 +130,25 @@ public class HeadManagerMenu {
     public void perfReviewMenu(RegularUser user) {
         boolean isOk2 = true;
         while (isOk2) {
-            System.out.println(cyan + "welcome to " + reset + user.getFirstName() + " " + user.getLastName() + cyan + " menu\n" + red + "1." + green + "put discount code\n" + red + "2." + green + "quit\n" + purple + "choose one: \n" + reset);
+            System.out.println(cyan + "welcome to " + reset + user.getFirstName() + " " + user.getLastName() + cyan + " menu\n" + red + "1." + green + "put discount code\n" + red + "2." + green + "user performance\n" + red + "3." + green + "quit\n" + purple + "choose one: \n" + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
                 case 1 -> putCodeShow(user);
-                case 2 -> isOk2 = false;
+                case 2 -> {
+                    LocalDateTime today2 = LocalDateTime.now();
+                    LocalDateTime minetsAgo2 = today2.minusMinutes(5);
+                    List<Userstransaction> userTrans = user.getUsersWallet().getUserstransactions();
+                    double sum = 0;
+                    for (Userstransaction trans : userTrans) {
+                        LocalDateTime date = trans.getTransactionDate();
+                        if (trans.getType().equalsIgnoreCase("Shopping") && (date.isAfter(minetsAgo2) && date.isBefore(today2) || date.isEqual(today2))) {
+                            sum += trans.getAmount();
+                        }
+                    }
+                    System.out.println(green + "sum of user's shopping are : " + reset + sum);
+                }
+                case 3 -> isOk2 = false;
                 default -> System.out.println(red + "invalid choice!!!" + reset);
             }
         }

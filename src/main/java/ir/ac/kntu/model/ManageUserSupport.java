@@ -1,14 +1,33 @@
 package ir.ac.kntu.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class ManageUserSupport {
     private KindOfReport kindOfReport;
     private String message;
     private ReportStatuse reportStatuse;
+    private Seller seller;
 
     public ManageUserSupport(KindOfReport kindOfReport,String message){
         this.kindOfReport = kindOfReport;
         this.message = message;
         this.reportStatuse = ReportStatuse.REGISTERED;
+    }
+
+    public ManageUserSupport(KindOfReport kindOfReport,String message,Seller seller){
+        this.kindOfReport = kindOfReport;
+        this.message = message;
+        this.reportStatuse = ReportStatuse.REGISTERED;
+        this.seller = seller;
+    }
+
+    public Seller getSeller2() {
+        return seller;
+    }
+
+    public void setSeller2(Seller seller) {
+        this.seller = seller;
     }
 
     public KindOfReport getKindOfReport() {

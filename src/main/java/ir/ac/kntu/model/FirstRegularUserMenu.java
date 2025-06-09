@@ -63,12 +63,13 @@ public class FirstRegularUserMenu {
         RegularUser user = regularUserBugs.login(input, pass);
         if (user == null) {
             System.out.println(red + "not found!!!" + reset);
+            return;
         }
         if (user.getUserIsBlock().equals(IsBlock.YES)) {
             System.out.println(red + "you blocked by manager!!!" + reset);
-        } else {
-            System.out.println(green + "login is successfully.welcome " + reset + user.getFirstName());
-            MainRegularUserMenu.getMrum().show(user);
+            return;
         }
+        System.out.println(green + "login is successfully.welcome " + reset + user.getFirstName());
+        MainRegularUserMenu.getMrum().show(user);
     }
 }

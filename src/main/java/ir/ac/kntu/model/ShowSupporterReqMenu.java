@@ -13,7 +13,7 @@ public class ShowSupporterReqMenu {
     }
 
 
-    public void show(UserSuportWorking userSuportWorking) {
+    public void show(UserSuportWorking userSuportWorking, SupportersLogin supportersLogin,Supporter supporter) {
         boolean isOk = true;
         while (isOk) {
             System.out.println(cyan+ "|----------Requests menu----------|\n" + red + "1" + green + ".show reports\n" + red + "2" + green + ".handling reports\n" + red + "3" + green + ".quit\n" + cyan+ "choose your goal: " + reset);
@@ -21,10 +21,10 @@ public class ShowSupporterReqMenu {
             scanner.nextLine();
             switch (goal) {
                 case 1:
-                    userSuportWorking.showManageUserSupports();
+                    userSuportWorking.showSupportOwnReports(supporter);
                     break;
                 case 2:
-                    ShowSupporterReqMenu2.getSSR2Instance().show(userSuportWorking);
+                    ShowSupporterReqMenu2.getSSR2Instance().show(userSuportWorking,supporter);
                     break;
                 case 3:
                     isOk = false;

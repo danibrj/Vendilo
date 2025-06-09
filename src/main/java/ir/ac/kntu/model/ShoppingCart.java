@@ -13,7 +13,7 @@ public class ShoppingCart {
     private float totalCost = 0;
     private float totalPrice = 0;
     private Set<Seller> uniqueSeller = new HashSet<>();
-    private DiscountCode disC;
+//    private DiscountCode disC;
     private float shippingCost=0;
     public static ShoppingCart getSpInstance() {
         return SpInstance;
@@ -149,7 +149,7 @@ public class ShoppingCart {
             System.out.println("finally, shopping?");
             String yesOrNo4 = scanner.nextLine();
             if ("yes".equalsIgnoreCase(yesOrNo4)) {
-                disC = disCode;
+                disCode.setNumsOfTimesOfUse(disCode.getNumsOfTimesOfUse() - 1);
                 showPayment(user, pdt, newTotalPrice, address);
                 return false;
             }
@@ -206,7 +206,7 @@ public class ShoppingCart {
             Seller realSeller = SellerRepository.getSinstance().findByPhoneOrNationalCode(prod.getSeller().getPhoneNumber());
             if (realSeller != null) {
                 realSeller.getSellerWallet().increaseInventory(prod.getPrice() * 0.9);
-                disC.setNumsOfTimesOfUse(disC.getNumsOfTimesOfUse() - 1);
+                realSeller.getSellerWallet().setTotalSales(prod.getPrice() * 0.9);
             } else {
                 System.out.println(red + "Seller not found in repository for product: " + prod.getName() + reset);
             }

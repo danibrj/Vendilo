@@ -1,7 +1,6 @@
 package ir.ac.kntu.model;
 
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static ir.ac.kntu.model.Color.*;
 
@@ -95,7 +94,7 @@ public class UserManagement {
                     System.out.println(cyan + "managers: " + reset);
                     List<HeadManager> listOfManager2 = headManagerLogin.getHeadManagers();
                     int index = 0;
-                    showEditManager(headManager,listOfManager2,index);
+                    showEditManager(headManager, listOfManager2, index);
                 }
                 case 2 -> showEditSupporter(supportersLogin);
                 case 3 -> showEditRegularUser();
@@ -105,7 +104,7 @@ public class UserManagement {
         }
     }
 
-    public void showEditManager(HeadManager headManager,List<HeadManager> listOfManager2,int index) {
+    public void showEditManager(HeadManager headManager, List<HeadManager> listOfManager2, int index) {
         for (HeadManager value : listOfManager2) {
             if (value.equals(headManager)) {
                 continue;
@@ -158,6 +157,33 @@ public class UserManagement {
         System.out.println("Enter new username: ");
         String newSupporterUName = scanner.nextLine();
         supporter.setUserName(newSupporterUName);
+        System.out.println("----------");
+        Set<KindOfReport> types = new HashSet<>();
+        KindOfReport[] allType = KindOfReport.values();
+        boolean isOkk = true;
+        while (isOkk) {
+            System.out.println(cyan + "which type of reports can't he handle?\n" + red + "1." + green + "select\n" + red + "2." + green + "quit\n" + reset);
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            switch(choice){
+                case 1 -> {
+                    for (int i = 0; i < allType.length; i++) {
+                        System.out.println((i + 1) + " " + allType[i]);
+                    }
+                    int num2 = scanner.nextInt();
+                    scanner.nextLine();
+                    if (num2 >= 1 && num2 <= allType.length) {
+                        KindOfReport selected = allType[num2 - 1];
+                        types.add(selected);
+                    } else {
+                        System.out.println(red + "invalid choose!!!" + reset);
+                    }
+                }
+                case 2 -> isOkk = false;
+                default -> System.out.println(red+"invalid choice!!!"+reset);
+            }
+        }
+        UserSuportWorking.getWInstance().addTo(supporter,types);
         System.out.println(green + "edit successfully." + blue + " new name: " + reset + supporter.getFirstName() + blue + " | new username: " + reset + supporter.getUserName());
 
     }

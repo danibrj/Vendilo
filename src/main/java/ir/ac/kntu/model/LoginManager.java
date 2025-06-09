@@ -20,14 +20,16 @@ public class LoginManager {
         System.out.println("Enter your password: ");
         String pass = scanner.nextLine();
         HeadManager headManager = headManagerLogin.login(usName, pass);
-        if (headManager.getManagerIsBlock().equals(IsBlock.YES)) {
-            System.out.println(red + "you blocked by manager" + reset);
-        }
         if (headManager == null) {
             System.out.println(red + "not found!!!" + reset);
-        } else {
-            System.out.println(blue + "Welcome " + reset + headManager.getUsernameHm() + green + "! you are logged to First Menu as a manager." + reset);
-            HeadManagerMenu.getHeadInstance().show(headManagerLogin, supportersLogin, headManager);
+            return;
         }
+        if (headManager.getManagerIsBlock().equals(IsBlock.YES)) {
+            System.out.println(red + "you blocked by manager" + reset);
+            return;
+        }
+
+        System.out.println(blue + "Welcome " + reset + headManager.getUsernameHm() + green + "! you are logged to First Menu as a manager." + reset);
+        HeadManagerMenu.getHeadInstance().show(headManagerLogin, supportersLogin, headManager);
     }
 }

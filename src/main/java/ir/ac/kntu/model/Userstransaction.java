@@ -28,6 +28,10 @@ public class Userstransaction {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss");
         return String.format("[%s] %s: %.2f dollars", transactionDate.format(formatter), "Charge".equals(type) ? "Charge" : "Shopping", amount);
     }
+
+    public double getAmount() {
+        return amount;
+    }
 }
 //    public void setChargeTransaction(LocalDate chargeDate,Long invention){
 //        chargeTransaction.put(chargeDate,invention);

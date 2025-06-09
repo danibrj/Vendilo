@@ -14,6 +14,7 @@ public class Seller {
     private boolean isRejected;
     private String reason;
     private SellerWallet sellerWallet = new SellerWallet();
+    private UserSuportWorking userSuportWorking = UserSuportWorking.getWInstance();
 
     public Seller(String firstName, String lastName, String storeTitle, String nationalCode, String phoneNumber, String password, String provinceOfSale) {
         this.firstName = firstName;
@@ -28,6 +29,10 @@ public class Seller {
         this.isApproved = false;
         this.isRejected = false;
         this.reason = "";
+    }
+
+    public UserSuportWorking getUserSuportWorking() {
+        return userSuportWorking;
     }
 
     public SellerWallet getSellerWallet() {

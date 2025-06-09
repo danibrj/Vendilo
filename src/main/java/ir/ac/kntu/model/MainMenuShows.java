@@ -12,7 +12,7 @@ public class MainMenuShows {
         return mMsInstanse;
     }
 
-    public void show(SupportersLogin supportersLogin, ManageRequests manageRequests) {
+    public void show(SupportersLogin supportersLogin /*, ManageRequests */) {
         System.out.println(cyan + "|----------Supporter Login----------|\n" + reset);
         System.out.println("Enter your username: ");
         String usName = scanner.nextLine();
@@ -21,12 +21,14 @@ public class MainMenuShows {
         Supporter supporter = supportersLogin.login(usName, pass);
         if (supporter == null) {
             System.out.println(red + "not found!!!" + reset);
+            return;
         }
         if (supporter.getSupIsBlock().equals(IsBlock.YES)) {
             System.out.println(red + "you blocked by manager" + reset);
-        } else {
-            System.out.println(blue + "Welcome " + reset + supporter.getFirstName() + green + "! you are logged as a supporter." + reset);
-            new SupporterMenu(manageRequests).show();
+            return;
         }
+        System.out.println(blue + "Welcome " + reset + supporter.getFirstName() + green + "! you are logged as a supporter." + reset);
+        new SupporterMenu(/*manageRequests*/).show(supportersLogin,supporter);
+
     }
 }

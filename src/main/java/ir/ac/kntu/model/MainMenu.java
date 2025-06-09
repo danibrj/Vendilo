@@ -9,7 +9,7 @@ public class MainMenu {
         try {
             @SuppressWarnings("PMD.CloseResource")
             Scanner scanner = new Scanner(System.in);
-            ManageRequests manageRequests = ManageRequests.getMRInstance();
+//            ManageRequests manageRequests = ManageRequests.getMRInstance();
             SellerRepository sellerRepository = SellerRepository.getSinstance();
             SupportersLogin supportersLogin = new SupportersLogin();
             HeadManagerLogin headManagerLogin = new HeadManagerLogin();
@@ -19,8 +19,8 @@ public class MainMenu {
                 scanner.nextLine();
                 switch (selected) {
                     case 1 -> new FirstRegularUserMenu().show();
-                    case 2 -> new FirstSellerMenu(sellerRepository, manageRequests).show();
-                    case 3 -> MainMenuShows.getmMsInstanse().show(supportersLogin, manageRequests);
+                    case 2 -> new FirstSellerMenu(sellerRepository/*, manageRequests*/).show();
+                    case 3 -> MainMenuShows.getmMsInstanse().show(supportersLogin/*, manageRequests*/);
                     case 4-> LoginManager.getLmInstanse().show(headManagerLogin,supportersLogin);
                     case 5 -> {
                         scanner.close();

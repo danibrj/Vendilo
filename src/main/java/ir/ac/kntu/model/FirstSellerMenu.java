@@ -5,17 +5,17 @@ import static ir.ac.kntu.model.Color.*;
 
 public class FirstSellerMenu {
     private SellerRepository sellerRepository;
-    private ManageRequests manageRequests;
+//    private ManageRequests manageRequests;
     private Scanner scanner = new Scanner(System.in);
 
-    public FirstSellerMenu(SellerRepository sellerRepository, ManageRequests manageRequests) {
+    public FirstSellerMenu(SellerRepository sellerRepository /*, ManageRequests manageRequests*/) {
         this.sellerRepository = sellerRepository;
-        this.manageRequests = manageRequests;
+//        this.manageRequests = manageRequests;
     }
 
     public void show() {
         RegisterSellerBugs regisSellBugs = new RegisterSellerBugs();
-        CompleteRegister completeRegister = new CompleteRegister(regisSellBugs, manageRequests);
+        CompleteRegister completeRegister = new CompleteRegister(regisSellBugs/*, manageRequests*/);
         while (true) {
             System.out.println(cyan +"|----------First Seller Menu----------|\n"+ red +"1."+ green +"register  \n"+ red +"2."+ green +"login  \n" + red +"3."+ green +"quit  \nselect your choice: " + reset);
             int choice = scanner.nextInt();
@@ -25,7 +25,7 @@ public class FirstSellerMenu {
                     show2(completeRegister);
                     break;
                 case 2:
-                    SellerLoginSetuation sellLogSetuation = new SellerLoginSetuation(regisSellBugs, manageRequests, sellerRepository, completeRegister);
+                    SellerLoginSetuation sellLogSetuation = new SellerLoginSetuation(regisSellBugs/*, manageRequests*/, sellerRepository, completeRegister);
                     sellLogSetuation.show();
                     break;
                 case 3:

@@ -16,7 +16,7 @@ public class Products {
         this.instInventory = instanceInventory;
     }
 
-    public boolean hasUserRated(RegularUser user){
+    public boolean hasUserRated(RegularUser user) {
         return productRatings.containsKey(user);
     }
 
@@ -85,7 +85,9 @@ public class Products {
 
     @Override
     public String toString() {
-        return "name: " + name + ", price: " + price + ", instanceInventory: " + instInventory;
+        return "seller = " + seller +
+                ", name = " + name +
+                ", price = " + price +
+                ", instInventory = " + instInventory;
     }
-
 }

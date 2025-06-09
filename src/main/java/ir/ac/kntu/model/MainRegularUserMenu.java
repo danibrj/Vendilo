@@ -15,7 +15,7 @@ public class MainRegularUserMenu {
         ShoppingCart shoppingCart = ShoppingCart.getSpInstance();
         while (true) {
 //            System.out.println("select your item: \n1.WALLET\n2.SETTING\n3.ADDRESSES\n4.SEARCH PRODUCTS\n5.CART\n6.ORDER\n7.SUPPORT\n8.quit");
-            System.out.println(cyan + "|----------Main Seller Menu----------|\nselect your item: \n" + red + "1" + green + ".WALLET\n" + red + "2" + green + ".SETTING\n" + red + "3" + green + ".ADDRESSES\n" + red + "4" + green + ".SEARCH PRODUCTS\n" + red + "5" + green + ".CART\n" + red + "6" + green + ".ORDER\n" + red + "7" + green + ".SUPPORT\n" + red + "8" + green + ".Discount Code\n"+ red + "9" + green + ".quit\n" + reset);
+            System.out.println(cyan + "|----------Main Seller Menu----------|\nselect your item: \n" + red + "1" + green + ".WALLET\n" + red + "2" + green + ".SETTING\n" + red + "3" + green + ".ADDRESSES\n" + red + "4" + green + ".SEARCH PRODUCTS\n" + red + "5" + green + ".CART\n" + red + "6" + green + ".ORDER\n" + red + "7" + green + ".SUPPORT\n" + red + "8" + green + ".Discount Code\n"+ red + "9" + green + ".Vendilo+\n"+red + "10" + green + ".Notification\n"+red + "11" + green + ".quit\n" + reset);
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -28,7 +28,9 @@ public class MainRegularUserMenu {
                 case 6 -> OrderMenu.getOInstance().show(user);
                 case 7 -> ShowReportsMenu.getSRMInstance().show(user);
                 case 8 -> DiscountCodeMenu.getDiscInstance().show(user);
-                case 9 -> {
+//                case 8 -> DiscountCodeMenu.getDiscInstance().show(user);
+//                case 8 -> DiscountCodeMenu.getDiscInstance().show(user);
+                case 11 -> {
                     return;
                 }
                 default -> System.out.println(red +"invalid choice"+ reset);

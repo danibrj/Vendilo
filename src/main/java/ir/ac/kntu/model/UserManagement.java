@@ -15,7 +15,7 @@ public class UserManagement {
     public void show(HeadManagerLogin headManagerLogin, SupportersLogin supportersLogin, HeadManager headManager) {
         boolean isOk = true;
         while (isOk) {
-            System.out.println(cyan + "|----------User management Menu----------|\n" + red + "1." + green + "List Of All Users\n" + red + "2." + green + "Create User\n" + red + "3." + green + "Edit User\n" + red + "4." + green + "Block\n" + red + "5." + green + "quit\n" + blue + "choose one: \n" + reset);
+            System.out.println(cyan + "|----------User management Menu----------|\n" + red + "1." + green + "List Of All Users\n" + red + "2." + green + "Create User\n" + red + "3." + green + "Edit User\n" + red + "4." + green + "Block\n" + red + "5." + green + "Unblock\n" + red + "6." + green + "quit\n" + blue + "choose one: \n" + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -23,7 +23,8 @@ public class UserManagement {
                 case 2 -> CreateUserMenu.gethMlmInstanse().show(headManagerLogin, supportersLogin);
                 case 3 -> editUsers(headManagerLogin, headManager, supportersLogin);
                 case 4 -> blockUser(headManagerLogin, headManager, supportersLogin);
-                case 5 -> isOk = false;
+                case 5 -> unblockUser(headManagerLogin,headManager,supportersLogin);
+                case 6 -> isOk = false;
                 default -> System.out.println(red + "invalid choice!!!" + reset);
             }
         }
@@ -165,7 +166,7 @@ public class UserManagement {
             System.out.println(cyan + "which type of reports can't he handle?\n" + red + "1." + green + "select\n" + red + "2." + green + "quit\n" + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
-            switch(choice){
+            switch (choice) {
                 case 1 -> {
                     for (int i = 0; i < allType.length; i++) {
                         System.out.println((i + 1) + " " + allType[i]);
@@ -180,10 +181,10 @@ public class UserManagement {
                     }
                 }
                 case 2 -> isOkk = false;
-                default -> System.out.println(red+"invalid choice!!!"+reset);
+                default -> System.out.println(red + "invalid choice!!!" + reset);
             }
         }
-        UserSuportWorking.getWInstance().addTo(supporter,types);
+        UserSuportWorking.getWInstance().addTo(supporter, types);
         System.out.println(green + "edit successfully." + blue + " new name: " + reset + supporter.getFirstName() + blue + " | new username: " + reset + supporter.getUserName());
 
     }
@@ -297,5 +298,95 @@ public class UserManagement {
         }
         listOfRegUser3.get(num - 1).setUserIsBlock(IsBlock.YES);
         System.out.println("user blocked");
+    }
+
+    public void unblockUser(HeadManagerLogin headManagerLogin, HeadManager headManager, SupportersLogin supportersLogin) {
+        boolean isOk2 = true;
+        while (isOk2) {
+            System.out.println(cyan + "which type of user do you want to unblock?\n" + red + "1." + green + "managers\n" + red + "2." + green + "supporters\n" + red + "3." + green + "regular user\n" + red + "4." + green + "quit\n" + blue + "choose one: \n" + reset);
+            int select2 = scanner.nextInt();
+            scanner.nextLine();
+            switch (select2) {
+                case 1 -> unblockManager(headManagerLogin, headManager);
+                case 2 -> unblockSupporter(supportersLogin);
+                case 3 -> unblockRegularUser();
+                case 4 -> isOk2 = false;
+                default -> System.out.println(red + "invalid select!!!" + reset);
+            }
+        }
+    }
+
+    public void unblockManager(HeadManagerLogin headManagerLogin, HeadManager headManager) {
+        System.out.println(cyan + "managers: " + reset);
+        List<HeadManager> listOfManager3 = headManagerLogin.getHeadManagers();
+        int index = 0;
+        for (HeadManager manager : listOfManager3) {
+            if (manager.equals(headManager)) {
+                continue;
+            }
+            if (manager.getManagerIsBlock().equals(IsBlock.YES)) {
+                System.out.println((index + 1) + " " + manager);
+                index++;
+            }
+        }
+        if (listOfManager3.isEmpty()) {
+            System.out.println(red + "don't have any manager!!!" + reset);
+            return;
+        }
+        System.out.println("which  manager do you want to unblock?");
+        int num = scanner.nextInt();
+        scanner.nextLine();
+        if (num < 1 || num > listOfManager3.size()) {
+            System.out.println(red + "invalid num" + reset);
+            return;
+        }
+        listOfManager3.get(num - 1).setManagerIsBlock(IsBlock.NO);
+        System.out.println("manager unblocked");
+    }
+
+    public void unblockSupporter(SupportersLogin supportersLogin) {
+        System.out.println(cyan + "supporters: " + reset);
+        List<Supporter> listOfSupporter3 = supportersLogin.getSupporters();
+        for (int i = 0; i < listOfSupporter3.size(); i++) {
+            if (listOfSupporter3.get(i).getSupIsBlock().equals(IsBlock.YES)) {
+                System.out.println((i + 1) + " " + listOfSupporter3.get(i));
+            }
+        }
+        if (listOfSupporter3.isEmpty()) {
+            System.out.println(red + "don't have any supporter!!!" + reset);
+            return;
+        }
+        System.out.println("which  manager do you want to unblock?");
+        int num = scanner.nextInt();
+        scanner.nextLine();
+        if (num < 1 || num > listOfSupporter3.size()) {
+            System.out.println(red + "invalid num" + reset);
+            return;
+        }
+        listOfSupporter3.get(num - 1).setSupIsBlock(IsBlock.NO);
+        System.out.println("supporter unblocked");
+    }
+
+    public void unblockRegularUser() {
+        System.out.println(cyan + "regular user: " + reset);
+        List<RegularUser> listOfRegUser3 = RegularUserRepository.getRinstance().getAllUsers();
+        for (int i = 0; i < listOfRegUser3.size(); i++) {
+            if (listOfRegUser3.get(i).getUserIsBlock().equals(IsBlock.YES)) {
+                System.out.println((i + 1) + " " + listOfRegUser3.get(i));
+            }
+        }
+        if (listOfRegUser3.isEmpty()) {
+            System.out.println(red + "don't have any user!!!" + reset);
+            return;
+        }
+        System.out.println("which  manager do you want to unblock?");
+        int num = scanner.nextInt();
+        scanner.nextLine();
+        if (num < 1 || num > listOfRegUser3.size()) {
+            System.out.println(red + "invalid num" + reset);
+            return;
+        }
+        listOfRegUser3.get(num - 1).setUserIsBlock(IsBlock.NO);
+        System.out.println("user unblocked");
     }
 }

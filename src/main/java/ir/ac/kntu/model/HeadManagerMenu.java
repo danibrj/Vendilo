@@ -130,7 +130,7 @@ public class HeadManagerMenu {
     public void perfReviewMenu(RegularUser user) {
         boolean isOk2 = true;
         while (isOk2) {
-            System.out.println(cyan + "welcome to " + reset + user.getFirstName() + " " + user.getLastName() + cyan + " menu\n" + red + "1." + green + "put discount code\n" + red + "2." + green + "user performance\n" + red + "3." + green + "quit\n" + purple + "choose one: \n" + reset);
+            System.out.println(cyan + "welcome to " + reset + user.getFirstName() + " " + user.getLastName() + cyan + " menu\n" + red + "1." + green + "put discount code\n" + red + "2." + green + "user performance\n" + red + "3." + green + "register to Vendilo+\n" + red + "4." + green + "quit\n" + purple + "choose one: \n" + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -148,7 +148,43 @@ public class HeadManagerMenu {
                     }
                     System.out.println(green + "sum of user's shopping are : " + reset + sum);
                 }
-                case 3 -> isOk2 = false;
+                case 3 -> {
+                    System.out.println("|----------register to Vendilo+----------|");
+                    LocalDateTime today1 = null;
+                    LocalDateTime someLater = null;
+                    System.out.println("how much (1.day/2.month/3.year/4.quit) do you want to use for that user?");
+                    int num = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (num) {
+                        case 1 -> {
+                            System.out.println("how much? ");
+                            int num2 = scanner.nextInt();
+                            today1 = LocalDateTime.now();
+                            someLater = today1.plusDays(num2);
+                        }
+                        case 2 -> {
+                            System.out.println("how much? ");
+                            int num3 = scanner.nextInt();
+                            today1 = LocalDateTime.now();
+                            someLater = today1.plusMonths(num3);
+                        }
+                        case 3 -> {
+                            System.out.println("how much? ");
+                            int num4 = scanner.nextInt();
+                            today1 = LocalDateTime.now();
+                            someLater = today1.plusYears(num4);
+                        }
+                        case 4 -> {
+                            System.out.println();
+                        }
+                        default -> System.out.println(red + "invalid num!!!" + reset);
+                    }
+                    if (today1 != null) {
+                        VendiloPlus newVendiloPlus1 = new VendiloPlus(user, today1, someLater);
+                        VendiloPlusManager.getVpmInstance().addToVendiloPlus(newVendiloPlus1);
+                    }
+                }
+                case 4 -> isOk2 = false;
                 default -> System.out.println(red + "invalid choice!!!" + reset);
             }
         }

@@ -77,7 +77,20 @@ public class ShoppingCart {
                 break;
             }
         }
-        shippingCost = isSellerSameP ? (SHIPPING_COST * uniqueSeller.size()) / 3 : SHIPPING_COST * uniqueSeller.size();
+        VendiloPlus targetVend = VendiloPlusManager.getVpmInstance().findVendByUser(user);
+        if(isSellerSameP){
+            if(targetVend!=null){
+                shippingCost =0;
+            }else{
+                shippingCost = (SHIPPING_COST * uniqueSeller.size()) / 3;
+            }
+        }else{
+            if(targetVend!=null){
+                shippingCost =(SHIPPING_COST * uniqueSeller.size()) / 3;
+            }else {
+                shippingCost = SHIPPING_COST * uniqueSeller.size();
+            }
+        }
         totalPrice = totalCost + shippingCost;
         shows(pdt, shippingCost, user, address);
     }
@@ -205,8 +218,14 @@ public class ShoppingCart {
 
             Seller realSeller = SellerRepository.getSinstance().findByPhoneOrNationalCode(prod.getSeller().getPhoneNumber());
             if (realSeller != null) {
-                realSeller.getSellerWallet().increaseInventory(prod.getPrice() * 0.9);
-                realSeller.getSellerWallet().setTotalSales(prod.getPrice() * 0.9);
+                VendiloPlus targetVend = VendiloPlusManager.getVpmInstance().findVendByUser(user);
+                if (targetVend != null) {
+                    realSeller.getSellerWallet().increaseInventory((prod.getPrice()/0.95) * 0.9);
+                    realSeller.getSellerWallet().setTotalSales((prod.getPrice()/0.95) * 0.9);
+                }else{
+                    realSeller.getSellerWallet().increaseInventory(prod.getPrice() * 0.9);
+                    realSeller.getSellerWallet().setTotalSales(prod.getPrice() * 0.9);
+                }
             } else {
                 System.out.println(red + "Seller not found in repository for product: " + prod.getName() + reset);
             }

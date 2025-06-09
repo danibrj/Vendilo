@@ -5,12 +5,12 @@ import java.util.Map;
 
 public class Products {
     private String name;
-    private long price;
+    private double price;
     private int instInventory;
     private Seller seller;
     private Map<RegularUser, Integer> productRatings = new HashMap<>();
 
-    public Products(String name, long price, int instanceInventory) {
+    public Products(String name, double price, int instanceInventory) {
         this.name = name;
         this.price = price;
         this.instInventory = instanceInventory;
@@ -55,11 +55,11 @@ public class Products {
         this.name = name;
     }
 
-    public long getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(double price) {
         price = price;
     }
 

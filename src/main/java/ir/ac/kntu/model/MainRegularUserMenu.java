@@ -23,7 +23,7 @@ public class MainRegularUserMenu {
                 case 1 -> ShowWallet.getShowWal().show(user);
                 case 2 -> ShowSetting.getShowSet().show();
                 case 3 -> ShowAddresses.getShowAdd().show(user );
-                case 4 -> SearchProMenu.getSpm().show(shoppingCart);
+                case 4 -> SearchProMenu.getSpm().show(shoppingCart,user);
                 case 5 -> CartMenu.getCartMenu().show(shoppingCart,user);
                 case 6 -> OrderMenu.getOInstance().show(user);
                 case 7 -> ShowReportsMenu.getSRMInstance().show(user);

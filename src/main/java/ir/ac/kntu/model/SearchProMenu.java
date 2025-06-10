@@ -1,5 +1,6 @@
 package ir.ac.kntu.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -16,7 +17,7 @@ public class SearchProMenu {
         return SPM;
     }
 
-    public void show(ShoppingCart shoppingCart,RegularUser user) {
+    public void show(ShoppingCart shoppingCart, RegularUser user) {
         boolean bool1 = true;
         while (bool1) {
             System.out.println(cyan + "Enter the name of your target product: ---- (quit)" + reset);
@@ -40,18 +41,19 @@ public class SearchProMenu {
                 case 3 -> System.out.println();
                 default -> System.out.println(red + "invalid num!!!" + reset);
             }
-            show2(copyOfTList, shoppingCart,user);
+            show2(copyOfTList, shoppingCart, user);
         }
     }
 
     public void show2(List<Products> copyOfTList, ShoppingCart shoppingCart, RegularUser user) {
         VendiloPlus targetVend = VendiloPlusManager.getVpmInstance().findVendByUser(user);
-        if (targetVend != null) {
+        LocalDateTime now = LocalDateTime.now();
+        if (targetVend != null && (targetVend.getExpirationDate().isEqual(now) || targetVend.getExpirationDate().isAfter(now))) {
             for (int i = 0; i < copyOfTList.size(); i++) {
                 copyOfTList.get(i).setPrice(copyOfTList.get(i).getPrice() * 0.95);
                 System.out.println((i + 1) + " " + copyOfTList.get(i));
             }
-        }else{
+        } else {
             for (int i = 0; i < copyOfTList.size(); i++) {
                 System.out.println((i + 1) + " " + copyOfTList.get(i));
             }
@@ -59,11 +61,20 @@ public class SearchProMenu {
         System.out.println(cyan + "which product do you want to add to cart? " + reset);
         int num2 = scanner.nextInt();
         scanner.nextLine();
+        if(num2 < 1 || num2 > copyOfTList.size()){
+            System.out.println(red + "Invalid product number." + reset);
+        }
+        if(copyOfTList.get(num2 - 1).getInstanceInventory() <=0){
+            System.out.println(red + "product doesn't has inventory." + reset);
+            System.out.println("do you want to be notified when inventory increases?");
+            String answer = scanner.nextLine();
+            if("yes".equalsIgnoreCase(answer)){
+                copyOfTList.get(num2 - 1).setLetMeKnow(user,true);
+            }
+        }
         if (num2 >= 1 && num2 <= copyOfTList.size() && copyOfTList.get(num2 - 1).getInstanceInventory() >= 1) {
             shoppingCart.addProToCart(copyOfTList.get(num2 - 1));
             System.out.println(green + "Product added to cart." + reset);
-        } else {
-            System.out.println(red + "Invalid product number." + reset);
         }
     }
 }

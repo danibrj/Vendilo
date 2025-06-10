@@ -22,7 +22,7 @@ public class ShowReportsMenu2 {
         scanner.nextLine();
         if (choose >= 1 && choose <= values.length) {
             KindOfReport selected = values[choose - 1];
-            user.getUserSuportWorking().addReport(selected);
+            user.getUserSuportWorking().addReport(selected,user);
         } else {
             System.out.println(red+"invalid choose!!!"+reset);
         }

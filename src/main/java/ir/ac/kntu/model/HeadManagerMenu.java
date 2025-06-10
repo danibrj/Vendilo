@@ -16,6 +16,7 @@ public class HeadManagerMenu {
     }
 
     public void show(HeadManagerLogin headManagerLogin, SupportersLogin supportersLogin, HeadManager headManager) {
+        List<RegularUser> users = RegularUserRepository.getRinstance().getAllUsers();
         boolean isOk1 = true;
         while (isOk1) {
             System.out.println(cyan + "|----------Head Manager Menu----------|\n" + red + "1." + green + "User Management\n" + red + "2." + green + "Seller performance review\n" + red + "3." + green + "user performance review\n" + red + "4." + green + "Create Public Discount Code\n" + red + "5." + green + "Create Public message\n" + red + "6." + green + "quit\n" + blue + "choose one: \n" + reset);
@@ -57,6 +58,9 @@ public class HeadManagerMenu {
                                 System.out.println(green + "sum of seller's sales are : " + reset + sum);
                             }
                             case 2 -> {
+                                for (int i = 0; i < sellers.size(); i++) {
+                                    System.out.println((i + 1) + " " + sellers.get(i).getFirstName()+" "+sellers.get(i).getLastName()+"Agency Code: "+sellers.get(i).getAgencyCode());
+                                }
                                 System.out.println(cyan + "Enter the agency code to found seller: " + reset);
                                 String agenCode = scanner.nextLine();
                                 for (Seller seller : sellers) {
@@ -79,7 +83,6 @@ public class HeadManagerMenu {
                     }
                 }
                 case 3 -> {
-                    List<RegularUser> users = RegularUserRepository.getRinstance().getAllUsers();
                     for (int i = 0; i < users.size(); i++) {
                         System.out.println((i + 1) + " " + users.get(i));
                     }
@@ -94,7 +97,6 @@ public class HeadManagerMenu {
                     perfReviewMenu(user);
                 }
                 case 4 -> {
-                    List<RegularUser> users = RegularUserRepository.getRinstance().getAllUsers();
                     System.out.println(cyan + "----------Public Code----------\n" + green + "create: \n" + reset);
                     System.out.println(cyan + "type of code: \n" + reset);
                     KindsOfCode[] items = KindsOfCode.values();
@@ -119,10 +121,19 @@ public class HeadManagerMenu {
                         DiscountCodeManager.getDisManInstance().addCode(user, discountCode);
                     }
                 }
-//                case 5 ->
+                case 5 ->{
+                    System.out.println(cyan+"----------Public Message----------\n"+green+"enter your message: \n"+reset);
+                    String message = scanner.nextLine();
+                    LocalDateTime nowDate = LocalDateTime.now();
+                    Subject subject = Subject.PUBLICMESSAGE;
+                    NotifValueManage.getNotValManInstance().addPubMessNotif(nowDate,message);
+                    for(RegularUser user : users){
+                        Notification notification = new Notification(user,nowDate,subject,NotifValueManage.getNotValManInstance().getNotifValue1(nowDate));
+                        NotificationManager.getNotManInstance().addNotif(notification);
+                    }
+                }
                 case 6 -> isOk1 = false;
                 default -> System.out.println(red + "invalid choice!!!" + reset);
-
             }
         }
     }
@@ -212,5 +223,10 @@ public class HeadManagerMenu {
         scanner.nextLine();
         DiscountCode discountCode = new DiscountCode(name, code, discountValue, numbsOfTimesOfUse, kindsOfCode);
         DiscountCodeManager.getDisManInstance().addCode(user, discountCode);
+        LocalDateTime createCodeDate = LocalDateTime.now();
+        Subject subject = Subject.DISCOUNTCODE;
+        NotifValueManage.getNotValManInstance().addCodeNotif(user,discountCode);
+        Notification notification = new Notification(user, createCodeDate,subject,NotifValueManage.getNotValManInstance().getNotifValue2(user));
+        NotificationManager.getNotManInstance().addNotif(notification);
     }
 }

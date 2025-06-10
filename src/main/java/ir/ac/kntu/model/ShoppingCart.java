@@ -1,5 +1,6 @@
 package ir.ac.kntu.model;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 import static ir.ac.kntu.model.Color.*;
@@ -78,14 +79,15 @@ public class ShoppingCart {
             }
         }
         VendiloPlus targetVend = VendiloPlusManager.getVpmInstance().findVendByUser(user);
+        LocalDateTime now = LocalDateTime.now();
         if(isSellerSameP){
-            if(targetVend!=null){
+            if(targetVend!=null && (targetVend.getExpirationDate().isEqual(now) || targetVend.getExpirationDate().isAfter(now))){
                 shippingCost =0;
             }else{
                 shippingCost = (SHIPPING_COST * uniqueSeller.size()) / 3;
             }
         }else{
-            if(targetVend!=null){
+            if(targetVend!=null && (targetVend.getExpirationDate().isEqual(LocalDateTime.now()) || targetVend.getExpirationDate().isAfter(LocalDateTime.now()))){
                 shippingCost =(SHIPPING_COST * uniqueSeller.size()) / 3;
             }else {
                 shippingCost = SHIPPING_COST * uniqueSeller.size();
@@ -219,16 +221,19 @@ public class ShoppingCart {
             Seller realSeller = SellerRepository.getSinstance().findByPhoneOrNationalCode(prod.getSeller().getPhoneNumber());
             if (realSeller != null) {
                 VendiloPlus targetVend = VendiloPlusManager.getVpmInstance().findVendByUser(user);
-                if (targetVend != null) {
+                if (targetVend != null && (targetVend.getExpirationDate().isEqual(LocalDateTime.now()) || targetVend.getExpirationDate().isAfter(LocalDateTime.now()))) {
                     realSeller.getSellerWallet().increaseInventory((prod.getPrice()/0.95) * 0.9);
                     realSeller.getSellerWallet().setTotalSales((prod.getPrice()/0.95) * 0.9);
+                    prod.setPrice(prod.getPrice()/0.95);
                 }else{
                     realSeller.getSellerWallet().increaseInventory(prod.getPrice() * 0.9);
                     realSeller.getSellerWallet().setTotalSales(prod.getPrice() * 0.9);
+                    prod.setPrice(prod.getPrice()/0.95);
                 }
             } else {
                 System.out.println(red + "Seller not found in repository for product: " + prod.getName() + reset);
             }
+
         }
         pdt.clear();
         System.out.println(green + "Payment successful! Your order has been placed." + reset);

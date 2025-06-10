@@ -1,5 +1,6 @@
 package ir.ac.kntu.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 import static ir.ac.kntu.model.Color.*;
@@ -16,6 +17,9 @@ public class ShowSupporterReqMenu2 {
     public void show(UserSuportWorking userSuportWorking,Supporter supporter) {
         List<ManageUserSupport> mgU1 = userSuportWorking.getOwnReq().get(supporter);
         userSuportWorking.showSupportOwnReports(supporter);
+        if(mgU1.isEmpty()){
+            System.out.println(red+"don't have any request that you can handle."+reset);
+        }
         System.out.println("which report do you want to handle: ");
         int num = scanner.nextInt();
         scanner.nextLine();
@@ -61,6 +65,11 @@ public class ShowSupporterReqMenu2 {
                             String closeMessage = scanner.nextLine();
                             mgU1.get(i).setMessage(closeMessage);
                         }
+                        LocalDateTime reqDate = LocalDateTime.now();
+                        Subject subject = Subject.SUPPHANDELING;
+                        NotifValueManage.getNotValManInstance().addreqNotif(mgU1.get(i).getUser(),mgU1.get(i));
+                        Notification notification = new Notification(mgU1.get(i).getUser(),reqDate,NotifValueManage.getNotValManInstance().getNotifValue3(mgU1.get(i).getUser()),subject);
+                        NotificationManager.getNotManInstance().addNotif(notification);
                     }
                 }
             }

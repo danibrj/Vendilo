@@ -20,19 +20,13 @@ public class UserSuportWorking {
             text = "register seller";
             ManageUserSupport mus = new ManageUserSupport(kindOfReport, text, seller);
             mgUSupports.add(mus);
-        } else {
-            System.out.println("Enter your text: ");
-            text = scanner.nextLine();
-            ManageUserSupport mus = new ManageUserSupport(kindOfReport, text);
-            mgUSupports.add(mus);
         }
-
     }
 
-    public void addReport(KindOfReport kindOfReport) {
+    public void addReport(KindOfReport kindOfReport,RegularUser user) {
         System.out.println("Enter your text: ");
         String text = scanner.nextLine();
-        ManageUserSupport mus = new ManageUserSupport(kindOfReport, text);
+        ManageUserSupport mus = new ManageUserSupport(kindOfReport, text,user);
         mgUSupports.add(mus);
     }
 

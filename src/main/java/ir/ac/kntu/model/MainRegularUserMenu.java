@@ -28,8 +28,8 @@ public class MainRegularUserMenu {
                 case 6 -> OrderMenu.getOInstance().show(user);
                 case 7 -> ShowReportsMenu.getSRMInstance().show(user);
                 case 8 -> DiscountCodeMenu.getDiscInstance().show(user);
-//                case 8 -> DiscountCodeMenu.getDiscInstance().show(user);
-//                case 8 -> DiscountCodeMenu.getDiscInstance().show(user);
+                case 9 -> VendiloPlusMenu.getVpmInstance().show(user);
+                case 10 -> NotificationMenu.getNotifInstance().show(user);
                 case 11 -> {
                     return;
                 }

@@ -1,5 +1,7 @@
 package ir.ac.kntu.model;
 
+import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Scanner;
 import static ir.ac.kntu.model.Color.*;
 
@@ -24,6 +26,13 @@ public class ChooseProductMenu2 {
                     System.out.println("how much do you want to increase: ");
                     int amount1 = scanner.nextInt();
                     ProductsManager.getInstance().increaseInventory(prod, amount1);
+                    for(Map.Entry<RegularUser, Boolean> toReq : prod.getLetMeKnow().entrySet()){
+                        LocalDateTime lmkNotif = LocalDateTime.now();
+                        Subject subject = Subject.INCREASEPRODUCTINVENTORY;
+                        NotifValueManage.getNotValManInstance().addprodNotif(toReq.getKey(),prod);
+                        Notification notification = new Notification(lmkNotif,toReq.getKey(),subject,prod);
+                        NotificationManager.getNotManInstance().addNotif(notification);
+                    }
                     break;
                 case 2:
                     System.out.println("how much do you want to decrease: ");

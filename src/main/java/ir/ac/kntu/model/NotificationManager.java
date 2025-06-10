@@ -1,5 +1,6 @@
 package ir.ac.kntu.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,19 +10,29 @@ import static ir.ac.kntu.model.Color.*;
 
 public class NotificationManager {
     private static final NotificationManager notManInstance = new NotificationManager();
-    private Map<RegularUser, List<Notification>> userNotif = new HashMap<>();
+    private List<Notification> userNotif = new ArrayList<>();
+
     public static NotificationManager getNotManInstance(){
         return notManInstance;
     }
 
-    public Map<RegularUser, List<Notification>> getUserNotif(){
-        return  userNotif;
+    public List<Notification> getUserNotif() {
+        return userNotif;
     }
 
-    public void addNotif(RegularUser user,Notification notif){
-        userNotif.putIfAbsent(user, new ArrayList<>());
-        userNotif.get(user).add(notif);
-        System.out.println(green+"discount code added successfully");
+    public void addNotif(Notification notif){
+        userNotif.add(notif);
+        System.out.println(green+"discount code added successfully"+reset);
+    }
+
+    public void showNotif(RegularUser user){
+        int index =0;
+        for(Notification notif : userNotif){
+            if(notif.getUser().equals(user)){
+                System.out.println((index + 1) + " " + notif);
+                index++;
+            }
+        }
     }
 
 //    public void showNotifGenerally(RegularUser user) {

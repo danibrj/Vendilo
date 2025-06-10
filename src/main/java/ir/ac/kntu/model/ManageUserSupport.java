@@ -8,18 +8,28 @@ public class ManageUserSupport {
     private String message;
     private ReportStatuse reportStatuse;
     private Seller seller;
+    private RegularUser user;
 
-    public ManageUserSupport(KindOfReport kindOfReport,String message){
+    public ManageUserSupport(KindOfReport kindOfReport, String message, RegularUser user) {
         this.kindOfReport = kindOfReport;
         this.message = message;
         this.reportStatuse = ReportStatuse.REGISTERED;
+        this.user = user;
     }
 
-    public ManageUserSupport(KindOfReport kindOfReport,String message,Seller seller){
+    public ManageUserSupport(KindOfReport kindOfReport, String message, Seller seller) {
         this.kindOfReport = kindOfReport;
         this.message = message;
         this.reportStatuse = ReportStatuse.REGISTERED;
         this.seller = seller;
+    }
+
+    public RegularUser getUser() {
+        return user;
+    }
+
+    public void setUser(RegularUser user) {
+        this.user = user;
     }
 
     public Seller getSeller2() {
@@ -55,7 +65,7 @@ public class ManageUserSupport {
     }
 
     @Override
-    public String toString(){
-        return "Kind of report:"+ kindOfReport + " | status: "+ reportStatuse +" | message: "+ message;
+    public String toString() {
+        return "Kind of report:" + kindOfReport + " | status: " + reportStatuse + " | message: " + message;
     }
 }

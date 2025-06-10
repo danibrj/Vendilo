@@ -1,5 +1,6 @@
 package ir.ac.kntu.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -34,6 +35,9 @@ public class VendiloPlusManager {
         for(VendiloPlus vend : listOfVenPlus){
             if(vend.getUser().equals(user)){
                 System.out.println("user: " + user.getFirstName() + " "+user.getLastName() + " | end on: "+ vend.getExpirationDate());
+                if(vend.getExpirationDate().isBefore(LocalDateTime.now())){
+                    System.out.println("finished your deadline on : "+ vend.getExpirationDate());
+                }
             }
         }
     }

@@ -99,6 +99,7 @@ public class Notification {
 
     @Override
     public String toString() {
-        return "localDateTime = " + localDateTime + ", subject = " + subject;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss");
+        return String.format("localDateTime : [%s] | subject : %s", localDateTime.format(formatter), subject);
     }
 }

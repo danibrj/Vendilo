@@ -23,10 +23,10 @@ public class UserSuportWorking {
         }
     }
 
-    public void addReport(KindOfReport kindOfReport,RegularUser user) {
+    public void addReport(KindOfReport kindOfReport, RegularUser user) {
         System.out.println("Enter your text: ");
         String text = scanner.nextLine();
-        ManageUserSupport mus = new ManageUserSupport(kindOfReport, text,user);
+        ManageUserSupport mus = new ManageUserSupport(kindOfReport, text, user);
         mgUSupports.add(mus);
     }
 
@@ -50,23 +50,27 @@ public class UserSuportWorking {
         return ownReq;
     }
 
-    public void showManageUserSupports() {
+    public void showManageUserSupports(RegularUser user) {
+        int index =0;
         for (ManageUserSupport str : mgUSupports) {
-            System.out.println((mgUSupports.indexOf(str) + 1) + " " + str + "\n");
+            if (str.getUser().equals(user)) {
+                System.out.println((index + 1) + " " + str + "\n");
+                index++;
+            }
         }
     }
 
     public void showSupportOwnReports(Supporter supporter) {
         List<ManageUserSupport> requ = new ArrayList<>();
         if (types.get(supporter) == null) {
-            int index1 =0;
+            int index1 = 0;
             for (ManageUserSupport str : mgUSupports) {
                 System.out.println((index1 + 1) + " " + str + "\n");
                 requ.add(str);
                 index1++;
             }
         } else {
-            int index2=0;
+            int index2 = 0;
             for (ManageUserSupport str : mgUSupports) {
                 if (!types.get(supporter).contains(str.getKindOfReport())) {
                     System.out.println((index2 + 1) + " " + str + "\n");

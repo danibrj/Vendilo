@@ -3,11 +3,9 @@ package ir.ac.kntu.model;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class VendiloPlusManager {
     private static final VendiloPlusManager vpmInstance = new VendiloPlusManager();
-    private Scanner scanner = new Scanner(System.in);
     private List<VendiloPlus> listOfVenPlus= new ArrayList<>();
 
     public static VendiloPlusManager getVpmInstance() {

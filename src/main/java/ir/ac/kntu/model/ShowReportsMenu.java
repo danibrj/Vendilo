@@ -22,7 +22,7 @@ public class ShowReportsMenu {
                     ShowReportsMenu2.getSRM2Instance().show(user);
                     break;
                 case 2:
-                    user.getUserSuportWorking().showManageUserSupports();
+                    user.getUserSuportWorking().showManageUserSupports(user);
                     break;
                 case 3:
                     iscont = false;

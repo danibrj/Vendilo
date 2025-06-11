@@ -59,7 +59,7 @@ public class HeadManagerMenu {
                             }
                             case 2 -> {
                                 for (int i = 0; i < sellers.size(); i++) {
-                                    System.out.println((i + 1) + " " + sellers.get(i).getFirstName()+" "+sellers.get(i).getLastName()+"Agency Code: "+sellers.get(i).getAgencyCode());
+                                    System.out.println((i + 1) + " " + sellers.get(i).getFirstName() + " " + sellers.get(i).getLastName() + "Agency Code: " + sellers.get(i).getAgencyCode());
                                 }
                                 System.out.println(cyan + "Enter the agency code to found seller: " + reset);
                                 String agenCode = scanner.nextLine();
@@ -121,14 +121,14 @@ public class HeadManagerMenu {
                         DiscountCodeManager.getDisManInstance().addCode(user, discountCode);
                     }
                 }
-                case 5 ->{
-                    System.out.println(cyan+"----------Public Message----------\n"+green+"enter your message: \n"+reset);
+                case 5 -> {
+                    System.out.println(cyan + "----------Public Message----------\n" + green + "enter your message: \n" + reset);
                     String message = scanner.nextLine();
                     LocalDateTime nowDate = LocalDateTime.now();
                     Subject subject = Subject.PUBLICMESSAGE;
-                    NotifValueManage.getNotValManInstance().addPubMessNotif(nowDate,message);
-                    for(RegularUser user : users){
-                        Notification notification = new Notification(user,nowDate,subject,NotifValueManage.getNotValManInstance().getNotifValue1(nowDate));
+                    NotifValueManage.getNotValManInstance().addPubMessNotif(nowDate, message);
+                    for (RegularUser user : users) {
+                        Notification notification = new Notification(user, nowDate, subject, NotifValueManage.getNotValManInstance().getNotifValue1(nowDate));
                         NotificationManager.getNotManInstance().addNotif(notification);
                     }
                 }
@@ -153,7 +153,7 @@ public class HeadManagerMenu {
                     double sum = 0;
                     for (Userstransaction trans : userTrans) {
                         LocalDateTime date = trans.getTransactionDate();
-                        if (trans.getType().equalsIgnoreCase("Shopping") && (date.isAfter(minetsAgo2) && date.isBefore(today2) || date.isEqual(today2))) {
+                        if ("Shopping".equals(trans.getType()) && (date.isAfter(minetsAgo2) && date.isBefore(today2) || date.isEqual(today2))) {
                             sum += trans.getAmount();
                         }
                     }
@@ -225,8 +225,8 @@ public class HeadManagerMenu {
         DiscountCodeManager.getDisManInstance().addCode(user, discountCode);
         LocalDateTime createCodeDate = LocalDateTime.now();
         Subject subject = Subject.DISCOUNTCODE;
-        NotifValueManage.getNotValManInstance().addCodeNotif(user,discountCode);
-        Notification notification = new Notification(user, createCodeDate,subject,NotifValueManage.getNotValManInstance().getNotifValue2(user));
+        NotifValueManage.getNotValManInstance().addCodeNotif(user, discountCode);
+        Notification notification = new Notification(user, createCodeDate, subject, NotifValueManage.getNotValManInstance().getNotifValue2(user));
         NotificationManager.getNotManInstance().addNotif(notification);
     }
 }

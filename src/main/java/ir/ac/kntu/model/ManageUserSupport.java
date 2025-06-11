@@ -1,8 +1,5 @@
 package ir.ac.kntu.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class ManageUserSupport {
     private KindOfReport kindOfReport;
     private String message;

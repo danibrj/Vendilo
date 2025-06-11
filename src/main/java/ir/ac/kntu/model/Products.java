@@ -9,7 +9,8 @@ public class Products {
     private int instInventory;
     private Seller seller;
     private Map<RegularUser, Integer> productRatings = new HashMap<>();
-    private Map<RegularUser, Boolean> letMeKnow= new HashMap<>();
+    private Map<RegularUser, Boolean> letMeKnow = new HashMap<>();
+
     public Products(String name, double price, int instanceInventory) {
         this.name = name;
         this.price = price;
@@ -20,8 +21,8 @@ public class Products {
         return letMeKnow;
     }
 
-    public void setLetMeKnow(RegularUser user , Boolean bool) {
-        letMeKnow.put(user,bool);
+    public void setLetMeKnow(RegularUser user, Boolean bool) {
+        letMeKnow.put(user, bool);
     }
 
     public boolean hasUserRated(RegularUser user) {
@@ -93,7 +94,7 @@ public class Products {
 
     @Override
     public String toString() {
-        return "seller = " + seller.getFirstName()+" " + seller.getLastName()+
+        return "seller = " + seller.getFirstName() + " " + seller.getLastName() +
                 ", name = " + name +
                 ", price = " + price +
                 ", instInventory = " + instInventory;

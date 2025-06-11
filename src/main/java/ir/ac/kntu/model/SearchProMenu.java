@@ -61,15 +61,16 @@ public class SearchProMenu {
         System.out.println(cyan + "which product do you want to add to cart? " + reset);
         int num2 = scanner.nextInt();
         scanner.nextLine();
-        if(num2 < 1 || num2 > copyOfTList.size()){
+        if (num2 < 1 || num2 > copyOfTList.size()) {
             System.out.println(red + "Invalid product number." + reset);
+            return;
         }
-        if(copyOfTList.get(num2 - 1).getInstanceInventory() <=0){
+        if (copyOfTList.get(num2 - 1).getInstanceInventory() <= 0) {
             System.out.println(red + "product doesn't has inventory." + reset);
             System.out.println("do you want to be notified when inventory increases?");
             String answer = scanner.nextLine();
-            if("yes".equalsIgnoreCase(answer)){
-                copyOfTList.get(num2 - 1).setLetMeKnow(user,true);
+            if ("yes".equalsIgnoreCase(answer)) {
+                copyOfTList.get(num2 - 1).setLetMeKnow(user, true);
             }
         }
         if (num2 >= 1 && num2 <= copyOfTList.size() && copyOfTList.get(num2 - 1).getInstanceInventory() >= 1) {

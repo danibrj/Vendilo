@@ -1,10 +1,7 @@
 package ir.ac.kntu.model;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static ir.ac.kntu.model.Color.*;
 
@@ -22,7 +19,7 @@ public class NotificationManager {
 
     public void addNotif(Notification notif){
         userNotif.add(notif);
-        System.out.println(green+"discount code added successfully"+reset);
+        System.out.println(green+"add Notification successfully"+reset);
     }
 
     public void showNotif(RegularUser user){

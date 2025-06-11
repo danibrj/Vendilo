@@ -4,11 +4,9 @@ import java.util.Scanner;
 import static ir.ac.kntu.model.Color.*;
 
 public class SupporterMenu {
-//    private ManageRequests manageRequests;
     private Scanner scanner = new Scanner(System.in);
 
-    public SupporterMenu(/*ManageRequests manageRequests*/) {
-//        this.manageRequests = manageRequests;
+    public SupporterMenu() {
     }
 
     public void show(SupportersLogin supportersLogin,Supporter supporter) {

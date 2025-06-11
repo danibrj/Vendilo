@@ -48,14 +48,61 @@ public class SearchProMenu {
     public void show2(List<Products> copyOfTList, ShoppingCart shoppingCart, RegularUser user) {
         VendiloPlus targetVend = VendiloPlusManager.getVpmInstance().findVendByUser(user);
         LocalDateTime now = LocalDateTime.now();
-        if (targetVend != null && (targetVend.getExpirationDate().isEqual(now) || targetVend.getExpirationDate().isAfter(now))) {
-            for (int i = 0; i < copyOfTList.size(); i++) {
-                copyOfTList.get(i).setPrice(copyOfTList.get(i).getPrice() * 0.95);
-                System.out.println((i + 1) + " " + copyOfTList.get(i));
+        System.out.println("do you want to filter by (1.rate|2.price)?");
+        String answer = scanner.nextLine();
+        if ("yes".equals(answer)) {
+            System.out.println("choose your goal: (by 1 or 2)");
+            int num = scanner.nextInt();
+            scanner.nextLine();
+            if (num == 1) {
+                System.out.println("choose start and end of your range of rate: \nstart: ");
+                double startRate = scanner.nextDouble();
+                System.out.println("end: ");
+                double endRate = scanner.nextDouble();
+                if (targetVend != null && (targetVend.getExpirationDate().isEqual(now) || targetVend.getExpirationDate().isAfter(now))) {
+                    for (int i = 0; i < copyOfTList.size(); i++) {
+                        copyOfTList.get(i).setPrice(copyOfTList.get(i).getPrice() * 0.95);
+                        if (copyOfTList.get(i).getAverageRating() >= startRate && copyOfTList.get(i).getAverageRating() <= endRate) {
+                            System.out.println((i + 1) + " " + copyOfTList.get(i));
+                        }
+                    }
+                } else {
+                    for (int i = 0; i < copyOfTList.size(); i++) {
+                        if (copyOfTList.get(i).getAverageRating() >= startRate && copyOfTList.get(i).getAverageRating() <= endRate) {
+                            System.out.println((i + 1) + " " + copyOfTList.get(i));
+                        }
+                    }
+                }
+            } else if (num == 2) {
+                System.out.println("choose start and end of your range of price: \nstart: ");
+                double startPrice = scanner.nextDouble();
+                System.out.println("end: ");
+                double endPrice = scanner.nextDouble();
+                if (targetVend != null && (targetVend.getExpirationDate().isEqual(now) || targetVend.getExpirationDate().isAfter(now))) {
+                    for (int i = 0; i < copyOfTList.size(); i++) {
+                        copyOfTList.get(i).setPrice(copyOfTList.get(i).getPrice() * 0.95);
+                        if (copyOfTList.get(i).getPrice() >= startPrice && copyOfTList.get(i).getPrice() <= endPrice) {
+                            System.out.println((i + 1) + " " + copyOfTList.get(i));
+                        }
+                    }
+                } else {
+                    for (int i = 0; i < copyOfTList.size(); i++) {
+                        if (copyOfTList.get(i).getPrice() >= startPrice && copyOfTList.get(i).getPrice() <= endPrice) {
+                            System.out.println((i + 1) + " " + copyOfTList.get(i));
+                        }
+                    }
+                }
             }
         } else {
-            for (int i = 0; i < copyOfTList.size(); i++) {
-                System.out.println((i + 1) + " " + copyOfTList.get(i));
+            if (targetVend != null && (targetVend.getExpirationDate().isEqual(now) || targetVend.getExpirationDate().isAfter(now))) {
+                for (int i = 0; i < copyOfTList.size(); i++) {
+                    copyOfTList.get(i).setPrice(copyOfTList.get(i).getPrice() * 0.95);
+                    System.out.println((i + 1) + " " + copyOfTList.get(i));
+                }
+            } else {
+                for (int i = 0; i < copyOfTList.size(); i++) {
+                    System.out.println((i + 1) + " " + copyOfTList.get(i));
+                }
             }
         }
         System.out.println(cyan + "which product do you want to add to cart? " + reset);
@@ -66,9 +113,9 @@ public class SearchProMenu {
             return;
         }
         if (copyOfTList.get(num2 - 1).getInstanceInventory() <= 0) {
-            System.out.println(red + "product doesn't has inventory.\n"+cyan+"do you want to be notified when inventory increases?ln" + reset);
-            String answer = scanner.nextLine();
-            if ("yes".equalsIgnoreCase(answer)) {
+            System.out.println(red + "product doesn't has inventory.\n" + cyan + "do you want to be notified when inventory increases?ln" + reset);
+            String answer2 = scanner.nextLine();
+            if ("yes".equalsIgnoreCase(answer2)) {
                 copyOfTList.get(num2 - 1).setLetMeKnow(user, true);
             }
         }

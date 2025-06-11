@@ -61,6 +61,12 @@ public class ProductRater {
             return;
         }
         selectedProduct.addRating(user, rating);
-        System.out.println(green+"thanks for rating."+reset);
+        System.out.println(green+"thanks for rating.\n"+ cyan+ "do you want to add comment?\n" +reset);
+        String answer = scanner.nextLine();
+        if("yes".equals(answer)){
+            System.out.println(green+"write your comment: "+reset);
+            String comment = scanner.nextLine();
+            selectedProduct.addComments(user,comment);
+        }
     }
 }

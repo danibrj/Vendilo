@@ -1,6 +1,8 @@
 package ir.ac.kntu.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Products {
@@ -9,6 +11,8 @@ public class Products {
     private int instInventory;
     private Seller seller;
     private Map<RegularUser, Integer> productRatings = new HashMap<>();
+    private Map<RegularUser, List<String>> productComments = new HashMap<>();
+
     private Map<RegularUser, Boolean> letMeKnow = new HashMap<>();
 
     public Products(String name, double price, int instanceInventory) {
@@ -37,6 +41,15 @@ public class Products {
         }
     }
 
+    public void addComments(RegularUser user,String comments){
+        productComments.computeIfAbsent(user, k-> new ArrayList<>()).add(comments);
+    }
+
+    public List<String> getUserComments(){
+        for(Map.Entry<RegularUser, List<String>> prodComment : productComments.entrySet()){
+            System.out.println(prodComment.getKey()+ " |comment: "+ prodComment.getValue());
+        }
+    }
     public Double getAverageRating() {
         if (productRatings.isEmpty()) {
             return null;

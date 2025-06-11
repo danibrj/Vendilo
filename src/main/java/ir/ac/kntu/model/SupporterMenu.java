@@ -6,9 +6,6 @@ import static ir.ac.kntu.model.Color.*;
 public class SupporterMenu {
     private Scanner scanner = new Scanner(System.in);
 
-    public SupporterMenu() {
-    }
-
     public void show(SupportersLogin supportersLogin,Supporter supporter) {
         boolean isGo = true;
         while (isGo) {

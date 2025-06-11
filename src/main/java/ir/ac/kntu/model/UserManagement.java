@@ -159,6 +159,10 @@ public class UserManagement {
         String newSupporterUName = scanner.nextLine();
         supporter.setUserName(newSupporterUName);
         System.out.println("----------");
+        reportHandle(supporter);
+    }
+
+    public void reportHandle(Supporter supporter){
         Set<KindOfReport> types = new HashSet<>();
         KindOfReport[] allType = KindOfReport.values();
         boolean isOkk = true;

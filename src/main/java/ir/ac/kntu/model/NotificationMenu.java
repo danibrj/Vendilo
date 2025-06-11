@@ -25,37 +25,43 @@ public class NotificationMenu {
                     System.out.println(blue + "all notifications: " + reset);
                     NotificationManager.getNotManInstance().showNotif(user);
                 }
-                case 2 -> {
-                    List<Notification> userNotifications = NotificationManager.getNotManInstance().getUserNotif();
-                    List<Notification> target = new ArrayList<>();
-                    int index = 0;
-                    for (Notification notif : userNotifications) {
-                        if (notif.getUser().equals(user)) {
-                            target.add(notif);
-                            System.out.println((index + 1) + " " + notif);
-                            index++;
-                        }
-                    }
-                    System.out.println(cyan + "choose one to see its details: " + reset);
-                    int num = scanner.nextInt();
-                    scanner.nextLine();
-                    if (num < 1 || num > target.size()) {
-                        System.out.println(red + "invalid num!!!" + reset);
-                        return;
-                    }
-                    if (target.get(num - 1).getSubject().equals(Subject.INCREASEPRODUCTINVENTORY)) {
-                        System.out.println(target.get(num - 1).getProd());
-                    } else if (target.get(num - 1).getSubject().equals(Subject.DISCOUNTCODE)) {
-                        System.out.println(target.get(num - 1).getCodes());
-                    } else if (target.get(num - 1).getSubject().equals(Subject.PUBLICMESSAGE)) {
-                        System.out.println(target.get(num - 1).getMessageValue());
-                    } else if (target.get(num - 1).getSubject().equals(Subject.SUPPHANDELING)) {
-                        System.out.println(target.get(num - 1).getReqq());
-                    }
-                }
+                case 2 -> aboutShowNotifs(user);
                 case 3 -> isOk = false;
                 default -> System.out.println(red + "invalid select!!!" + reset);
             }
+        }
+    }
+
+    public void aboutShowNotifs(RegularUser user) {
+        List<Notification> userNotifications = NotificationManager.getNotManInstance().getUserNotif();
+        List<Notification> target = new ArrayList<>();
+        int index = 0;
+        for (Notification notif : userNotifications) {
+            if (notif.getUser().equals(user)) {
+                target.add(notif);
+                System.out.println((index + 1) + " " + notif);
+                index++;
+            }
+        }
+        System.out.println(cyan + "choose one to see its details: " + reset);
+        int num = scanner.nextInt();
+        scanner.nextLine();
+        if (num < 1 || num > target.size()) {
+            System.out.println(red + "invalid num!!!" + reset);
+            return;
+        }
+        notiff(target,num);
+    }
+
+    public void notiff(List<Notification> target,int num){
+        if (target.get(num - 1).getSubject().equals(Subject.INCREASEPRODUCTINVENTORY)) {
+            System.out.println(target.get(num - 1).getProd());
+        } else if (target.get(num - 1).getSubject().equals(Subject.DISCOUNTCODE)) {
+            System.out.println(target.get(num - 1).getCodes());
+        } else if (target.get(num - 1).getSubject().equals(Subject.PUBLICMESSAGE)) {
+            System.out.println(target.get(num - 1).getMessageValue());
+        } else if (target.get(num - 1).getSubject().equals(Subject.SUPPHANDELING)) {
+            System.out.println(target.get(num - 1).getReqq());
         }
     }
 }

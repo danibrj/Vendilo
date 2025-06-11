@@ -23,16 +23,7 @@ public class ChooseProductMenu2 {
             scanner.nextLine();
             switch (sel) {
                 case 1:
-                    System.out.println("how much do you want to increase: ");
-                    int amount1 = scanner.nextInt();
-                    ProductsManager.getInstance().increaseInventory(prod, amount1);
-                    for(Map.Entry<RegularUser, Boolean> toReq : prod.getLetMeKnow().entrySet()){
-                        LocalDateTime lmkNotif = LocalDateTime.now();
-                        Subject subject = Subject.INCREASEPRODUCTINVENTORY;
-                        NotifValueManage.getNotValManInstance().addprodNotif(toReq.getKey(),prod);
-                        Notification notification = new Notification(lmkNotif,toReq.getKey(),subject,prod);
-                        NotificationManager.getNotManInstance().addNotif(notification);
-                    }
+                    aboutIncrease(prod);
                     break;
                 case 2:
                     System.out.println("how much do you want to decrease: ");
@@ -45,6 +36,19 @@ public class ChooseProductMenu2 {
                 default:
                     System.out.println(red+"invalid selected!!!"+reset);
             }
+        }
+    }
+
+    private void aboutIncrease(Products prod) {
+        System.out.println("how much do you want to increase: ");
+        int amount1 = scanner.nextInt();
+        ProductsManager.getInstance().increaseInventory(prod, amount1);
+        for(Map.Entry<RegularUser, Boolean> toReq : prod.getLetMeKnow().entrySet()){
+            LocalDateTime lmkNotif = LocalDateTime.now();
+            Subject subject = Subject.INCREASEPRODUCTINVENTORY;
+            NotifValueManage.getNotValManInstance().addprodNotif(toReq.getKey(), prod);
+            Notification notification = new Notification(lmkNotif,toReq.getKey(),subject, prod);
+            NotificationManager.getNotManInstance().addNotif(notification);
         }
     }
 }

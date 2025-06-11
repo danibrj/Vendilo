@@ -78,6 +78,12 @@ public class ShoppingCart {
                 break;
             }
         }
+        float shipCost = returnShopCost(user, isSellerSameP);
+        totalPrice = totalCost + shipCost;
+        shows(pdt, shipCost, user, address);
+    }
+
+    private float returnShopCost(RegularUser user, boolean isSellerSameP) {
         VendiloPlus targetVend = VendiloPlusManager.getVpmInstance().findVendByUser(user);
         LocalDateTime now = LocalDateTime.now();
         if(isSellerSameP){
@@ -93,16 +99,15 @@ public class ShoppingCart {
                 shippingCost = SHIPPING_COST * uniqueSeller.size();
             }
         }
-        totalPrice = totalCost + shippingCost;
-        shows(pdt, shippingCost, user, address);
+        return shippingCost;
     }
 
-    public void shows(List<Products> pdt, float shippingCost, RegularUser user, Address address) {
+    public void shows(List<Products> pdt, float shipCost, RegularUser user, Address address) {
         System.out.println(cyan + "-----product list-----" + reset);
         for (Products p : pdt) {
             System.out.println(p);
         }
-        System.out.print("the cost of product : " + totalCost + " $\nthe cost of send : " + shippingCost + " $\nthe generally cost :  " + totalPrice + " $\n");
+        System.out.print("the cost of product : " + totalCost + " $\nthe cost of send : " + shipCost + " $\nthe generally cost :  " + totalPrice + " $\n");
         System.out.println(cyan + "do you want to payment?" + reset);
         String yesOrNo = scanner.nextLine();
         if ("yes".equalsIgnoreCase(yesOrNo)) {

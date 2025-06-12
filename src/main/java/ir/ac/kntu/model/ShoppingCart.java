@@ -139,6 +139,10 @@ public class ShoppingCart {
                     }
                 }
             }
+            if(dcMan.getUserDisCode().isEmpty()){
+                System.out.println("you don't have any discount code!");
+                return;
+            }
             System.out.println(blue + "choose one: " + reset);
             int num = scanner.nextInt();
             scanner.nextLine();

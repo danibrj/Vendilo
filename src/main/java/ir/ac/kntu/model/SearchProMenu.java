@@ -125,7 +125,7 @@ public class SearchProMenu {
             return;
         }
         if (copyOfTList.get(num2 - 1).getInstanceInventory() <= 0) {
-            System.out.println(red + "product doesn't has inventory.\n" + cyan + "do you want to be notified when inventory increases?ln" + reset);
+            System.out.println(red + "product doesn't has inventory.\n" + cyan + "do you want to be notified when inventory increases?\n" + reset);
             String answer2 = scanner.nextLine();
             if ("yes".equalsIgnoreCase(answer2)) {
                 copyOfTList.get(num2 - 1).setLetMeKnow(user, true);

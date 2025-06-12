@@ -17,7 +17,7 @@ public class ProductRater {
     public void show(RegularUser user) {
         List<OrderUser> orders = user.getOrderUsers();
         if (orders.isEmpty()) {
-            System.out.println(red+"not found order for ratting."+reset);
+            System.out.println(red+"not found order for ratting or comment."+reset);
             return;
         }
         System.out.println(cyan+"select an order: "+reset);
@@ -32,10 +32,12 @@ public class ProductRater {
         }
         OrderUser selectedOrder = orders.get(index - 1);
         List<Products> pros = selectedOrder.getOrderedProducts();
-        System.out.println(cyan+"select a product to rate: "+reset);
+        System.out.println(cyan+"select a product to rate or comment: "+reset);
         for (int i = 0; i < pros.size(); i++) {
             Products prod = pros.get(i);
             System.out.println((i + 1) + " " + prod.getName() + " | Average: " + prod.getAverageRating());
+            prod.getUserComments();
+            System.out.println("----------");
         }
         show2(pros,user);
     }
@@ -48,25 +50,45 @@ public class ProductRater {
             return;
         }
         Products selectedProduct = pros.get(num - 1);
-        if (selectedProduct.hasUserRated(user)) {
-            System.out.println(red+"You have already rated this product."+reset);
-            return;
-        }
-        System.out.println(cyan+"Enter rating (1 to 5): "+reset);
-        int rating = scanner.nextInt();
-        scanner.nextLine();
+        boolean isOk = true;
+        while(isOk) {
+            if (selectedProduct.hasUserRated(user)) {
+                System.out.println(red + "You have already rated this product." + reset);
+                return;
+            }
+            if (selectedProduct.hasUserComment(user)) {
+                System.out.println(red + "You have already gave comment to this product." + reset);
+                return;
+            }
+            System.out.println(red + "1." + green + "rate\n" + red + "2." + green + "comment\n" + red + "3." + green + "quit\n" + "choose one: " + reset);
+            int num2 = scanner.nextInt();
+            scanner.nextLine();
+            switch (num2) {
+                case 1 -> {
+                    System.out.println(cyan + "Enter rating (1 to 5): " + reset);
+                    int rating = scanner.nextInt();
+                    scanner.nextLine();
 
-        if (rating < 1 || rating > 5) {
-            System.out.println(red+"invalid rating"+reset);
-            return;
-        }
-        selectedProduct.addRating(user, rating);
-        System.out.println(green+"thanks for rating.\n"+ cyan+ "do you want to add comment?\n" +reset);
-        String answer = scanner.nextLine();
-        if("yes".equals(answer)){
-            System.out.println(green+"write your comment: "+reset);
-            String comment = scanner.nextLine();
-            selectedProduct.addComments(user,comment);
+                    if (rating < 1 || rating > 5) {
+                        System.out.println(red + "invalid rating" + reset);
+                        return;
+                    }
+                    selectedProduct.addRating(user, rating);
+                    System.out.println(green + "thanks for rating.\n" + reset);
+                }
+                case 2 -> {
+                    System.out.println(cyan + "do you want to add comment?\n" + reset);
+                    String answer = scanner.nextLine();
+                    if ("yes".equals(answer)) {
+                        System.out.println(green + "write your comment: " + reset);
+                        String comment = scanner.nextLine();
+                        selectedProduct.addComments(user, comment);
+                        System.out.println(green + "comment added.thanks" + reset);
+                    }
+                }
+                case 3 -> isOk = false;
+                default -> System.out.println(red + "invalid num!!!" + reset);
+            }
         }
     }
 }

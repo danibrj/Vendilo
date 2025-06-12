@@ -33,6 +33,10 @@ public class Products {
         return productRatings.containsKey(user);
     }
 
+    public boolean hasUserComment(RegularUser user) {
+        return productComments.containsKey(user);
+    }
+
     public void addRating(RegularUser user, int score) {
         if (!productRatings.containsKey((user))) {
             productRatings.put(user, score);
@@ -53,7 +57,7 @@ public class Products {
             System.out.println("nothing!");
         }else {
             for (Map.Entry<RegularUser, String> prodComment : productComments.entrySet()) {
-                System.out.println(prodComment.getKey() + " |comment: " + prodComment.getValue());
+                System.out.println("person: "+prodComment.getKey().getFirstName()+" "+ prodComment.getKey().getLastName() + " | comment: " + prodComment.getValue());
             }
         }
     }

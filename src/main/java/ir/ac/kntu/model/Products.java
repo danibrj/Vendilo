@@ -11,7 +11,7 @@ public class Products {
     private int instInventory;
     private Seller seller;
     private Map<RegularUser, Integer> productRatings = new HashMap<>();
-    private Map<RegularUser, List<String>> productComments = new HashMap<>();
+    private Map<RegularUser, String> productComments = new HashMap<>();
 
     private Map<RegularUser, Boolean> letMeKnow = new HashMap<>();
 
@@ -42,12 +42,19 @@ public class Products {
     }
 
     public void addComments(RegularUser user,String comments){
-        productComments.computeIfAbsent(user, k-> new ArrayList<>()).add(comments);
-    }
+        if (!productComments.containsKey((user))) {
+            productComments.put(user, comments);
+        } else {
+            System.out.println("you have already gave comment to this product.");
+        }   }
 
-    public List<String> getUserComments(){
-        for(Map.Entry<RegularUser, List<String>> prodComment : productComments.entrySet()){
-            System.out.println(prodComment.getKey()+ " |comment: "+ prodComment.getValue());
+    public void getUserComments(){
+        if(productComments.isEmpty()){
+            System.out.println("nothing!");
+        }else {
+            for (Map.Entry<RegularUser, String> prodComment : productComments.entrySet()) {
+                System.out.println(prodComment.getKey() + " |comment: " + prodComment.getValue());
+            }
         }
     }
     public Double getAverageRating() {

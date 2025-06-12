@@ -39,7 +39,8 @@ public class ShowOrderDetails {
         for (int i = 0; i < selectedOrder.getOrderedProducts().size(); i++) {
             Products prod = selectedOrder.getOrderedProducts().get(i);
             System.out.println(" " + (i + 1) + " " + prod.getName() + " | Seller: " + prod.getSeller().getFirstName() + " " + prod.getSeller().getLastName() + " | Average rating: " + prod.getAverageRating());
-            System.out.println("comments"+prod.getUserComments());
+            System.out.println("comments: ");
+            prod.getUserComments();
         }
     }
 }

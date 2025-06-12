@@ -69,6 +69,11 @@ public class HeadManagerMenu {
         for (RegularUser user : users) {
             DiscountCode discountCode = new DiscountCode(name, code, discountValue, numbsOfTimesOfUse, kindsOfCode);
             DiscountCodeManager.getDisManInstance().addCode(user, discountCode);
+            LocalDateTime createCodeDate1 = LocalDateTime.now();
+            Subject subject1 = Subject.DISCOUNTCODE;
+            NotifValueManage.getNotValManInstance().addCodeNotif(user, discountCode);
+            Notification notification = new Notification(user, createCodeDate1, subject1, NotifValueManage.getNotValManInstance().getNotifValue2(user));
+            NotificationManager.getNotManInstance().addNotif(notification);
         }
     }
 

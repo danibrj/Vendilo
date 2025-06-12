@@ -64,12 +64,16 @@ public class SearchProMenu {
                         copyOfTList.get(i).setPrice(copyOfTList.get(i).getPrice() * 0.95);
                         if (copyOfTList.get(i).getAverageRating() >= startRate && copyOfTList.get(i).getAverageRating() <= endRate) {
                             System.out.println((i + 1) + " " + copyOfTList.get(i));
+                            System.out.println("AverageRating : "+copyOfTList.get(i).getAverageRating()+" | comments : ");
+                            copyOfTList.get(i).getUserComments();
                         }
                     }
                 } else {
                     for (int i = 0; i < copyOfTList.size(); i++) {
                         if (copyOfTList.get(i).getAverageRating() >= startRate && copyOfTList.get(i).getAverageRating() <= endRate) {
                             System.out.println((i + 1) + " " + copyOfTList.get(i));
+                            System.out.println("AverageRating : "+copyOfTList.get(i).getAverageRating()+" | comments : ");
+                            copyOfTList.get(i).getUserComments();
                         }
                     }
                 }
@@ -83,12 +87,16 @@ public class SearchProMenu {
                         copyOfTList.get(i).setPrice(copyOfTList.get(i).getPrice() * 0.95);
                         if (copyOfTList.get(i).getPrice() >= startPrice && copyOfTList.get(i).getPrice() <= endPrice) {
                             System.out.println((i + 1) + " " + copyOfTList.get(i));
+                            System.out.println("AverageRating : "+copyOfTList.get(i).getAverageRating()+" | comments : ");
+                            copyOfTList.get(i).getUserComments();
                         }
                     }
                 } else {
                     for (int i = 0; i < copyOfTList.size(); i++) {
                         if (copyOfTList.get(i).getPrice() >= startPrice && copyOfTList.get(i).getPrice() <= endPrice) {
                             System.out.println((i + 1) + " " + copyOfTList.get(i));
+                            System.out.println("AverageRating : "+copyOfTList.get(i).getAverageRating()+" | comments : ");
+                            copyOfTList.get(i).getUserComments();
                         }
                     }
                 }
@@ -98,10 +106,14 @@ public class SearchProMenu {
                 for (int i = 0; i < copyOfTList.size(); i++) {
                     copyOfTList.get(i).setPrice(copyOfTList.get(i).getPrice() * 0.95);
                     System.out.println((i + 1) + " " + copyOfTList.get(i));
+                    System.out.println("AverageRating : "+copyOfTList.get(i).getAverageRating()+" | comments : ");
+                    copyOfTList.get(i).getUserComments();
                 }
             } else {
                 for (int i = 0; i < copyOfTList.size(); i++) {
                     System.out.println((i + 1) + " " + copyOfTList.get(i));
+                    System.out.println("AverageRating : "+copyOfTList.get(i).getAverageRating()+" | comments : ");
+                    copyOfTList.get(i).getUserComments();
                 }
             }
         }

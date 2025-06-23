@@ -23,7 +23,7 @@ public class UserManagement {
                 case 2 -> CreateUserMenu.gethMlmInstanse().show(headManagerLogin, supportersLogin);
                 case 3 -> editUsers(headManagerLogin, headManager, supportersLogin);
                 case 4 -> blockUser(headManagerLogin, headManager, supportersLogin);
-                case 5 -> unblockUser(headManagerLogin,headManager,supportersLogin);
+                case 5 -> unblockUser(headManagerLogin, headManager, supportersLogin);
                 case 6 -> isOk = false;
                 default -> System.out.println(red + "invalid choice!!!" + reset);
             }
@@ -144,7 +144,7 @@ public class UserManagement {
             System.out.println(red + "don't have any supporter!!!" + reset);
             return;
         }
-        System.out.println("which  supporter do you want to edit?");
+        System.out.println(yellow + "which supporter do you want to edit?" + reset);
         int num = scanner.nextInt();
         scanner.nextLine();
         if (num < 1 || num > listOfSupporter2.size()) {
@@ -162,12 +162,12 @@ public class UserManagement {
         reportHandle(supporter);
     }
 
-    public void reportHandle(Supporter supporter){
+    public void reportHandle(Supporter supporter) {
         Set<KindOfReport> types = new HashSet<>();
         KindOfReport[] allType = KindOfReport.values();
         boolean isOkk = true;
         while (isOkk) {
-            System.out.println(cyan + "which type of reports can't he handle?\n" + red + "1." + green + "select\n" + red + "2." + green + "quit\n" + reset);
+            System.out.println(cyan + "which type of reports can't he handle?\n" + red + "1." + green + "select\n" + red + "2." + green + "show the parts that this supporter can't handle\n" + red + "3." + green + "quit\n" + reset);
             int choice = scanner.nextInt();
             scanner.nextLine();
             switch (choice) {
@@ -184,7 +184,8 @@ public class UserManagement {
                         System.out.println(red + "invalid choose!!!" + reset);
                     }
                 }
-                case 2 -> isOkk = false;
+                case 2 -> System.out.println("the parts that this supporter can't handle: " + types);
+                case 3 -> isOkk = false;
                 default -> System.out.println(red + "invalid choice!!!" + reset);
             }
         }

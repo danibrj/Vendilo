@@ -35,21 +35,25 @@ public class ShowSupporterReqMenu2 {
             for (int i = 0; i < mgU1.size(); i++) {
                 if (i + 1 == num && mgU1.get(i).getReportStatuse().equals(ReportStatuse.REGISTERED)) {
                     if(mgU1.get(i).getKindOfReport().equals(KindOfReport.AUTHENTICATION)){
-                        System.out.println(blue+"Do you want to Ok this? (yes/No)"+reset);
-                        String yesOrNo = scanner.nextLine();
-                        if ("yes".equals(yesOrNo)) {
-                            mgU1.get(i).setReportStatuse(ReportStatuse.OK);
-                            mgU1.get(i).getSeller2().setApproved(true);
-                            mgU1.get(i).getSeller2().setRejected(false);
-                            mgU1.get(i).setMessage("you can login");
-                        } else {
-                            System.out.println("whats your reason for reject this?");
-                            String reasonForReject = scanner.nextLine();
-                            mgU1.get(i).setReportStatuse(ReportStatuse.CLOSED);
-                            mgU1.get(i).getSeller2().setApproved(false);
-                            mgU1.get(i).getSeller2().setRejected(true);
-                            mgU1.get(i).setMessage(reasonForReject);
-                            mgU1.get(i).getSeller2().setReason(reasonForReject);
+                        if(mgU1.get(i).getReportStatuse().equals(ReportStatuse.OK)){
+                            System.out.println(yellow+"this request was previously handled."+reset);
+                        }else {
+                            System.out.println(blue + "Do you want to Ok this? (yes/No)" + reset);
+                            String yesOrNo = scanner.nextLine();
+                            if ("yes".equals(yesOrNo)) {
+                                mgU1.get(i).setReportStatuse(ReportStatuse.OK);
+                                mgU1.get(i).getSeller2().setApproved(true);
+                                mgU1.get(i).getSeller2().setRejected(false);
+                                mgU1.get(i).setMessage("you can login");
+                            } else {
+                                System.out.println(yellow+"whats your reason for reject this?"+reset);
+                                String reasonForReject = scanner.nextLine();
+                                mgU1.get(i).setReportStatuse(ReportStatuse.CLOSED);
+                                mgU1.get(i).getSeller2().setApproved(false);
+                                mgU1.get(i).getSeller2().setRejected(true);
+                                mgU1.get(i).setMessage(reasonForReject);
+                                mgU1.get(i).getSeller2().setReason(reasonForReject);
+                            }
                         }
                     }else {
                         System.out.println(mgU1.get(i));
@@ -57,7 +61,7 @@ public class ShowSupporterReqMenu2 {
                         System.out.println("your message: ");
                         String message = scanner.nextLine();
                         mgU1.get(i).setMessage(message);
-                        System.out.println("do you want to close this report?");
+                        System.out.println(yellow+"do you want to close this report?"+reset);
                         String yOrN = scanner.nextLine();
                         if ("yes".equalsIgnoreCase(yOrN)) {
                             mgU1.get(i).setReportStatuse(ReportStatuse.CLOSED);

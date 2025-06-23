@@ -124,6 +124,7 @@ public class HeadManagerMenu {
                     double reward = scanner.nextDouble();
                     scanner.nextLine();
                     seller.getSellerWallet().increaseInventory(reward);
+                    System.out.println(reward+" $ "+yellow+"as the reward has been credited to your wallet."+reset);
                 }
             }
         }

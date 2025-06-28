@@ -44,7 +44,6 @@ public class UsersWallet {
     }
 
     public void showTransactionsBetween(LocalDateTime start, LocalDateTime end) {
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         boolean isFound = false;
         for (Userstransaction transaction : userstransactions) {
             if (!transaction.getTransactionDate().isBefore(start) && !transaction.getTransactionDate().isAfter(end)) {

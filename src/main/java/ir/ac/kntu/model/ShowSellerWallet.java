@@ -16,7 +16,7 @@ public class ShowSellerWallet {
         SellerWallet sellerWallet = seller.getSellerWallet();
         boolean isOk = true;
         while (isOk) {
-            System.out.println(cyan + "|----------Wallet Menu----------|\nchoose one:\n" + red + "1" + green + ".show inventory\n" + red + "2" + green + ".withdraw money\n" + red + "3" + green + ".quit" + reset);
+            System.out.println(cyan + "|----------Wallet Menu----------|\nchoose one:\n" + red + "1" + green + ".show inventory\n" + red + "2" + green + ".withdraw money\n" + red + "3" + green + ".transaction\n" +red + "4" + green + ".quit" + reset);
             int select = scanner.nextInt();
             scanner.nextLine();
             switch (select) {
@@ -29,6 +29,9 @@ public class ShowSellerWallet {
                     sellerWallet.getMoney(money);
                     break;
                 case 3:
+                    ShowSellersTrans.getSstInstance().show(sellerWallet);
+                    break;
+                case 4:
                     isOk = false;
                     break;
                 default:

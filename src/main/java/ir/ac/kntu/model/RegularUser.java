@@ -29,6 +29,10 @@ public class RegularUser {
         regularUserss.add(this);
     }
 
+    public RegularUser() {
+
+    }
+
     public IsBlock getUserIsBlock() {
         return userIsBlock;
     }

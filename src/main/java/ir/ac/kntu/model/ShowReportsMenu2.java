@@ -1,5 +1,6 @@
 package ir.ac.kntu.model;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import static ir.ac.kntu.model.Color.*;
@@ -28,6 +29,7 @@ public class ShowReportsMenu2 {
         if (choose >= 1 && choose <= values.length) {
             KindOfReport selected = values[choose - 1];
             user.getUserSuportWorking().addReport(selected, user);
+
         } else {
             System.out.println(red + "invalid choose!!!" + reset);
         }

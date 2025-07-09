@@ -1,6 +1,7 @@
 package ir.ac.kntu.model;
 
 import java.util.*;
+import java.util.concurrent.*;
 
 public class UserSuportWorking {
 
@@ -9,6 +10,8 @@ public class UserSuportWorking {
     private Scanner scanner = new Scanner(System.in);
     private Map<Supporter, Set<KindOfReport>> types = new HashMap<>();
     private Map<Supporter, List<ManageUserSupport>> ownReq = new HashMap<>();
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
 
     public static UserSuportWorking getWInstance() {
         return Winstance;
@@ -28,6 +31,11 @@ public class UserSuportWorking {
         String text = scanner.nextLine();
         ManageUserSupport mus = new ManageUserSupport(kindOfReport, text, user);
         mgUSupports.add(mus);
+        scheduler.schedule(() -> {
+            if (mus.getReportStatuse() == ReportStatuse.REGISTERED) {
+                mus.setMessage("Still under review. Please be patient.");
+            }
+        }, 1, TimeUnit.MINUTES);
     }
 
     public Map<Supporter, Set<KindOfReport>> getTypes() {

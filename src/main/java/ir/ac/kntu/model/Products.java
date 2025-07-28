@@ -1,8 +1,6 @@
 package ir.ac.kntu.model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Products {
@@ -45,22 +43,24 @@ public class Products {
         }
     }
 
-    public void addComments(RegularUser user,String comments){
+    public void addComments(RegularUser user, String comments) {
         if (!productComments.containsKey((user))) {
             productComments.put(user, comments);
         } else {
             System.out.println("you have already gave comment to this product.");
-        }   }
+        }
+    }
 
-    public void getUserComments(){
-        if(productComments.isEmpty()){
+    public void getUserComments() {
+        if (productComments.isEmpty()) {
             System.out.println("nothing!");
-        }else {
+        } else {
             for (Map.Entry<RegularUser, String> prodComment : productComments.entrySet()) {
-                System.out.println("person: "+prodComment.getKey().getFirstName()+" "+ prodComment.getKey().getLastName() + " | comment: " + prodComment.getValue());
+                System.out.println("person: " + prodComment.getKey().getFirstName() + " " + prodComment.getKey().getLastName() + " | comment: " + prodComment.getValue());
             }
         }
     }
+
     public Double getAverageRating() {
         if (productRatings.isEmpty()) {
             return null;
@@ -114,7 +114,6 @@ public class Products {
         System.out.println("Seller: " + seller.getFirstName() + " " + seller.getLastName());
 
     }
-
 
     @Override
     public String toString() {

@@ -57,6 +57,10 @@ public class HeadManagerMenu {
         int choice2 = scanner.nextInt();
         scanner.nextLine();
         KindsOfCode kindsOfCode = items[choice2 - 1];
+        pubCodeContinue(users,kindsOfCode);
+    }
+
+    public void pubCodeContinue(List<RegularUser> users,KindsOfCode kindsOfCode){
         System.out.println("name: ");
         String name = scanner.nextLine();
         System.out.println("code: ");
@@ -76,7 +80,6 @@ public class HeadManagerMenu {
             NotificationManager.getNotManInstance().addNotif(notification);
         }
     }
-
     public void userPerfReviewMenu(List<RegularUser> users) {
         for (int i = 0; i < users.size(); i++) {
             System.out.println((i + 1) + " " + users.get(i));

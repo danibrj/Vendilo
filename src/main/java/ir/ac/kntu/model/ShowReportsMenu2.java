@@ -1,6 +1,5 @@
 package ir.ac.kntu.model;
 
-import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import static ir.ac.kntu.model.Color.*;

@@ -64,31 +64,35 @@ public class ProductRater {
             int num2 = scanner.nextInt();
             scanner.nextLine();
             switch (num2) {
-                case 1 -> {
-                    System.out.println(cyan + "Enter rating (1 to 5): " + reset);
-                    int rating = scanner.nextInt();
-                    scanner.nextLine();
-
-                    if (rating < 1 || rating > 5) {
-                        System.out.println(red + "invalid rating" + reset);
-                        return;
-                    }
-                    selectedProduct.addRating(user, rating);
-                    System.out.println(green + "thanks for rating.\n" + reset);
-                }
-                case 2 -> {
-                    System.out.println(cyan + "do you want to add comment?\n" + reset);
-                    String answer = scanner.nextLine();
-                    if ("yes".equals(answer)) {
-                        System.out.println(green + "write your comment: " + reset);
-                        String comment = scanner.nextLine();
-                        selectedProduct.addComments(user, comment);
-                        System.out.println(green + "comment added.thanks" + reset);
-                    }
-                }
+                case 1 -> forRate(selectedProduct,user);
+                case 2 -> forComment(selectedProduct,user);
                 case 3 -> isOk = false;
                 default -> System.out.println(red + "invalid num!!!" + reset);
             }
+        }
+    }
+
+    public void forRate(Products selectedProduct,RegularUser user){
+        System.out.println(cyan + "Enter rating (1 to 5): " + reset);
+        int rating = scanner.nextInt();
+        scanner.nextLine();
+
+        if (rating < 1 || rating > 5) {
+            System.out.println(red + "invalid rating" + reset);
+            return;
+        }
+        selectedProduct.addRating(user, rating);
+        System.out.println(green + "thanks for rating.\n" + reset);
+    }
+
+    public void forComment(Products selectedProduct,RegularUser user) {
+        System.out.println(cyan + "do you want to add comment?\n" + reset);
+        String answer = scanner.nextLine();
+        if ("yes".equals(answer)) {
+            System.out.println(green + "write your comment: " + reset);
+            String comment = scanner.nextLine();
+            selectedProduct.addComments(user, comment);
+            System.out.println(green + "comment added.thanks" + reset);
         }
     }
 }

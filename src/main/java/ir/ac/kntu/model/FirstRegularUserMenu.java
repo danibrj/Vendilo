@@ -16,8 +16,8 @@ public class FirstRegularUserMenu {
             int choice = -1;
             try {
                 choice = Integer.parseInt(scanner.nextLine());
-            } catch(NumberFormatException e){
-                System.out.println(red+"please enter a valid choice"+reset);
+            } catch (NumberFormatException e) {
+                System.out.println(red + "please enter a valid choice" + reset);
             }
             switch (choice) {
                 case 1:
@@ -38,33 +38,39 @@ public class FirstRegularUserMenu {
         try {
             System.out.print("firstName: ");
             String firstName = scanner.nextLine().trim();
-            if(firstName.isEmpty()) throw new IllegalArgumentException("First name can't be empty");
+            if (firstName.isEmpty()) {
+                throw new IllegalArgumentException("First name can't be empty");
+            }
             System.out.print("lastName: ");
             String lastName = scanner.nextLine().trim();
-            if (lastName.isEmpty()) throw new IllegalArgumentException("Last name can't be empty");
-
+            if (lastName.isEmpty()) {
+                throw new IllegalArgumentException("Last name can't be empty");
+            }
             System.out.print("email: ");
             String email = scanner.nextLine().trim();
-            if (!email.contains("@")) throw new IllegalArgumentException("Invalid email format");
-
+            if (!email.contains("@")) {
+                throw new IllegalArgumentException("Invalid email format");
+            }
             System.out.print("phoneNumber: ");
             String phoneNumber = scanner.nextLine().trim();
-            if (phoneNumber.length() < 11) throw new IllegalArgumentException("Phone number too short");
-
+            if (phoneNumber.length() < 11) {
+                throw new IllegalArgumentException("Phone number too short");
+            }
             System.out.print("password: ");
             String password = scanner.nextLine().trim();
-            if (password.length() < 8) throw new IllegalArgumentException("Password must be at least 4 characters");
-
+            if (password.length() < 8) {
+                throw new IllegalArgumentException("Password must be at least 4 characters");
+            }
             RegularUser newUser = new RegularUser(firstName, lastName, email, phoneNumber, password);
             if (regularUserBugs.registerRegularUser(newUser)) {
                 System.out.println(green + "registering is successfully." + reset);
-            }else {
+            } else {
                 System.out.println(red + "Failed. User might already exist." + reset);
             }
-        } catch (IllegalArgumentException e){
-            System.out.println(red+"Error: " + e.getMessage() + reset);
+        } catch (IllegalArgumentException e) {
+            System.out.println(red + "Error: " + e.getMessage() + reset);
         } catch (Exception e) {
-            System.out.println(red+"please try again."+reset);
+            System.out.println(red + "please try again." + reset);
         }
     }
 
@@ -77,7 +83,7 @@ public class FirstRegularUserMenu {
             System.out.print("Enter your password: ");
             String pass = scanner.nextLine();
 
-            if(input.isEmpty() || pass.isEmpty()){
+            if (input.isEmpty() || pass.isEmpty()) {
                 throw new IllegalArgumentException("Email/Phone and password can't be empty");
             }
 
@@ -92,9 +98,9 @@ public class FirstRegularUserMenu {
             }
             System.out.println(green + "login is successfully.welcome " + reset + user.getFirstName());
             MainRegularUserMenu.getMrum().show(user);
-        } catch(IllegalArgumentException e){
-            System.out.println(red+ "Error: " + e.getMessage() + reset);
-        } catch (Exception e){
+        } catch (IllegalArgumentException e) {
+            System.out.println(red + "Error: " + e.getMessage() + reset);
+        } catch (Exception e) {
             System.out.println(red + "Unexpected error occurred during login" + reset);
         }
     }

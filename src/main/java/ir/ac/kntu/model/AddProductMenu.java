@@ -2,7 +2,10 @@ package ir.ac.kntu.model;
 
 import java.util.Scanner;
 
-import static ir.ac.kntu.model.Color.*;
+import static ir.ac.kntu.model.Color.cyan;
+import static ir.ac.kntu.model.Color.green;
+import static ir.ac.kntu.model.Color.red;
+import static ir.ac.kntu.model.Color.reset;
 
 public class AddProductMenu {
 
@@ -20,6 +23,7 @@ public class AddProductMenu {
             System.out.println(red + "1" + green + ".book\n" + red + "2" + green + ".laptop\n" + red + "3" + green + ".mobile\n" + red + "4" + green + ".quit" + reset);
             int select = scanner.nextInt();
             scanner.nextLine();
+            
             switch (select) {
                 case 1:
                     BookMenu.getBookMenu().show(seller);
